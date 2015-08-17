@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="mLearning.Droid" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+  <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="21" />
+  <application android:label="MLearning.Droid" android:theme="@style/MyTheme" android:largeHeap="true" android:debuggable="false" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:name="mono.android.app.Application">
+    <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="md53578754c0351b061281ad09c2f3a748c.MyBroadcastReceiver">
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+        <category android:name="mLearning.Droid" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="com.google.android.gcm.intent.RETRY" />
+        <category android:name="mLearning.Droid" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <category android:name="mLearning.Droid" />
+      </intent-filter>
+    </receiver>
+    <service android:name="md53578754c0351b061281ad09c2f3a748c.GcmService" />
+    <activity android:icon="@drawable/icon" android:label="MLearning.Droid" android:noHistory="true" android:screenOrientation="portrait" android:theme="@style/Theme.Splash" android:name="md56f7ca2643ae6f795f77b881324800fc0.SplashScreen">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:label="View for LOViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.LOView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.CreateAccountView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.CreateInstitutionView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.LoginView" />
+    <activity android:label="View for AuthViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.AuthView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.MainView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.ManageCirclesView" />
+    <activity android:label="View for HeadMainView" android:name="md592b02b43645085eab4f87360df9b5d6c.HeadMainView" />
+    <activity android:label="View for PublisherMainView" android:name="md592b02b43645085eab4f87360df9b5d6c.PublisherMainView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.ManagePublishersView" />
+    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.RegistrationView" />
+    <activity android:label="View for CameraViewModel" android:name="md56f7ca2643ae6f795f77b881324800fc0.CameraView" />
+    <activity android:label="View for FirstViewModel" android:name="md56f7ca2643ae6f795f77b881324800fc0.RegisterView" />
+    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.FormAuthenticatorActivity" />
+    <activity android:label="Web Authenticator" android:name="md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="mLearning.Droid.mono.MonoRuntimeProvider.__mono_init__" />
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.mLearning.Droid" />
+      </intent-filter>
+    </receiver>
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <permission android:name="mLearning.Droid.permission.C2D_MESSAGE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="mLearning.Droid.permission.C2D_MESSAGE" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+</manifest>

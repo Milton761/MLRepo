@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:myapp="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/action_share"
+		android:icon="@drawable/bboton"
+		android:title="Compartir"
+		myapp:showAsAction="always"/>
+
+	<item android:id="@+id/action_notif"
+		android:icon="@drawable/cboton"
+		android:title="Notificaciones"
+		myapp:showAsAction="always" />
+
+	<item android:id="@+id/action_chat"
+		android:icon="@drawable/dboton"
+		android:title="Chat"
+		myapp:showAsAction="always"/>
+
+</menu>
+
