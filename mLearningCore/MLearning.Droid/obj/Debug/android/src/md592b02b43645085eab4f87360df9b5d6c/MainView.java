@@ -15,6 +15,7 @@ public class MainView
 			"n_onSaveInstanceState:(Landroid/os/Bundle;)V:GetOnSaveInstanceState_Landroid_os_Bundle_Handler\n" +
 			"n_onPostCreate:(Landroid/os/Bundle;)V:GetOnPostCreate_Landroid_os_Bundle_Handler\n" +
 			"n_onConfigurationChanged:(Landroid/content/res/Configuration;)V:GetOnConfigurationChanged_Landroid_content_res_Configuration_Handler\n" +
+			"n_onPause:()V:GetOnPauseHandler\n" +
 			"";
 		mono.android.Runtime.register ("MLearning.Droid.Views.MainView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainView.class, __md_methods);
 	}
@@ -74,6 +75,14 @@ public class MainView
 	}
 
 	private native void n_onConfigurationChanged (android.content.res.Configuration p0);
+
+
+	public void onPause ()
+	{
+		n_onPause ();
+	}
+
+	private native void n_onPause ();
 
 	java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

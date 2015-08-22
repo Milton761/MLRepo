@@ -19,6 +19,9 @@ namespace MLearning.Core.Entities
         public string password { get; set; }
         public string email { get; set; }
         public string fullname { get; set; }
+        public string image_url { get; set; }
+
+        public bool is_online { get; set; }
 
         public int institution_id { get; set; }
         public DateTime created_at { get; set; }

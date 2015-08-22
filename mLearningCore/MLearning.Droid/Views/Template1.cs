@@ -29,6 +29,7 @@ namespace MLearning.Droid
 		TextView AutorHeader;
 		TextView content;
 
+
 		int widthInDp;
 		int heightInDp;
 
@@ -82,8 +83,12 @@ namespace MLearning.Droid
 			AutorHeader = new TextView (context);
 			content = new TextView (context);
 
+			titleHeader.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			AutorHeader.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			content.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 
-			mainLinearLayout.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(582), -2);
+
+			mainLinearLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			mainHeaderLinearLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(125));
 			contentLinearLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			headerLinearLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, -1);
@@ -111,11 +116,12 @@ namespace MLearning.Droid
 
 
 			mainLinearLayout.SetBackgroundResource (Resource.Drawable.border);
-			mainLinearLayout.SetX (Configuration.getHeight (29));mainLinearLayout.SetY (Configuration.getWidth (500));
+//			mainLinearLayout.SetX (Configuration.getHeight (45));
+			//mainLinearLayout.SetY (Configuration.getWidth (500));
 
 
 
-			titleHeader.Text = "Diferentes tipos de aves en Perú";
+			//titleHeader.Text = "Diferentes tipos de aves en Perú";
 			titleHeader.SetTextColor (Color.ParseColor ("#FF0080"));
 			titleHeader.SetTextSize (textFormat, Configuration.getHeight (38));
 			titleHeader.SetMaxWidth (Configuration.getWidth (274));
@@ -125,7 +131,7 @@ namespace MLearning.Droid
 			titleHeader.SetMaxLines(2);
 
 
-			AutorHeader.Text = "Autor del Articulo";
+			//AutorHeader.Text = "Autor del Articulo";
 			AutorHeader.SetTextColor(Color.ParseColor ("#424242"));
 			AutorHeader.SetTextSize (textFormat, Configuration.getHeight (23));
 			AutorHeader.SetMaxWidth (Configuration.getWidth (274));
@@ -134,18 +140,25 @@ namespace MLearning.Droid
 			AutorHeader.Ellipsize = TextUtils.TruncateAt.End;
 			AutorHeader.SetMaxLines(1);
 
-			content.Text = "Los factores geográficos, climáticos y evolutivos  convierten al Perú en el mejor lugar para realizar la observacion de aves(birthwaching) Tiene 1830 especies de";
+			//content.Text = "Los factores geográficos, climáticos y evolutivos  convierten al Perú en el mejor lugar para realizar la observacion de aves(birthwaching) Tiene 1830 especies de";
 			content.SetTextSize (textFormat, Configuration.getHeight (24));
 			content.SetMaxWidth (Configuration.getWidth(501));
 			//content.SetX (Configuration.getHeight (68));content.SetY (Configuration.getWidth (951-desviacion));
 			//content.Ellipsize = TextUtils.TruncateAt.End;
 			//content.SetMaxLines(4);
 
-			imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/user.png"),Configuration.getWidth (124), Configuration.getHeight (124),true));
+			//imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/user.png"),Configuration.getWidth (124), Configuration.getHeight (124),true));
 			//imHeader.SetX (Configuration.getHeight (68));imHeader.SetY (Configuration.getWidth (792-desviacion));
 			imHeader.SetMinimumWidth (Configuration.getWidth (124));
 			imHeader.SetMinimumHeight (Configuration.getWidth (124));
 
+
+
+
+			int padW = Configuration.getWidth(45);
+			int padH = Configuration.getHeight (15);
+
+			mainLayout.SetPadding (padW,padH,padW,padH);
 
 			mainLayout.AddView (mainLinearLayout);
 
@@ -156,6 +169,55 @@ namespace MLearning.Droid
 			mainLayout.AddView (imHeader);
 			*/
 		}
+
+		private string _color;
+		public string ColorTexto{
+			get{return _color; }
+			set{_color = value;
+				titleHeader.SetTextColor(Color.ParseColor(_color));
+			}
+
+		}
+
+		private string _title;
+		public string Title{
+			get{return _title; }
+			set{_title = value;
+				titleHeader.Text = _title;}
+
+		}
+
+		private string _author;
+		public string Author{
+			get{return _author; }
+			set{_author = value;
+				AutorHeader.Text = _author;}
+
+		}
+
+		private string _content;
+		public string Contenido{
+			get{return _content; }
+			set{_content = value;
+				content.Text = _content;}
+
+		}
+
+		private Bitmap _imageBitmap;
+		public Bitmap Image{
+			get{return _imageBitmap; }
+			set{_imageBitmap = value;
+				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (_imageBitmap,Configuration.getWidth (124), Configuration.getHeight (124),true));}
+		}
+
+		private string _imageUrl;
+		public string ImageUrl{
+			get{return _imageUrl; }
+			set{_imageUrl = value;
+				Bitmap bm = Configuration.GetImageBitmapFromUrl (_imageUrl);
+				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (124), Configuration.getHeight (124),true));}
+		}
+
 	}
 }
 

@@ -6,6 +6,7 @@ namespace TaskView
 	{
 		public String Tarea{ get; set;}
 		public String Icon{ get; set;}
+		public int Index{ get; set;}
 	}
 }
 

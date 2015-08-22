@@ -22,9 +22,9 @@ namespace MLearningDB
         public string title { get; set; }
         public string type { get; set; }
         public string description { get; set; }
-        public string url_package { get; set; }
+        //public string url_package { get; set; }
         public string url_cover { get; set; }
-        public int Category_id { get; set; }
+        //public int Category_id { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public int User_id { get; set; }

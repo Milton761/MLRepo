@@ -14,6 +14,8 @@ using Cirrious.MvvmCross.Droid.Views;
 using Android.Graphics.Drawables;
 using Android.Graphics;
 using Android.Text;
+using Cirrious.MvvmCross.Binding.BindingContext;
+using MLearning.Core;
 
 namespace MLearning.Droid
 {
@@ -29,11 +31,13 @@ namespace MLearning.Droid
 		EditText etxtPassword;
 		ImageButton btnCreateAccount;
 
+
 		LinearLayout linearRegister;
 		LinearLayout linearButtonRegister;
 
 		protected override void OnCreate (Bundle bundle)
 		{
+			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 			base.OnCreate (bundle);
 			init ();
 			SetContentView (mainLayout);
@@ -50,6 +54,7 @@ namespace MLearning.Droid
 			linearButtonRegister = new LinearLayout (this);
 			linearRegister = new LinearLayout (this);
 
+
 			linearButtonRegister.LayoutParameters = new LinearLayout.LayoutParams (-1,LinearLayout.LayoutParams.WrapContent);
 			linearRegister.LayoutParameters = new LinearLayout.LayoutParams (-1,LinearLayout.LayoutParams.WrapContent);
 			linearButtonRegister.Orientation = Orientation.Horizontal;
@@ -60,18 +65,32 @@ namespace MLearning.Droid
 			etxtUser.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (507), Configuration.getHeight (78));
 			etxtPassword.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (507), Configuration.getHeight (78));
 			etxtEmail.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (507), Configuration.getHeight (78));
-
+				
+	
 
 
 			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
 			Drawable drawableBackground = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/cfondo.png"), 768, 1024, true));
 			mainLayout.SetBackgroundDrawable (drawableBackground);
 
+
 			txtRegister.Text = "Registro";
-			etxtUser.Hint ="Nombre de usuario";
-			etxtEmail.Hint = "Dirección de correo";
-			etxtPassword.Hint ="Contraeña";
-			Drawable drawableEditText = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/cajatexto.png"), Configuration.getWidth (507), Configuration.getHeight (78), true));
+			txtRegister.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+
+			etxtUser.Hint ="  Nombre de usuario";
+			etxtUser.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+
+			etxtEmail.Hint = "  Dirección de correo";
+			etxtEmail.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+
+			etxtPassword.Hint ="  Contraseña";
+			etxtPassword.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+
+			Drawable drawableEditText = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/cajatexto.png"), Configuration.getWidth (507), Configuration.getHeight (80), true));
 
 			etxtUser.SetBackgroundDrawable (drawableEditText);
 			etxtPassword.SetBackgroundDrawable (drawableEditText);
@@ -84,27 +103,61 @@ namespace MLearning.Droid
 			etxtEmail.SetTextColor (Color.ParseColor ("#ffffff"));
 			etxtEmail.SetSingleLine (true);
 
+			txtRegister.SetTextColor (Color.ParseColor("#ffffff"));
+			txtRegister.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (40));
+
 			etxtPassword.InputType = InputTypes.TextVariationVisiblePassword;
 			etxtPassword.TransformationMethod = Android.Text.Method.PasswordTransformationMethod.Instance;
 
-			btnCreateAccount.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/crearcuenta.png"), Configuration.getWidth (507), Configuration.getHeight (78), true));
+			btnCreateAccount.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/crearcuenta.png"), Configuration.getWidth (507), Configuration.getHeight (80), true));
 			btnCreateAccount.Alpha = 255;
 			//btn.SetAlpha(255);
 			btnCreateAccount.SetBackgroundColor(Color.Transparent);
 
 
+			LinearLayout space = new LinearLayout (this);
+			space.LayoutParameters = new LinearLayout.LayoutParams (-1, 20);
+			LinearLayout space2 = new LinearLayout (this);
+			space2.LayoutParameters = new LinearLayout.LayoutParams (-1, 20);
+
 			linearRegister.AddView (etxtUser);
+			linearRegister.AddView (space);
 			linearRegister.AddView (etxtEmail);
+			linearRegister.AddView (space2);
 			linearRegister.AddView (etxtPassword);
 
 			linearButtonRegister.AddView (btnCreateAccount);
 
-			txtRegister.SetX (Configuration.getWidth(68)); txtRegister.SetY (Configuration.getHeight(550));
+			txtRegister.SetX (Configuration.getWidth(72)); txtRegister.SetY (Configuration.getHeight(535));
 			linearRegister.SetX (0); linearRegister.SetY (Configuration.getHeight(592));
 			linearButtonRegister.SetX (0); linearButtonRegister.SetY (Configuration.getHeight(975));
 			mainLayout.AddView (txtRegister);
 			mainLayout.AddView (linearRegister);
 			mainLayout.AddView (linearButtonRegister);
+
+			//string ndef = "None" ;
+
+			//string foto = "http://www.clinicatorielli.com/img/icons/no-user.png";
+
+			EditText lastName = new EditText (this);
+			lastName.Text = "None";
+
+			EditText url = new EditText (this);
+			url.Text = "http://www.clinicatorielli.com/img/icons/no-user.png";
+
+			var set = this.CreateBindingSet<RegisterView, RegisterViewModel>();
+			set.Bind(etxtUser).To(vm=>vm.RegUsername);
+			set.Bind(etxtEmail).To(vm=>vm.Email);
+			set.Bind(etxtPassword).To(vm=>vm.RegPassword);
+			set.Bind(etxtUser).To(vm=>vm.Name);
+
+
+			set.Apply ();
+
+			btnCreateAccount.Click += delegate {
+				var com = ((RegisterViewModel)this.DataContext).RegisterCommand;
+				com.Execute (null);
+			};
 
 
 		}

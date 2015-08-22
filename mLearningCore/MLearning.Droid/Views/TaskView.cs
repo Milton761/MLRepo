@@ -69,8 +69,8 @@ namespace MLearning.Droid
 			Configuration.setHeigthPixel (heightInDp);
 
 			ini ();
-			iniTaskComplete ();
-			iniTaskIncomplete ();
+			//iniTaskComplete ();
+			//iniTaskIncomplete ();
 			this.AddView (mainLayout);
 
 		}
@@ -140,6 +140,12 @@ namespace MLearning.Droid
 			txtChapter.SetTextColor (Color.ParseColor("#ffffff"));
 			txtNameLO.SetTextColor (Color.ParseColor("#ffffff"));
 
+			txtNameLO.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtChapter.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (50));
+			txtAuthor.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtNameLO.Typeface = Typeface.DefaultBold;
+
+
 			txtAuthor.Gravity = GravityFlags.Right;
 			txtChapter.Gravity = GravityFlags.Right;
 			txtNameLO.Gravity = GravityFlags.Right;
@@ -172,7 +178,7 @@ namespace MLearning.Droid
 			linearContentTask.AddView (linearListTaskI);
 
 
-			linearTextLO.SetX (0); linearTextLO.SetY (Configuration.getHeight(250));
+			linearTextLO.SetX (0); linearTextLO.SetY (Configuration.getHeight(200));
 			//linearImageLO.SetX (0); linearImageLO.SetY (0);
 
 			linearContentTask.SetX(0); linearContentTask.SetY(0);
@@ -180,16 +186,55 @@ namespace MLearning.Droid
 			imgLinea.SetX (Configuration.getWidth(75));  imgLinea.SetY (Configuration.getHeight(350));
 
 
-			//	mainLayout.AddView (linearImageLO);
-			mainLayout.AddView (linearTextLO);
+
 			mainLayout.AddView (imgLinea);
 			mainLayout.AddView (linearContentTask);
+			mainLayout.AddView (linearTextLO);
 
 
 
 
 
 		}
+
+		private String _author;
+		public String Author{
+			get{return _author; }
+			set{_author = value;
+				txtAuthor.Text=_author;}
+		}
+
+		private String _chapter;
+		public String Chapter{
+			get{ return _chapter;}
+			set{ _chapter = value;
+				txtChapter.Text = _chapter;	}
+
+		}
+
+		private String _nameLO;
+		public String NameLO{
+			get{ return _nameLO;}
+			set{ _nameLO = value;
+				txtNameLO.Text = _nameLO;	}
+
+		}
+
+
+		public List<TaskViewItem> ListaTareasCompletas{
+			get{ return _listTaskComplete;}
+			set{ _listTaskComplete = value;
+				iniTaskComplete ();
+				}
+		}
+
+		public List<TaskViewItem> ListaTareasIncompletas{
+			get{ return _listTaskIncomplete;}
+			set{ _listTaskIncomplete = value;
+				iniTaskIncomplete ();
+			}
+		}
+
 
 		public Bitmap getBitmapFromAsset( String filePath) {
 			System.IO.Stream s =context.Assets.Open (filePath);
@@ -201,8 +246,8 @@ namespace MLearning.Droid
 		public void iniTaskComplete (){
 
 
-			String icon = "icons/tareacompleta.png";
-			TaskViewItem item1 = new TaskViewItem ();
+			//String icon = "icons/tareacompleta.png";
+			/*TaskViewItem item1 = new TaskViewItem ();
 			TaskViewItem item2 = new TaskViewItem ();
 			TaskViewItem item3 = new TaskViewItem ();
 
@@ -212,9 +257,10 @@ namespace MLearning.Droid
 			item1.Icon = icon;
 			item2.Icon = icon;
 			item3.Icon = icon;
-			_listTaskComplete.Add (item1);
-			_listTaskComplete.Add (item2);
-			_listTaskComplete.Add (item3);
+			*/
+			//_listTaskComplete.Add (item1);
+			//_listTaskComplete.Add (item2);
+			//_listTaskComplete.Add (item3);
 
 			listTaskComplete.Adapter = new TaskViewAdapter (context, _listTaskComplete); 
 
@@ -222,7 +268,7 @@ namespace MLearning.Droid
 
 		public void iniTaskIncomplete (){
 
-			String icon = "icons/tareaincompleta.png";
+		/*	String icon = "icons/tareaincompleta.png";
 			TaskViewItem item1 = new TaskViewItem ();
 			TaskViewItem item2 = new TaskViewItem ();
 			TaskViewItem item3 = new TaskViewItem ();
@@ -241,7 +287,7 @@ namespace MLearning.Droid
 			_listTaskIncomplete.Add (item2);
 			_listTaskIncomplete.Add (item3);
 			_listTaskIncomplete.Add (item4);
-
+*/
 			listTaskIncomplete.Adapter = new TaskViewAdapter (context, _listTaskIncomplete); 
 
 

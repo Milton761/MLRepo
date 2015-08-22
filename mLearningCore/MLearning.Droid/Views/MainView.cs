@@ -14,12 +14,15 @@ using System;
 using Android.Support.V4.Widget;
 
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using System.Collections.ObjectModel;
+using TaskView;
+using Android.Content.PM;
 
 namespace MLearning.Droid.Views
 {
 
 
-	[Activity(Label = "View for FirstViewModel")]
+	[Activity(Label = "View for FirstViewModel", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainView : MvxActionBarActivity
     {
 
@@ -62,7 +65,8 @@ namespace MLearning.Droid.Views
 		ImageView imgTask;
 
 		ProgressBar progressBar;
-
+		LinearLayout linearTxtValorBarra;
+		TextView txtValorBarra;
 		LinearLayout linearCurse;
 		LinearLayout linearTask;
 		LinearLayout linearUserData;
@@ -74,12 +78,14 @@ namespace MLearning.Droid.Views
 		LinearLayout linearPendiente;
 		LinearLayout linearUser;
 
+		ProgressDialog _dialogDownload;
+
 
 		RelativeLayout main_ContentView;
-
+		TaskView task;
 		int widthInDp;
 		int heightInDp;
-
+		int PositionLO =0;
 		List<CursoItem> _currentCursos = new List<CursoItem>();
 		ListView  listCursos;
 
@@ -90,19 +96,20 @@ namespace MLearning.Droid.Views
 
         protected override void OnCreate(Bundle bundle)
         {
+			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.MainView);
 
 
 			//data example
-			mItemsChat = new List<ChatDataRow> ();
-			mItemsChat.Add (new ChatDataRow () {imageProfile="icons/user.png" ,name="Juan",state="offline"});
-			mItemsChat.Add (new ChatDataRow () {imageProfile="icons/user.png" ,name="Peres",state="online"});
-			mItemsChat.Add (new ChatDataRow () {imageProfile="icons/user.png" ,name="Pablito",state="offline"});
-			mItemsChat.Add (new ChatDataRow () {imageProfile="icons/user.png" ,name="Junior",state="online"});
-			mItemsChat.Add (new ChatDataRow () {imageProfile="icons/user.png" ,name = "Marco", state = "online" });
-			//end data example
 
+			/*mItemsChat.Add (new ChatDataRow () {name="Juan",state="offline"});
+			mItemsChat.Add (new ChatDataRow () {name="Peres",state="online"});
+			mItemsChat.Add (new ChatDataRow () {name="Pablito",state="offline"});
+			mItemsChat.Add (new ChatDataRow () {name="Junior",state="online"});
+			mItemsChat.Add (new ChatDataRow () {name = "Marco", state = "online" });
+			//end data example
+*/
 
 			LinearLayout linearMainLayout = FindViewById<LinearLayout>(Resource.Id.left_drawer);
 
@@ -111,8 +118,11 @@ namespace MLearning.Droid.Views
 			heightInDp = ((int)metrics.HeightPixels);
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
-			ini ();
+
+			task= new TaskView (this);
+			iniMenu ();
 			initListCursos ();
+			iniPeoples ();
 			initListTasks ();
 
 
@@ -150,14 +160,16 @@ namespace MLearning.Droid.Views
 
 
 			title_view = FindViewById<TextView> (Resource.Id.chat_view_title);
+
+
 			info1= FindViewById<TextView> (Resource.Id.chat_view_info1);
 			info2 = FindViewById<TextView> (Resource.Id.chat_view_info2);
 			title_list = FindViewById<TextView> (Resource.Id.chat_list_title);
 
 			mListViewChat = FindViewById<ListView> (Resource.Id.chat_list_view);
 
-			ChatListViewAdapter adapter_chatList = new ChatListViewAdapter (this, mItemsChat);
-			mListViewChat.Adapter = adapter_chatList;
+			//ChatListViewAdapter adapter_chatList = new ChatListViewAdapter (this, mItemsChat);
+			//mListViewChat.Adapter = adapter_chatList;
 
 			//ln_chat_row = FindViewById<LinearLayout> (Resource.Id.info_Row_CL);
 			//ln_chat_row.SetX (Configuration.getWidth(74));
@@ -165,17 +177,23 @@ namespace MLearning.Droid.Views
 
 			title_view.SetX (Configuration.getWidth(74));
 			title_view.SetY (Configuration.getHeight (202));
+
+			title_view.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			title_view.SetTypeface (null, TypefaceStyle.Bold);
 
 
 			info1.SetX (Configuration.getWidth (76));
 			info1.SetY (Configuration.getHeight (250));
+			info1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 
 			info2.SetX (Configuration.getWidth (76));
-			info2.SetY (Configuration.getHeight (280));
+			info2.SetY (Configuration.getHeight (285));
+			info2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 
 			title_list.SetX (Configuration.getWidth (76));
 			title_list.SetY (Configuration.getHeight (391));
+
+			title_list.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			title_list.SetTypeface (null, TypefaceStyle.Bold);
 
 			mListViewChat.SetX (0);
@@ -232,8 +250,12 @@ namespace MLearning.Droid.Views
 
 
 
-		private void ini(){
+		private void iniMenu(){
 			mainLayout = new RelativeLayout (this);
+
+			_dialogDownload = new ProgressDialog (this);
+			_dialogDownload.SetCancelable (false);
+			_dialogDownload.SetMessage ("Downloading...");
 
 			txtUserName = new TextView (this);
 			txtCurse = new TextView (this);
@@ -243,6 +265,7 @@ namespace MLearning.Droid.Views
 			txtCurseTitle = new TextView (this);
 			txtTaskTitle = new TextView (this);
 			txtPendiente = new TextView (this);
+			txtValorBarra = new TextView (this);
 
 			imgChat = new ImageView (this);
 			imgUser = new ImageView (this);
@@ -262,9 +285,11 @@ namespace MLearning.Droid.Views
 			linearList = new LinearLayout (this);
 			linearPendiente = new LinearLayout (this);
 
+			linearTxtValorBarra = new LinearLayout (this);
+
 			listCursos = new ListView (this);
 			listTasks = new ListView (this);
-
+			mItemsChat = new List<ChatDataRow> ();
 
 			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
 			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/fondo.png"), 1024, 768, true));
@@ -279,10 +304,15 @@ namespace MLearning.Droid.Views
 			linearListCurso.LayoutParameters = new LinearLayout.LayoutParams (-1,Configuration.getHeight(250));
 			linearListTask.LayoutParameters = new LinearLayout.LayoutParams (-1,LinearLayout.LayoutParams.WrapContent);
 			linearList.LayoutParameters = new LinearLayout.LayoutParams (-1, LinearLayout.LayoutParams.WrapContent);
-			linearPendiente.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (30), Configuration.getHeight (30));
+			linearPendiente.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (30), Configuration.getWidth (30));
+			linearTxtValorBarra.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 
 			linearBarraCurso.Orientation = Orientation.Vertical;
 			linearBarraCurso.SetGravity (GravityFlags.Center);
+
+			linearTxtValorBarra.Orientation = Orientation.Vertical;
+			linearTxtValorBarra.SetGravity (GravityFlags.Center);
+			txtValorBarra.Gravity = GravityFlags.Center;
 
 			linearCurse.Orientation = Orientation.Horizontal;
 			linearCurse.SetGravity (GravityFlags.CenterVertical);
@@ -312,47 +342,72 @@ namespace MLearning.Droid.Views
 			progressBar.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (274), Configuration.getHeight (32));
 			progressBar.ProgressDrawable = Resources.GetDrawable (Resource.Drawable.progressBackground);
 			progressBar.Progress = 60;
+			txtValorBarra.Text = "60%";
 			//progressBar.text
+			txtValorBarra.SetY(13);
 
 			txtCurse.Text = "Cursos del 2015";
-			txtUserName.Text ="David Spencer";
-			txtUserRol.Text ="Alumno";
-			txtSchoolName.Text ="Colegio Sagrados Corazones";
-			txtPorcentaje.Text = "60%";
-			txtCurseTitle.Text = "CURSOS";
-			txtTaskTitle.Text = "TAREAS";	
-			txtPendiente.Text = "1";
-			txtPendiente.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtCurse.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 
-			txtCurseTitle.SetPadding (Configuration.getWidth (55), 0, 0, 0);
-			txtTaskTitle.SetPadding (Configuration.getWidth (55), 0, 0, 0);
+
+		//	txtUserName.Text ="David Spencer";
+			txtUserName.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtUserRol.Text ="Alumno";
+			txtUserRol.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtSchoolName.Text ="Colegio Sagrados Corazones";
+			txtSchoolName.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtPorcentaje.Text = "60%";
+			txtPorcentaje.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtCurseTitle.Text = "CURSOS";
+			txtCurseTitle.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtTaskTitle.Text = "TAREAS";	
+			txtTaskTitle.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+
+			txtPendiente.Text = "1";
+			txtPendiente.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			txtPendiente.SetY (-10);
+
+
+			txtPendiente.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtUserName.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (35));
+			txtUserRol.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+
+
+			txtCurseTitle.SetPadding (Configuration.getWidth (48), 0, 0, 0);
+			txtTaskTitle.SetPadding (Configuration.getWidth (48), 0, 0, 0);
 
 			txtCurse.SetTextColor (Color.ParseColor ("#ffffff"));
 			txtUserName.SetTextColor (Color.ParseColor ("#ffffff"));
-			txtUserRol.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtUserRol.SetTextColor (Color.ParseColor ("#999999"));
 			txtSchoolName.SetTextColor (Color.ParseColor ("#ffffff"));
 			txtPorcentaje.SetTextColor (Color.ParseColor ("#ffffff"));
 			txtPendiente.SetTextColor (Color.ParseColor ("#ffffff"));
 			txtTaskTitle.SetTextColor (Color.ParseColor ("#ffffff"));
 			txtCurseTitle.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtValorBarra.SetTextColor (Color.ParseColor ("#ffffff"));
 
 			txtUserName.Gravity = GravityFlags.CenterHorizontal;
 			txtUserRol.Gravity = GravityFlags.CenterHorizontal;
 			txtCurse.Gravity = GravityFlags.CenterHorizontal;
 
 
-			imgChat.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/chat.png"),Configuration.getWidth (40), Configuration.getHeight (36),true));
+			imgChat.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/chat.png"),Configuration.getWidth (45), Configuration.getWidth (40),true));
 			imgUser.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/user.png"),Configuration.getWidth (154), Configuration.getHeight (154),true));
 			imgSchool.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/colegio.png"),Configuration.getWidth (29), Configuration.getHeight (29),true));
-			imgNotificacion.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/notif.png"),Configuration.getWidth (40), Configuration.getHeight (36),true));
+			imgNotificacion.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/notif.png"),Configuration.getWidth (35), Configuration.getWidth (40),true));
 			imgCurse.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/curso.png"),Configuration.getWidth (23), Configuration.getHeight (28),true));
 			imgTask.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/vertareas.png"),Configuration.getWidth (23), Configuration.getHeight (28),true));
 
-			Drawable drPendiente = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/pendiente.png"), 100, 100, true));
+			Drawable drPendiente = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/pendiente.png"), Configuration.getWidth(30), Configuration.getWidth(30), true));
 			linearPendiente.SetBackgroundDrawable (drPendiente);
 
-			imgCurse.SetPadding (Configuration.getWidth (71), 0, 0, 0);
-			imgTask.SetPadding(Configuration.getWidth(71),0,0,0);
+			imgCurse.SetPadding (Configuration.getWidth (68), 0, 0, 0);
+			imgTask.SetPadding(Configuration.getWidth(68),0,0,0);
 
 
 			linearCurse.SetBackgroundColor(Color.ParseColor("#0d1216"));
@@ -360,6 +415,9 @@ namespace MLearning.Droid.Views
 
 			linearBarraCurso.AddView (txtCurse);
 			linearBarraCurso.AddView (progressBar);
+
+			linearTxtValorBarra.AddView (txtValorBarra);
+
 			linearCurse.AddView (imgCurse);
 			linearCurse.AddView (txtCurseTitle);
 			linearTask.AddView (imgTask);
@@ -367,8 +425,9 @@ namespace MLearning.Droid.Views
 			linearPendiente.AddView (txtPendiente);
 
 
-			imgSchool.SetPadding (Configuration.getWidth(71),0,0,0);
-			txtSchoolName.SetPadding (Configuration.getWidth(55),0,0,0);
+
+			imgSchool.SetPadding (Configuration.getWidth(68),0,0,0);
+			txtSchoolName.SetPadding (Configuration.getWidth(40),0,0,0);
 			linearSchool.AddView (imgSchool);
 			linearSchool.AddView (txtSchoolName);
 
@@ -393,46 +452,159 @@ namespace MLearning.Droid.Views
 
 			linearUserData.SetX (0); linearUserData.SetY (Configuration.getHeight(130));
 			linearBarraCurso.SetX (0); linearBarraCurso.SetY (Configuration.getHeight(412));
+			linearTxtValorBarra.SetX (0); linearTxtValorBarra.SetY (Configuration.getHeight(443));
 			linearSchool.SetX (0); linearSchool.SetY (Configuration.getHeight(532));
 			linearList.SetX (0); linearList.SetY (Configuration.getHeight(583));
 
 			//	linearUser.SetX (0); linearUser.SetY (Configuration.getHeight(250));
+			Bitmap bm;
+			var vm = this.ViewModel as MainViewModel;
 
-			//mainLayout.AddView (linearUser);
+			txtUserName.Text = vm.UserFirstName + " "+ vm.UserLastName;
+
+			if (vm.UserImage != null) {
+				bm = BitmapFactory.DecodeByteArray (vm.UserImage, 0, vm.UserImage.Length);
+
+				Bitmap newbm = Configuration.GetRoundedCornerBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (154), Configuration.getHeight (154),true));
+				imgUser.SetImageBitmap (newbm);
+			}
+
+			vm.PropertyChanged += Vm_PropertyChanged;
+
 			mainLayout.AddView (imgChat);
 			mainLayout.AddView (imgNotificacion);
 			mainLayout.AddView (linearPendiente);
 			mainLayout.AddView (linearUserData);
 			mainLayout.AddView (linearBarraCurso);
+			mainLayout.AddView (linearTxtValorBarra);
 			mainLayout.AddView (linearSchool);
 			mainLayout.AddView (linearList);
-
 		}
 
 
 
-		public void initListCursos(){
-			CursoItem item1 = new CursoItem ();
-			CursoItem item2 = new CursoItem ();
-			CursoItem item3 = new CursoItem ();
-			item1.CursoName = "Camino Inca";
-			item1.NumLO = 2;
-			item2.CursoName = "Tipos de aprendizaje";
-			item2.NumLO = 1;
-			item3.CursoName = "Computación";
-			item3.NumLO = 3;
-
-			_currentCursos.Add (item1);
-			_currentCursos.Add (item2);
-			_currentCursos.Add (item3);
-			_currentCursos.Add (item3);
-			_currentCursos.Add (item3);
-			_currentCursos.Add (item3);
-
-			listCursos.Adapter = new CursoAdapter (this, _currentCursos);
-			listCursos.ItemClick += ListCursos_ItemClick;
-
+		private void initListCursos(){		
+			resetMLOs(0); 
+				
 		}
+
+		private void iniPeoples (){
+			populatePeopleScroll(0);
+		}
+
+		void Vm_PropertyChanged (object sender, PropertyChangedEventArgs e)
+		{
+			var vm = this.ViewModel as MainViewModel;
+			string property = e.PropertyName;
+			switch(property){
+			case "UserFirstName":
+				txtUserName.Text = vm.UserFirstName + " " + vm.UserLastName;
+				break;
+			case "UserLastName":
+				txtUserName.Text = vm.UserFirstName + " " + vm.UserLastName;
+				break;
+			case "UserImage":
+				if (vm.UserImage != null) {
+					Bitmap bm = BitmapFactory.DecodeByteArray (vm.UserImage, 0, vm.UserImage.Length);
+
+					Bitmap newbm = Configuration.GetRoundedCornerBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (154), Configuration.getHeight (154),true));
+					imgUser.SetImageBitmap (newbm);
+				}
+				break;
+			case "LearningOjectsList":
+				resetMLOs (0);
+				(ViewModel as MainViewModel).LearningOjectsList.CollectionChanged += _learningObjectsList_CollectionChanged;
+				break;
+			case "UsersList":
+				populatePeopleScroll(0);
+				(ViewModel as MainViewModel).UsersList.CollectionChanged+=  UsersList_CollectionChanged;
+				break;
+
+			case "PendingQuizzesList":
+				resetPendingQuizzes();
+				break;
+			case "CompletedQuizzesList":
+				loadCompleteQuizzes();
+				//(ViewModel as MainViewModel).CompletedQuizzesList.CollectionChanged+= CompletedQuizzesList_CollectionChanged;
+
+				break;
+
+			case "PostsList":
+				resetComments();
+				break;
+			default:
+
+				break;
+
+			}
+		}
+
+		void CompletedQuizzesList_CollectionChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			loadCompleteQuizzes ();
+		}
+
+		void populatePeopleScroll(int indice){
+			mItemsChat = new List<ChatDataRow> ();
+			var vm = ViewModel as MainViewModel;
+			if (vm.UsersList!= null)
+			{
+				for (int i = 0; i < vm.UsersList.Count; i++)
+				{
+					var newinfo = new ChatDataRow()
+					{
+						name = vm.UsersList[i].user.name + " " + vm.UsersList[i].user.lastname,
+						//image = Resource.Drawable.state,
+						state = vm.UsersList[i].user.is_online,
+						index = i,
+						imageProfile = vm.UsersList[i].user.image_url
+					};
+					mItemsChat.Add(newinfo);
+				}
+
+				mListViewChat.Adapter = new ChatListViewAdapter(this, mItemsChat);
+				mListViewChat.DividerHeight = 0;
+	
+			}
+			
+		}
+
+	
+
+		void resetMLOs(int indice){
+			
+			_currentCursos = new List<CursoItem> ();
+			var vm = ViewModel as MainViewModel;
+				if (vm.LearningOjectsList != null)
+				{
+				for (int i = 0; i < vm.LearningOjectsList.Count; i++)
+				{
+					var newinfo = new CursoItem()
+					{
+						CursoName = vm.LearningOjectsList[i].lo.title,
+						Index =  i					
+					};
+					_currentCursos.Add(newinfo);
+				}
+
+				listCursos.Adapter = new CursoAdapter(this, _currentCursos);
+				listCursos.ItemClick+= ListCursos_ItemClick;
+					
+				}
+		}
+
+
+		void _learningObjectsList_CollectionChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+
+			resetMLOs(e.NewStartingIndex);
+		}
+
+		void UsersList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			populatePeopleScroll(e.NewStartingIndex);
+		}
+
 
 		public void initListTasks (){
 			TaskItem item1 = new TaskItem();
@@ -454,14 +626,76 @@ namespace MLearning.Droid.Views
 
 		void ListTasks_ItemClick (object sender, AdapterView.ItemClickEventArgs e)
 		{
-			TaskView task = new TaskView (this);
+			
+
+			Console.WriteLine ("POSITION!!! = "+ e.Position);
 
 
 
-			main_ContentView.RemoveAllViews ();
-			main_ContentView.AddView (task);
+			if (e.Position == 0) {
+				LoadQuiz ();
+			} else {
+				
+			}
+				
 			mDrawerLayout.CloseDrawer (mLeftDrawer);
 
+		}
+
+		void LoadQuiz(){
+			main_ContentView.RemoveAllViews ();
+			main_ContentView.AddView (task);
+
+			var vm = ViewModel as MainViewModel;
+			task.Author=vm.LearningOjectsList[0].lo.name +" "+vm.LearningOjectsList[0].lo.lastname;
+			task.NameLO = vm.LearningOjectsList [0].lo.title;
+			task.Chapter = "Flora y Fauna ";
+		
+
+			loadCompleteQuizzes ();
+			resetPendingQuizzes ();
+		}
+
+		void loadCompleteQuizzes(){
+			String icon = "icons/tareacompleta.png";
+			List<TaskViewItem> _currentTask = new List<TaskViewItem> ();
+			var vm = ViewModel as MainViewModel;
+			int i = 0;
+			foreach (var quiz in vm.CompletedQuizzesList) 
+			{
+				var newinfo = new TaskViewItem()
+				{
+					Icon = icon,
+					Tarea= vm.CompletedQuizzesList[i].content,
+					Index = i
+
+				};
+				_currentTask.Add(newinfo);
+				i++;
+			}
+			task.ListaTareasCompletas = _currentTask;
+		}
+
+		void resetPendingQuizzes(){
+			String icon = "icons/tareaincompleta.png";
+			List<TaskViewItem> _currentTask = new List<TaskViewItem> ();
+			var vm = ViewModel as MainViewModel;
+			int i = 0;
+			foreach (var quiz in vm.PendingQuizzesList) 
+			{
+				var newinfo = new TaskViewItem()
+				{
+					//CursoName = vm.LearningOjectsList[i].lo.title,
+					//Index =  i					
+					Icon = icon,
+					Tarea= vm.PendingQuizzesList[i].content,
+					Index = i
+
+				};
+				_currentTask.Add(newinfo);
+				i++;
+			}
+			task.ListaTareasIncompletas = _currentTask;
 		}
 
 		void ListCursos_ItemClick (object sender, AdapterView.ItemClickEventArgs e)
@@ -473,50 +707,58 @@ namespace MLearning.Droid.Views
 			main_ContentView.AddView (lo);
 			mDrawerLayout.CloseDrawer (mLeftDrawer);
 
+			List<CommentDataRow> _currentComment = new List<CommentDataRow> ();
+
+			var vm = this.ViewModel as MainViewModel;
+			if (vm.LearningOjectsList != null) {
+				lo.Author=vm.LearningOjectsList[e.Position].lo.name +" "+vm.LearningOjectsList[e.Position].lo.lastname;
+				lo.NameLO = vm.LearningOjectsList [e.Position].lo.title;
+				lo.Chapter = "Flora y Fauna ";
+				lo.ImageCover= Configuration.GetImageBitmapFromUrl(vm.LearningOjectsList [e.Position].lo.url_cover);
+
+
+				PositionLO = e.Position;
+
+				if (vm.PostsList != null) {
+					foreach (var comment in vm.PostsList) 
+					{
+						var newinfo = new CommentDataRow()
+						{
+							comment= comment.post.text,
+							date = comment.post.updated_at.ToString(),
+							name = comment.post.name+ " "+ comment.post.lastname,
+							im_profile= comment.post.image_url
+
+						};
+						_currentComment.Add(newinfo);
+					}
+					lo.ListaComentarios = _currentComment;
+					lo.ImagenLO.Click += Lo_ImagenLO_Click;
+					/*lo.ImagenLO.Click+= delegate {
+						vm.SelectLOCommand.Execute(vm.LearningOjectsList[e.Position]);
+					};// Lo_ImagenLO_Click;*/
+				}
+
+			}			
+		
+
 		}
 
-
-
-        private void RegisterWithGCM()
-        {
-
-
-            if (!GcmClient.IsRegistered(this))
-            {
-                GcmClient.CheckDevice(this);
-                GcmClient.CheckManifest(this);
-
-                // Register for push notifications
-                System.Diagnostics.Debug.WriteLine("Registering...");
-
-                
-                GcmClient.Register(this, Core.Configuration.Constants.SenderID);
-
-            }
-
-
-
-
-
-        }
-
-		public Bitmap getBitmapFromAsset( String filePath) {
-			System.IO.Stream s = this.Assets.Open (filePath);
-			Bitmap bitmap = BitmapFactory.DecodeStream (s);
-
-			return bitmap;
+		void Lo_ImagenLO_Click (object sender, EventArgs e)
+		{
+			
+			_dialogDownload.Show ();
+			Configuration.IndiceActual = PositionLO;
+			var vm = ViewModel as MainViewModel;
+			vm.OpenLOCommand.Execute(vm.LearningOjectsList[PositionLO]);
+			//vm.SelectLOCommand.Execute
 		}
 
+		void resetComments(){
+			
+		}
 
-
-        void logout_propertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "IsLoggingOut" && (sender as MainViewModel).IsLoggingOut)
-            {
-                GcmClient.UnRegister(this);
-            }
-        }
-
+       
 
 
 		//toolbar codes requisites
@@ -548,8 +790,9 @@ namespace MLearning.Droid.Views
 
 			case Resource.Id.action_share:
 				//Refresh
-				Template3 t1 = new Template3 (this);
-				//Template2 t1 = new Template2 (this);
+				//Template1 t1 = new Template1 (this);
+				/*
+				Template2 t1 = new Template2 (this);
 
 
 				main_ContentView.RemoveAllViews ();
@@ -557,7 +800,7 @@ namespace MLearning.Droid.Views
 				mDrawerLayout.CloseDrawer (mRightDrawer);
 				main_ContentView.AddView (t1);
 
-
+				*/
 
 				return true;
 
@@ -617,8 +860,51 @@ namespace MLearning.Droid.Views
 			base.OnConfigurationChanged (newConfig);
 			mDrawerToggle.OnConfigurationChanged(newConfig);
 		}
+		private void RegisterWithGCM()
+		{
+
+
+			if (!GcmClient.IsRegistered(this))
+			{
+				GcmClient.CheckDevice(this);
+				GcmClient.CheckManifest(this);
+
+				// Register for push notifications
+				System.Diagnostics.Debug.WriteLine("Registering...");
+
+
+				GcmClient.Register(this, Core.Configuration.Constants.SenderID);
+
+			}
 
 
 
+
+
+		}
+
+		public Bitmap getBitmapFromAsset( String filePath) {
+			System.IO.Stream s = this.Assets.Open (filePath);
+			Bitmap bitmap = BitmapFactory.DecodeStream (s);
+
+			return bitmap;
+		}
+
+
+
+		void logout_propertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == "IsLoggingOut" && (sender as MainViewModel).IsLoggingOut)
+			{
+				GcmClient.UnRegister(this);
+			}
+		}
+
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			_dialogDownload.Hide ();
+		}
     }
 }

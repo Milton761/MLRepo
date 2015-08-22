@@ -60,18 +60,23 @@ namespace MLearning.Droid
 			row.SetMinimumHeight (Configuration.getHeight (143));
 
 			ImageView row_image = row.FindViewById<ImageView> (Resource.Id.imageView_Row_NL);
-			row_image.SetX (Configuration.getWidth (52));
+			row_image.SetX (Configuration.getWidth (52)-4);
 
 			//row_image.SetImageResource (Resource.Id.icon);
 
 			LinearLayout ln_chat_row = row.FindViewById<LinearLayout> (Resource.Id.info_Row_NL);
-			ln_chat_row.SetX (Configuration.getWidth(148));
+			//ln_chat_row.SetX (Configuration.getWidth(148));
 
 			TextView date = row.FindViewById<TextView> (Resource.Id.textView_date_NL);
 			date.Text = mItems [position].date;
+			date.SetX (Configuration.getWidth (140));
 
 			TextView comment = row.FindViewById<TextView> (Resource.Id.textView_comment_NL);
 			comment.Text = mItems [position].comment;
+			comment.SetX (Configuration.getWidth (140));
+
+			comment.Typeface =  Typeface.CreateFromAsset(mContext.Assets, "fonts/HelveticaNeue.ttf");
+			date.Typeface =  Typeface.CreateFromAsset(mContext.Assets, "fonts/HelveticaNeue.ttf");
 
 
 

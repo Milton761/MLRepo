@@ -507,6 +507,67 @@ namespace Core.ViewModels
 
 
 
+		#region NEW REGISTER
+
+		/// <summary>
+		/// Command for register With Institution by default
+		/// </summary>
+		MvxCommand _registerCommand ;
+		public System.Windows.Input.ICommand RegisterCommand
+		{
+			get 
+			{
+				_registerCommand = _registerCommand ?? new MvxCommand (DoRegisterCommand1);
+				return _registerCommand;
+			}
+		}
+
+
+		async void DoRegisterCommand1()
+		{
+			try
+			{
+				MLearningDB.User newuser = new MLearningDB.User { email = Email, username = RegUsername, password = EncryptionService.encrypt(RegPassword), name = Name, lastname = Lastname, image_url=UserImageUrl,created_at = DateTime.Now, updated_at = DateTime.Now };
+
+
+				int idInstitution = 13;
+				newuser.password = EncryptionService.encrypt(newuser.password);
+				bool exists = await _mLearningService.CheckIfExistsNoLocale<MLearningDB.User>
+					(usr => usr.username == newuser.username, (it) => it.updated_at, it => it.id);
+
+				if(exists)
+				{
+					return ;
+				}
+
+				OperationResult op = await _mLearningService.CreateAndRegisterConsumer (newuser, idInstitution);
+
+				MLearningDB.User user = new MLearningDB.User { username = newuser.username, password = newuser.password };
+
+				SharedPreferences prefs = Constants.GetSharedPreferences(Constants.PreferencesFileName);
+				prefs.PutString(Constants.UserFirstNameKey, Name);
+				prefs.PutString(Constants.UserLastNameKey, Lastname);
+				prefs.PutString(Constants.UserImageUrlKey, UserImageUrl);
+
+				prefs.Commit();
+
+				ClearProperties();
+
+				ShowViewModel<MainViewModel>();
+
+			}
+			catch (MobileServiceInvalidOperationException e){
+				ConnectionOK = false;
+			}
+			catch (WebException e)
+			{
+				ConnectionOK = false;
+			}
+		}
+
+
+		#endregion
+
 
         #region SignUpCommands
         //----------------------------------------------------------------------Registration Commands----------------------------------------------

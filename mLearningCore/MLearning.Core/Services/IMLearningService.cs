@@ -21,6 +21,8 @@ namespace MLearning.Core.Services
 
         //Ex of use :validate username
         Task<bool> CheckIfExists<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate, Func<T, DateTime> getLastUpdate,Func<T,int> getID) where T : new();
+        //Ex of use : validate username no locale
+        Task<bool> CheckIfExistsNoLocale<T>(System.Linq.Expressions.Expression<Func<T, bool>> predicate, Func<T, DateTime> getLastUpdate, Func<T, int> getID) where T : new();
 
         // Recommendend
         //Validate user credentials

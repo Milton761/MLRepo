@@ -40,6 +40,8 @@ namespace MLearningDB
 
         public bool like { get; set; }
 
+        public int circle_has_lo_id { get; set; }
+
         //Author properties
         public string name { get; set; }
         public string lastname { get; set; }

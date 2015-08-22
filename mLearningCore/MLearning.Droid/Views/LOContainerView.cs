@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using MLearning.Core.ViewModels;
 
 namespace MLearning.Droid
 {
@@ -51,6 +52,9 @@ namespace MLearning.Droid
 			Initialize ();
 		}
 
+		public LinearLayout ImagenLO{
+			get{return linearImageLO; }
+		}
 	
 		void Initialize ()
 		{
@@ -83,6 +87,11 @@ namespace MLearning.Droid
 			txtLike = new TextView (context);
 
 
+			txtAuthor.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtChapter.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtNameLO.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtLike.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+
 
 			imgHeart= new ImageView (context);
 
@@ -112,10 +121,6 @@ namespace MLearning.Droid
 			imgHeart.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true));
 
 
-
-
-
-
 			txtAuthor.Text = "Author : David Spencer";
 			txtChapter.Text = "Flora y Fauna";
 			txtNameLO.Text = "Camino Inca";
@@ -126,6 +131,11 @@ namespace MLearning.Droid
 			txtNameLO.SetTextColor (Color.ParseColor("#ffffff"));
 			txtLike.SetTextColor (Color.ParseColor("#ffffff"));
 
+			txtNameLO.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtChapter.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (50));
+			txtAuthor.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (30));
+			txtNameLO.Typeface = Typeface.DefaultBold;
+
 			txtAuthor.Gravity = GravityFlags.Right;
 			txtChapter.Gravity = GravityFlags.Right;
 			txtNameLO.Gravity = GravityFlags.Right;
@@ -135,11 +145,14 @@ namespace MLearning.Droid
 			linearTextLO.AddView (txtChapter);
 			linearTextLO.AddView (txtAuthor);
 
+			linearTextLO.SetPadding (0, 0, Configuration.getWidth (30), 0);
+
 			linearLike.AddView (imgHeart);
 			linearLike.AddView (txtLike);
 
 
 			_mCommentData = new List<CommentDataRow> ();
+			/*
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
@@ -148,14 +161,14 @@ namespace MLearning.Droid
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
-
-			commentList.Adapter = new CommentListViewAdapter (context, _mCommentData);
+*/
+//			commentList.Adapter = new CommentListViewAdapter (context, _mCommentData);
 			commentList.LayoutParameters = new LinearLayout.LayoutParams (-1, 800);
 
 
 			commentList.SetX (0);commentList.SetY (Configuration.getHeight (530));
 
-			linearTextLO.SetX (0); linearTextLO.SetY (Configuration.getHeight(250));
+			linearTextLO.SetX (0); linearTextLO.SetY (Configuration.getHeight(200));
 			//linearImageLO.SetX (0); linearImageLO.SetY (0);
 			linearLike.SetX (0); linearLike.SetY (Configuration.getHeight(256));
 			linearContainer.SetX (0); linearContainer.SetY (0);
@@ -172,7 +185,54 @@ namespace MLearning.Droid
 
 			this.AddView (mainLayout);
 
+			/*linearImageLO.Click += delegate {
+				var com = ((LOViewModel)context.DataContext).SignUpCommand;
+				com.Execute(null);
+			};
+		*/
 
+		}
+
+
+		private String _author;
+		public String Author{
+			get{return _author; }
+			set{_author = value;
+				txtAuthor.Text=_author;}
+		}
+
+		private String _chapter;
+		public String Chapter{
+			get{ return _chapter;}
+			set{ _chapter = value;
+				txtChapter.Text = _chapter;	}
+
+		}
+
+		private String _nameLO;
+		public String NameLO{
+			get{ return _nameLO;}
+			set{ _nameLO = value;
+				txtNameLO.Text = _nameLO;	}
+
+		}
+
+		private Bitmap _imageCover;
+		public Bitmap ImageCover{
+			get{ return _imageCover;}
+			set{ _imageCover = value;
+				Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (_imageCover, 480, 640, true));
+				linearImageLO.SetBackgroundDrawable (d);
+			}
+
+		}
+
+		public List<CommentDataRow> ListaComentarios{
+			get{ return _mCommentData;}
+			set{ _mCommentData = value;
+				//iniTaskComplete ();
+				commentList.Adapter = new CommentListViewAdapter (context, _mCommentData);
+			}
 		}
 
 		private void iniImageUser(){

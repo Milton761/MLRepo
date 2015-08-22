@@ -29,7 +29,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -180,11 +180,28 @@
     <Compile Include="CommentListViewAdapter.cs" />
     <Compile Include="Views\Template1.cs" />
     <Compile Include="Views\Template2.cs" />
+    <Compile Include="Views\ChapterContainerView.cs" />
+    <Compile Include="Views\FrontContainerView.cs" />
+    <Compile Include="Views\MenuDownView.cs" />
+    <Compile Include="Views\ImageAdapter.cs" />
+    <Compile Include="Views\Template3.cs" />
+    <Compile Include="Views\ImageGallery.cs" />
     <Compile Include="Views\TemplateAdapter.cs" />
     <Compile Include="Views\TemplateItem.cs" />
-    <Compile Include="Views\ImageAdapter.cs" />
-    <Compile Include="Views\ImageGallery.cs" />
-    <Compile Include="Views\Template3.cs" />
+    <Compile Include="DataSource\BookDataSource.cs" />
+    <Compile Include="DataSource\ChapterDataSource.cs" />
+    <Compile Include="DataSource\PageDataSource.cs" />
+    <Compile Include="DataSource\SectionDataSource.cs" />
+    <Compile Include="Views\VerticalScrollView.cs" />
+    <Compile Include="Views\CustomerImageView.cs" />
+    <Compile Include="Views\CustomerVideoView.cs" />
+    <Compile Include="Views\PhraseView.cs" />
+    <Compile Include="Views\LOViewAdapter.cs" />
+    <Compile Include="Views\VerticalScrollViewPager.cs" />
+    <Compile Include="Views\Template4.cs" />
+    <Compile Include="Views\FrontContainerViewPager.cs" />
+    <Compile Include="DataSource\LOSlideSource.cs" />
+    <Compile Include="DataSource\LOItemSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -304,6 +321,8 @@
     <Folder Include="Assets\icons\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Assets\images\" />
+    <Folder Include="DataSource\" />
+    <Folder Include="Assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\icons\afondo.png" />
@@ -364,7 +383,18 @@
     <AndroidAsset Include="Assets\icons\circblanco.png" />
     <AndroidAsset Include="Assets\icons\circplomo.png" />
     <AndroidAsset Include="Assets\icons\lineanotificaciones.png" />
+    <AndroidAsset Include="Assets\icons\adelante.png" />
     <AndroidAsset Include="Assets\icons\atras.png" />
+    <AndroidAsset Include="Assets\icons\colores.png" />
+    <AndroidAsset Include="Assets\images\fondocondiagonal.png" />
+    <AndroidAsset Include="Assets\images\fondocondiagonalm.png" />
+    <AndroidAsset Include="Assets\images\paisaje1.jpg" />
+    <AndroidAsset Include="Assets\images\paisaje2.jpg" />
+    <AndroidAsset Include="Assets\images\paisaje3.jpg" />
+    <AndroidAsset Include="Assets\images\paisaje4.jpg" />
+    <AndroidAsset Include="Assets\images\paisaje5.jpg" />
+    <AndroidAsset Include="Assets\images\paisaje6.jpg" />
+    <AndroidAsset Include="Assets\fonts\HelveticaNeueLight.ttf" />
     <AndroidAsset Include="Assets\icons\circuloa.png" />
     <AndroidAsset Include="Assets\icons\circulob.png" />
     <AndroidAsset Include="Assets\icons\circuloc.png" />
@@ -383,6 +413,13 @@
     <AndroidAsset Include="Assets\icons\playd.png" />
     <AndroidAsset Include="Assets\icons\playe.png" />
     <AndroidAsset Include="Assets\icons\playf.png" />
+    <AndroidAsset Include="Assets\icons\lineafraseamarilla.png" />
+    <AndroidAsset Include="Assets\icons\lineafraseceleste.png" />
+    <AndroidAsset Include="Assets\icons\lineafrasemorada.png" />
+    <AndroidAsset Include="Assets\icons\lineafrasenaranja.png" />
+    <AndroidAsset Include="Assets\icons\lineafraserosada.png" />
+    <AndroidAsset Include="Assets\icons\lineafraseverde.png" />
+    <AndroidAsset Include="Assets\fonts\HelveticaNeue.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MLearning.Core\MLearning.Core.csproj">

@@ -83,8 +83,19 @@ namespace MLearning.Droid
 
 
 			string path = mItems [position].im_profile;
+			Bitmap bm;
+			if (path==null) {
+				bm = getBitmapFromAsset ("images/e1.jpg");
 
-			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap(getBitmapFromAsset (path), Configuration.getWidth(200), Configuration.getHeight(200), true)
+
+			} else {
+				bm=Configuration.GetImageBitmapFromUrl (path);
+			}
+
+			 
+
+
+			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap( bm, Configuration.getWidth(200), Configuration.getHeight(200), true)
 				,Configuration.getWidth(60),Configuration.getHeight(60));
 
 			im_profie.SetImageBitmap (newbm);

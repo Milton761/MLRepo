@@ -85,6 +85,7 @@ namespace MLearning.Droid
 
 
 			title.Text = "Notificaciones";
+			title.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 			title.SetTextColor (Color.ParseColor ("#ffffff"));
 			title.SetTextSize (textFormat, Configuration.getHeight (48));
 			title.SetX (Configuration.getHeight (35));

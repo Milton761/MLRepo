@@ -15,8 +15,6 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>ebf62e0f</NuGetPackageImportStamp>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -125,10 +123,10 @@
     <Compile Include="ViewModels\ManageCirclesViewModel.cs" />
     <Compile Include="ViewModels\ManagePublishersViewModel.cs" />
     <Compile Include="ViewModels\PublisherMainViewModel.cs" />
-    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\CameraViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
@@ -184,6 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="models_temp\" />
     <Folder Include="Social\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

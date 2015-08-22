@@ -4,7 +4,7 @@
   <application android:label="MLearning.Droid" android:theme="@style/MyTheme" android:largeHeap="true" android:debuggable="false" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:name="mono.android.app.Application">
     <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="md53578754c0351b061281ad09c2f3a748c.MyBroadcastReceiver">
       <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         <category android:name="mLearning.Droid" />
       </intent-filter>
       <intent-filter>
@@ -12,7 +12,7 @@
         <category android:name="mLearning.Droid" />
       </intent-filter>
       <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
         <category android:name="mLearning.Droid" />
       </intent-filter>
     </receiver>
@@ -23,12 +23,12 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="View for LOViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.LOView" />
+    <activity android:label="View for LOViewModel" android:screenOrientation="portrait" android:name="md592b02b43645085eab4f87360df9b5d6c.LOView" />
     <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.CreateAccountView" />
     <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.CreateInstitutionView" />
-    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.LoginView" />
+    <activity android:label="View for FirstViewModel" android:screenOrientation="portrait" android:name="md592b02b43645085eab4f87360df9b5d6c.LoginView" />
     <activity android:label="View for AuthViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.AuthView" />
-    <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.MainView" />
+    <activity android:label="View for FirstViewModel" android:screenOrientation="portrait" android:name="md592b02b43645085eab4f87360df9b5d6c.MainView" />
     <activity android:label="View for FirstViewModel" android:name="md592b02b43645085eab4f87360df9b5d6c.ManageCirclesView" />
     <activity android:label="View for HeadMainView" android:name="md592b02b43645085eab4f87360df9b5d6c.HeadMainView" />
     <activity android:label="View for PublisherMainView" android:name="md592b02b43645085eab4f87360df9b5d6c.PublisherMainView" />

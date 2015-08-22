@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using Android.Views;
 using Android.Content;
 using Android.Graphics;
+using Android.Text;
 
 namespace MLearning.Droid
 {
 	public class ChatListViewAdapter:BaseAdapter<ChatDataRow>
 	{
-
 
 		public List<ChatDataRow> mItems;
 		private Context mContext;
@@ -44,39 +44,48 @@ namespace MLearning.Droid
 			{
 				row = LayoutInflater.From (mContext).Inflate (Resource.Layout.row_chat_list, parent, false);
 			}
-
-			ImageView row_image = row.FindViewById<ImageView> (Resource.Id.imageView_Row_CL);
-			row_image.SetX (Configuration.getWidth (75));
-
-			//row_image.SetImageResource (Resource.Id.icon);
-
 			LinearLayout ln_chat_row = row.FindViewById<LinearLayout> (Resource.Id.info_Row_CL);
-			ln_chat_row.SetX (Configuration.getWidth(74));
+			ln_chat_row.SetX (Configuration.getHeight (80));
 
 			TextView name = row.FindViewById<TextView> (Resource.Id.textView_name_CL);
 			name.Text = mItems [position].name;
+			name.SetWidth (Configuration.getWidth (350));
+			name.Typeface =  Typeface.CreateFromAsset(mContext.Assets, "fonts/HelveticaNeue.ttf");
+			name.Ellipsize = TextUtils.TruncateAt.End;
+			name.SetMaxLines (1);
 
 
-			TextView state = row.FindViewById<TextView> (Resource.Id.textView_status_CL);
 			ImageView imProfile = row.FindViewById<ImageView> (Resource.Id.imageView_Row_CL);
 
-			imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset(mItems[position].imageProfile),Configuration.getWidth (52), Configuration.getHeight (52),true));
+			string path = mItems [position].imageProfile;
+			Bitmap bm;
+			if (path==null) {
+				bm = getBitmapFromAsset ("images/e1.jpg");
+
+
+			} else {
+				bm=Configuration.GetImageBitmapFromUrl (path);
+			}
+				
+			imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getHeight (52),true));
 			imProfile.SetX (Configuration.getHeight (75));
 
 
-			if (mItems [position].state == "online") 
+			TextView state = row.FindViewById<TextView> (Resource.Id.textView_status_CL);
+
+			if (mItems [position].state == true) 
 			{
 				state.SetTextColor (Color.ParseColor ("#2ECCFA"));
+				state.Text = "online now";
 			}
-			if (mItems [position].state == "offline") 
+			if (mItems [position].state == false) 
 			{
 				state.SetTextColor (Color.ParseColor ("#A4A4A4"));
+				state.Text = "offline";
 			}
 
-			state.Text = mItems [position].state;
-
-
-
+			//state.Text = mItems [position].state;
+			row.SetBackgroundColor(Color.Transparent);
 
 
 			return row;

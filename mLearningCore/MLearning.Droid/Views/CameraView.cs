@@ -27,8 +27,8 @@ namespace MLearning.Droid
 		ImageView imgLineal;
 		ImageButton btnCamera;
 		ImageButton btnRepository;
+		ImageButton btnDone;
 		TextView txtCamera;
-		Button boton;
 
 		LinearLayout linearButtons;
 		LinearLayout linearImageCamera;
@@ -38,6 +38,7 @@ namespace MLearning.Droid
 
 		protected override void OnCreate (Bundle bundle)
 		{
+			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 			base.OnCreate (bundle);
 
 			init ();
@@ -64,46 +65,67 @@ namespace MLearning.Droid
 			LinearImageText.Orientation = Orientation.Horizontal;
 			LinearTextCamera.Orientation = Orientation.Vertical;
 
-			linearButtons.SetGravity (GravityFlags.Center);
+			//linearButtons.SetGravity (GravityFlags.Center);
 			linearImageCamera.SetGravity (GravityFlags.Center);
 			LinearImageText.SetGravity (GravityFlags.Center);
 			LinearTextCamera.SetGravity (GravityFlags.Center);
 
 			Drawable dr = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/bfondo.png"), 1024, 768, true));
 			mainLayout.SetBackgroundDrawable (dr);
-			 
+
 			imgCamera = new ImageView (this);
 			imgLineal = new ImageView (this);
 			btnCamera = new ImageButton (this);
 			btnRepository = new ImageButton (this);
+			btnDone = new ImageButton (this);
 			txtCamera = new TextView (this);
 
-			txtCamera.Text = "CHOOSE A PICTURE AND \n        SELECT A COLOUR"; 
+			txtCamera.Text = "CHOOSE A PICTURE AND \n     SELECT A COLOUR"; 
+			txtCamera.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			txtCamera.SetTextSize(Android.Util.ComplexUnitType.Px,Configuration.getHeight(30));
 
+			txtCamera.SetTextColor (Color.ParseColor ("#ffffff"));
+
+			Button bt = new Button (this);
+
+
 			imgCamera.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/camara.png"), Configuration.getWidth(164),Configuration.getHeight(164),true));
-			//imgLineal.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/camara.png"), 400, 100,true));
+			imgLineal.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/colores.png"), Configuration.getWidth(542), 5,true));
 			btnCamera.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/loadcamara.png"), Configuration.getWidth(58),Configuration.getHeight(50),true));
 			btnRepository.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/loadbiblioteca.png"), Configuration.getWidth(58),Configuration.getHeight(50),true));
+			btnDone.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/adelante.png"), Configuration.getWidth(20),Configuration.getWidth(30),true));
+
+			imgCamera.Click += delegate {
+				var com = ((CameraViewModel)this.DataContext).TakePictureCommand;
+				com.Execute (null);
+			};
 
 			linearButtons.AddView (btnCamera);
 			linearButtons.AddView (btnRepository);
 
+			btnCamera.SetPadding (Configuration.getWidth(122),0,0,0);
+			btnRepository.SetPadding (Configuration.getWidth(300),0,0,0);
 
 			linearImageCamera.AddView (imgCamera);
+			txtCamera.SetPadding (0, Configuration.getHeight(70), 0, 0);
 			LinearImageText.AddView (txtCamera);
 
 
 			LinearTextCamera.AddView (linearImageCamera);
 			LinearTextCamera.AddView (LinearImageText);
 
-			LinearTextCamera.SetX (0); LinearTextCamera.SetY (Configuration.getHeight(282));
+			LinearTextCamera.SetX (0); LinearTextCamera.SetY (Configuration.getHeight(295));
 			linearButtons.SetX (0); linearButtons.SetY (Configuration.getHeight(926));
+			imgLineal.SetX (Configuration.getWidth(61)); imgLineal.SetY (Configuration.getHeight(1019));
+			btnDone.SetX (Configuration.getWidth(550)); btnDone.SetY (Configuration.getHeight(40));
 
+			mainLayout.AddView (btnDone);
 			mainLayout.AddView (LinearTextCamera);
 			mainLayout.AddView (linearButtons);
+			mainLayout.AddView (imgLineal);
 			initButtonColor (btnCamera);
 			initButtonColor (btnRepository);
+			initButtonColor (btnDone);
 
 			btnCamera.Click += delegate {
 				var com = ((CameraViewModel)this.DataContext).TakePictureCommand;
@@ -127,16 +149,12 @@ namespace MLearning.Droid
 
 			vm.PropertyChanged += Vm_PropertyChanged;
 
-			boton = new Button (this);
-			boton.Text ="Registro";
 
-			boton.Click += delegate {
+			btnDone.Click += delegate {
 				var com = ((CameraViewModel)this.DataContext).RegisterCommand;
 				com.Execute(null);
 			};
 
-			boton.SetX (0); boton.SetY (0);
-			mainLayout.AddView (boton);
 
 		}
 

@@ -16,10 +16,15 @@ namespace MLearning.Droid
 		int widthInDp;
 		int heightInDp;
 
-
 		Context context;
-		ListView contentList;
 
+
+		LinearLayout contentListLayout;
+		TextView titleHeaderList;
+		ListView contentList;
+		ImageView imBorderList;
+		List<TemplateItem> _dataTemplateItem = new List<TemplateItem> ();
+		String icon = "icons/circulob.png";
 		public Template3 (Context context) :
 		base (context)
 		{
@@ -36,10 +41,8 @@ namespace MLearning.Droid
 			Configuration.setHeigthPixel (heightInDp);
 
 			ini ();
-
+		
 			this.AddView (mainLayout);
-
-			Console.WriteLine ("DONE initialize");
 
 		}
 
@@ -53,53 +56,67 @@ namespace MLearning.Droid
 
 		public void ini(){
 
+
+			var textFormat = Android.Util.ComplexUnitType.Px;
+
 			mainLayout = new RelativeLayout (context);
 			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
+
 
 			contenLayout = new LinearLayout (context);
 			contenLayout.LayoutParameters = new LinearLayout.LayoutParams (-2, -2);
 			contenLayout.Orientation = Orientation.Vertical;
 
+
+			//LIST
+
+			contentListLayout = new LinearLayout (context);
+			contentListLayout.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(583),-2);
+			contentListLayout.Orientation = Orientation.Vertical;
+			titleHeaderList = new TextView (context);
 			contentList = new ListView (context);
 
+			//titleHeaderList.Text = "Tipos de Aves";
+			titleHeaderList.SetTextColor (Color.ParseColor ("#FF0080"));
+			titleHeaderList.SetTextSize (textFormat, Configuration.getHeight (38));
+			titleHeaderList.SetMaxWidth (Configuration.getWidth (510));
+
+			contentListLayout.SetBackgroundResource (Resource.Drawable.border);
+			contentListLayout.AddView (titleHeaderList);
+			contentListLayout.AddView (contentList);
 
 
-
-			List<ImageGallery> _dataImageItem = new List<ImageGallery> ();
-
-			ImageGallery row_item1 = new ImageGallery();
-
-			row_item1.new_item ("images/e1.jpg");
-			row_item1.new_item ("images/e2.jpg");
-
-			ImageGallery row_item2 = new ImageGallery();
-			row_item2.new_item ("images/e3.jpg");
-			row_item2.new_item ("images/e4.jpg");
+			contentListLayout.SetX (Configuration.getHeight (25));
+			//contentListLayout.SetY (Configuration.getWidth (450));
 
 
-			ImageGallery row_item3 = new ImageGallery();
-			row_item3.new_item ("images/e5.jpg");
-			row_item3.new_item ("images/e5.jpg");
-			row_item3.new_item ("images/fondounidad.png");
+			//ENDLIST
 
+			imBorderList = new ImageView (context);
+			mainLayout.AddView (contentListLayout);
+		}
 
+		private string _title;
+		public string Title{
+			get{return _title; }
+			set{_title = value;
+				titleHeaderList.Text = _title;}
 
-			_dataImageItem.Add (row_item1);
-			_dataImageItem.Add (row_item2);
-			_dataImageItem.Add (row_item3);
-			contentList.Adapter = new ImageAdapter (context, _dataImageItem);
-			//contentList.DividerHeight = Configuration.getWidth (10);
-			contentList.SetBackgroundColor (Color.White);
+		}
 
-			Console.WriteLine ("DONE ADAPTER");
-
-
-			contenLayout.AddView (contentList);
-
-
-			mainLayout.AddView (contenLayout);
-
-			Console.WriteLine ("DONE ini");
+		private string[] _listItems;
+		public string[] ListItems{
+			set{_listItems = value;
+				for (int i = 0; i < _listItems.Length; i++) {
+					_dataTemplateItem.Add (new TemplateItem (){ im_vinheta = icon, content = _listItems[i]});
+					contentList.Adapter = new TemplateAdapter (context, _dataTemplateItem);
+					contentList.SetBackgroundColor (Color.White);
+					contentList.DividerHeight = 0;
+					contentList.Clickable = false;
+					contentList.ChoiceMode = ChoiceMode.None;
+				}
+			
+			}
 
 		}
 

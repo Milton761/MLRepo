@@ -45,6 +45,7 @@ namespace MLearning.Droid.Views
 
 			txtName.Text = item.Name;
 			txtName.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtName.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 			imgIcon.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset (item.Asset), Configuration.getWidth (23), Configuration.getHeight (28), true));
 
 			linearItem.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (89));
@@ -53,8 +54,8 @@ namespace MLearning.Droid.Views
 			linearItem.AddView (imgIcon);
 			linearItem.AddView (txtName);
 
-			imgIcon.SetPadding (Configuration.getHeight(71), 0, 0, 0);
-			txtName.SetPadding (Configuration.getHeight(55), 0, 0, 0);
+			imgIcon.SetPadding (Configuration.getWidth(68), 0, 0, 0);
+			txtName.SetPadding (Configuration.getWidth(48), 0, 0, 0);
 
 			view.AddView (linearItem);
 			return view;

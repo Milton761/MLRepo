@@ -33,6 +33,8 @@ namespace MLearningDB
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public int Circle_id { get; set; }
+
+        public int circle_has_lo_id { get; set; }
        
     }
 }

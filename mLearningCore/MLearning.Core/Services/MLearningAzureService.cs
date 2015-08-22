@@ -124,6 +124,12 @@ namespace MLearning.Core.Services
             return list.Count > 0;
         }
 
+        public async Task<bool> CheckIfExistsNoLocale<T>(Expression<Func<T, bool>> predicate, Func<T, DateTime> getLastUpdate, Func<T, int> getID) where T : new()
+        {
+            var list = await _repositoryService.SearchForAsync<T>(predicate, getLastUpdate, getID, false);
+
+            return list.Count > 0;
+        }
 
         public async Task<int> CreateCircle(int ownerid,string name,int type)
         {

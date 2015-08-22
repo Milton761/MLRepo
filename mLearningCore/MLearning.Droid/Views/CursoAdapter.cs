@@ -53,11 +53,19 @@ namespace MLearning.Droid.Views
 
 			txtCurso.Text = "Curso:";
 			txtCurso.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtCurso.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+		
+
 			txtCursoNombre.Text = item.CursoName;
 			txtCursoNombre.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtCursoNombre.Ellipsize = Android.Text.TextUtils.TruncateAt.End;
+			txtCursoNombre.SetSingleLine (true);
+			txtCursoNombre.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			//txtCurso.SetLines (1);
 			txtNumLo.Text = item.NumLO.ToString();
 			txtNumLo.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (22));
 			txtNumLo.SetTextColor (Color.ParseColor ("#ffffff"));
+			txtNumLo.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 
 			mainItem.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
 			mainItem.SetGravity (Android.Views.GravityFlags.CenterVertical);
@@ -67,7 +75,7 @@ namespace MLearning.Droid.Views
 			linearItem.Orientation = Orientation.Horizontal;
 			linearItem.SetGravity (Android.Views.GravityFlags.Center);
 
-			linearCurso.LayoutParameters = new LinearLayout.LayoutParams (-2,-2);
+			linearCurso.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(250),-2);
 			linearCurso.Orientation = Orientation.Vertical;
 			linearCurso.SetGravity (Android.Views.GravityFlags.Center);
 
@@ -89,7 +97,7 @@ namespace MLearning.Droid.Views
 			linearNumLO.AddView (linearContentNumLO);
 
 			//linearCurso.SetBackgroundColor (Color.Red);
-			linearCurso.SetX (Configuration.getWidth(140));
+			linearCurso.SetX (Configuration.getWidth(130));
 			linearNumLO.SetX (Configuration.getWidth(428));
 
 			mainItem.AddView (linearCurso);

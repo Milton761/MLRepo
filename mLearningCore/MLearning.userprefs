@@ -1,14 +1,26 @@
 ﻿<Properties StartupItem="MLearning.Droid\MLearning.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.6CY352M3HQ" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\ImageAdapter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Api15" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\LOView.cs">
     <Files>
-      <File FileName="MLearning.Droid\Views\MainView.cs" Line="558" Column="35" />
-      <File FileName="MLearning.Droid\Views\TaskView.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\TemplateAdapter.cs" Line="75" Column="4" />
-      <File FileName="MLearning.Droid\Views\ImageAdapter.cs" Line="51" Column="43" />
-      <File FileName="MLearning.Droid\Views\Template3.cs" Line="70" Column="46" />
-      <File FileName="MLearning.Droid\Views\Template2.cs" Line="162" Column="37" />
-      <File FileName="MLearning.Droid\Views\ImageGallery.cs" Line="22" Column="3" />
+      <File FileName="MLearning.Droid\Views\NotificationView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\Template1.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\Template2.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\MainView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\Configuration.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\ChatDataRow.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\NotificationListViewAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\CommentListViewAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\ChatListViewAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\ItemUser.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\LOContainerView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\NotificationDataRow.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\LoginView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\Template3.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\TemplateAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\LOView.cs" Line="188" Column="12" />
+      <File FileName="MLearning.Droid\Views\LOViewAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\FrontContainerView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\SplashScreen.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
