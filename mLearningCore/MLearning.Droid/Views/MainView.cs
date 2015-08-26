@@ -121,9 +121,7 @@ namespace MLearning.Droid.Views
 
 			task= new TaskView (this);
 			iniMenu ();
-			initListCursos ();
-			iniPeoples ();
-			initListTasks ();
+
 
 
 			mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
@@ -243,7 +241,9 @@ namespace MLearning.Droid.Views
 				SupportActionBar.SetTitle(Resource.String.closeDrawer);
 			}
 
-
+			initListCursos ();
+			iniPeoples ();
+			initListTasks ();
 
         }
 
@@ -484,7 +484,8 @@ namespace MLearning.Droid.Views
 
 
 		private void initListCursos(){		
-			resetMLOs(0); 
+		//	resetMLOs(0); 
+			populateCircleScroll(0);
 				
 		}
 
@@ -503,6 +504,10 @@ namespace MLearning.Droid.Views
 			case "UserLastName":
 				txtUserName.Text = vm.UserFirstName + " " + vm.UserLastName;
 				break;
+			case "CirclesList":
+				populateCircleScroll (0);
+				(ViewModel as MainViewModel).CirclesList.CollectionChanged+= CirclesList_CollectionChanged;
+				break;
 			case "UserImage":
 				if (vm.UserImage != null) {
 					Bitmap bm = BitmapFactory.DecodeByteArray (vm.UserImage, 0, vm.UserImage.Length);
@@ -511,10 +516,10 @@ namespace MLearning.Droid.Views
 					imgUser.SetImageBitmap (newbm);
 				}
 				break;
-			case "LearningOjectsList":
+			/*case "LearningOjectsList":
 				resetMLOs (0);
 				(ViewModel as MainViewModel).LearningOjectsList.CollectionChanged += _learningObjectsList_CollectionChanged;
-				break;
+				break;*/
 			case "UsersList":
 				populatePeopleScroll(0);
 				(ViewModel as MainViewModel).UsersList.CollectionChanged+=  UsersList_CollectionChanged;
@@ -535,6 +540,33 @@ namespace MLearning.Droid.Views
 			default:
 
 				break;
+
+			}
+		}
+
+		void CirclesList_CollectionChanged (object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			populateCircleScroll (e.NewStartingIndex);
+		}
+
+
+		void populateCircleScroll(int index){
+			_currentCursos = new List<CursoItem> ();
+			var vm = ViewModel as MainViewModel;
+			if (vm.CirclesList != null)
+			{
+				for (int i = 0; i < vm.CirclesList.Count; i++)
+				{
+					var newinfo = new CursoItem()
+					{
+						CursoName = vm.CirclesList[i].name,
+						Index =  i					
+					};
+					_currentCursos.Add(newinfo);
+				}
+
+				listCursos.Adapter = new CursoAdapter(this, _currentCursos);
+				listCursos.ItemClick+= ListCursos_ItemClick;
 
 			}
 		}

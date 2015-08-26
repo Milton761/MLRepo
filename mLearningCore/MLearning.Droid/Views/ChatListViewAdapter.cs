@@ -14,10 +14,10 @@ namespace MLearning.Droid
 		public List<ChatDataRow> mItems;
 		private Context mContext;
 
-		public ChatListViewAdapter (Context context, List<ChatDataRow> items)
+		public ChatListViewAdapter (Context context, List<ChatDataRow> items):base()
 		{
-			mItems = items;
-			mContext = context;
+			this.mItems = items;
+			this.mContext = context;
 		}
 
 		public override int Count

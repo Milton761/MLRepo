@@ -10,10 +10,6 @@ MLearning.Droid.SplashScreen, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc
 MLearning.Droid.SplashScreen, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.SplashScreen
 MLearning.Droid.SplashScreen;md56f7ca2643ae6f795f77b881324800fc0.SplashScreen
 mlearning.droid.SplashScreen;md56f7ca2643ae6f795f77b881324800fc0.SplashScreen
-MLearning.Droid.VerticalScrollView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
-MLearning.Droid.VerticalScrollView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
-MLearning.Droid.VerticalScrollView;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
-mlearning.droid.VerticalScrollView;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
 MLearning.Droid.VerticalScrollViewPager, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollViewPager
 MLearning.Droid.VerticalScrollViewPager, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollViewPager
 MLearning.Droid.VerticalScrollViewPager;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollViewPager
@@ -154,6 +150,10 @@ MLearning.Droid.TemplateAdapter, MLearning.Droid;md56f7ca2643ae6f795f77b88132480
 MLearning.Droid.TemplateAdapter, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.TemplateAdapter
 MLearning.Droid.TemplateAdapter;md56f7ca2643ae6f795f77b881324800fc0.TemplateAdapter
 mlearning.droid.TemplateAdapter;md56f7ca2643ae6f795f77b881324800fc0.TemplateAdapter
+MLearning.Droid.VerticalScrollView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
+MLearning.Droid.VerticalScrollView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
+MLearning.Droid.VerticalScrollView;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
+mlearning.droid.VerticalScrollView;md56f7ca2643ae6f795f77b881324800fc0.VerticalScrollView
 MLearning.Droid.CustomerImageView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.CustomerImageView
 MLearning.Droid.CustomerImageView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.CustomerImageView
 MLearning.Droid.CustomerImageView;md56f7ca2643ae6f795f77b881324800fc0.CustomerImageView
