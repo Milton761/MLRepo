@@ -57,7 +57,8 @@ namespace MLearning.Droid
 			List<float> ws = new List<float> ();
 
 			for (int i = 0; i < tam_row; i++) {
-				bimage.Add(getBitmapFromAsset (list [position].imageItem [i]));
+				//bimage.Add(getBitmapFromAsset (list [position].imageItem [i]));
+				bimage.Add(Configuration.GetImageBitmapFromUrl(list[position].imageItem[i]));
 				hs.Add (bimage [i].Height);
 				ws.Add (bimage [i].Width);
 			}

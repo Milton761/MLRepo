@@ -24,7 +24,14 @@ namespace MLearning.Droid
 
 		int widthInDp;
 		int heightInDp;
-
+		private List<string> _listaImages;
+		public List<string> list_string{ 
+			
+			set{_listaImages = value;
+				_dataImageItem =getDataImagesGallery (_listaImages, 3);
+				contentList.Adapter = new ImageAdapter (context, _dataImageItem);
+			}
+		}
 
 		Context context;
 		ListView contentList;
@@ -75,9 +82,9 @@ namespace MLearning.Droid
 
 			contentList = new ListView (context);
 
+			//_dataImageItem = getDataImagesGallery (_listaImagenes, 3);
 
-
-			contentList.Adapter = new ImageAdapter (context, _dataImageItem);
+			//contentList.Adapter = new ImageAdapter (context, _dataImageItem);
 			int pad_size = Configuration.getWidth (0);
 			contentList.DividerHeight = Configuration.getWidth (pad_size);
 			//contenLayout.SetY(Configuration.getHeight(100));

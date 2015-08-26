@@ -6,6 +6,7 @@ using MLearning.Droid;
 using Android.Views;
 using Android.Content;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace DataSource
 {
@@ -164,6 +165,7 @@ namespace DataSource
 		}
 
 
+
 		public RelativeLayout getViewSlide(){
 			
 			if (_type == 1) {
@@ -187,20 +189,38 @@ namespace DataSource
 			}
 			if (_type == 3) {
 				Template3 plantilla = new Template3 (context);
+
+
+
 				plantilla.Title = _title;
-				/*string [] lista = new string[_itemize.Count];
+				string [] lista = new string[_itemize.Count];
 				for (int i = 0; i < _itemize.Count; i++) {
 					lista[i]=_itemize[i].Text;
-				}*/
-				string[] lista = {"sdfsdf sdfs fsdf sf sdfs"," dfsdfsdf sdfsd fsd ds"," fsdf sfsdf sdfsd"," fdsfsdf sdfsdf sdfsf"};
+				}
+
+				//string[] lista = {"sdfsdf sdfs fsdf sf sdfs"," dfsdfsdf sdfsd fsd ds"," fsdf sfsdf sdfsd"," fdsfsdf sdfsdf sdfsf"};
 				//Console.WriteLine ("CREA PLANTILLAAAAAAAAA  333333");
 				plantilla.ListItems = lista;
 				return plantilla;
 			}
 			if (_type == 4) {
+				
+				//List<string> listaImagenes = new List<string> ();
+
 				Template4 plantilla = new Template4 (context);
+				/*
+				for (int i = 0; i < _itemize.Count; i++) {
+					listaImagenes.Add(_itemize[i].ImageUrl);
+				}
+				plantilla.list_string = listaImagenes;
+
+
+				*/
 				return plantilla;
+
+
 				//Console.WriteLine ("CREA PLANTILLAAAAAAAAA  4444444444");
+
 			}
 			if (_type == 5) {
 				PhraseView plantilla = new PhraseView (context);

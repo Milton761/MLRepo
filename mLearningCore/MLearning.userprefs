@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="MLearning.Droid\MLearning.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Api15" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\LOView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\MainView.cs">
     <Files>
       <File FileName="MLearning.Droid\Views\NotificationView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\Template1.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\Template2.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\MainView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\MainView.cs" Line="516" Column="34" />
       <File FileName="MLearning.Droid\Views\Configuration.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\ChatDataRow.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\NotificationListViewAdapter.cs" Line="1" Column="1" />
@@ -17,10 +17,15 @@
       <File FileName="MLearning.Droid\Views\LoginView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\Template3.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\TemplateAdapter.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\LOView.cs" Line="188" Column="12" />
+      <File FileName="MLearning.Droid\Views\LOView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\LOViewAdapter.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\FrontContainerView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\SplashScreen.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\ImageGallery.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\ImageAdapter.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\Template4.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\CursoAdapter.cs" Line="113" Column="1" />
+      <File FileName="MLearning.Core\ViewModels\MainViewModel.cs" Line="325" Column="93" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
