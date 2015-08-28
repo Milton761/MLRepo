@@ -143,7 +143,7 @@ namespace MLearning.Droid
 
 			this.AddView (linearImageLO);
 			this.AddView (linearTextLO);
-			this.AddView (imgBack);
+			//this.AddView (imgBack);
 			this.AddView (linearContainerFisrst);
 
 		}

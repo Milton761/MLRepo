@@ -1609,9 +1609,10 @@ containing a value of this type.
         public static final int dboton=0x7f02003f;
         public static final int hamburger=0x7f020040;
         public static final int icon=0x7f020041;
-        public static final int notification_template_icon_bg=0x7f020044;
-        public static final int progressbackground=0x7f020042;
-        public static final int splash=0x7f020043;
+        public static final int logo_icon=0x7f020042;
+        public static final int notification_template_icon_bg=0x7f020045;
+        public static final int progressbackground=0x7f020043;
+        public static final int splash=0x7f020044;
     }
     public static final class id {
         public static final int MvxBindingTagUnique=0x7f06000a;

@@ -98,6 +98,8 @@ namespace MLearning.Droid
 			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap( bm, Configuration.getWidth(200), Configuration.getHeight(200), true)
 				,Configuration.getWidth(60),Configuration.getHeight(60));
 
+
+
 			im_profie.SetImageBitmap (newbm);
 			im_profie.SetX (Configuration.getWidth (60));
 

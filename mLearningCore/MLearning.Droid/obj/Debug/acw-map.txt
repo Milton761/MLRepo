@@ -178,6 +178,14 @@ MLearning.Droid.FrontContainerViewPager, MLearning.Droid;md56f7ca2643ae6f795f77b
 MLearning.Droid.FrontContainerViewPager, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.FrontContainerViewPager
 MLearning.Droid.FrontContainerViewPager;md56f7ca2643ae6f795f77b881324800fc0.FrontContainerViewPager
 mlearning.droid.FrontContainerViewPager;md56f7ca2643ae6f795f77b881324800fc0.FrontContainerViewPager
+MLearning.Droid.WallView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.WallView
+MLearning.Droid.WallView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.WallView
+MLearning.Droid.WallView;md56f7ca2643ae6f795f77b881324800fc0.WallView
+mlearning.droid.WallView;md56f7ca2643ae6f795f77b881324800fc0.WallView
+MLearning.Droid.ImageLOView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
+MLearning.Droid.ImageLOView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
+MLearning.Droid.ImageLOView;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
+mlearning.droid.ImageLOView;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer

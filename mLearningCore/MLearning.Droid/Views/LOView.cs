@@ -33,7 +33,7 @@ namespace MLearning.Droid.Views
 		int heightInDp;
 		List<FrontContainerView> listFront = new List<FrontContainerView> ();
 	//	VerticalScrollView scrollVertical;
-	//	bool ISLOADED= false;
+		bool ISLOADED= false;
 		int IndiceSection=0;
 
 		List<VerticalScrollViewPager> listaScroll = new List<VerticalScrollViewPager>();

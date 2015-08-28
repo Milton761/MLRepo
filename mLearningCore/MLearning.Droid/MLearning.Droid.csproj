@@ -202,6 +202,8 @@
     <Compile Include="Views\FrontContainerViewPager.cs" />
     <Compile Include="DataSource\LOSlideSource.cs" />
     <Compile Include="DataSource\LOItemSource.cs" />
+    <Compile Include="Views\WallView.cs" />
+    <Compile Include="Views\ImageLOView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -284,6 +286,7 @@
     <AndroidResource Include="Resources\layout\row_notification_list.axml" />
     <AndroidResource Include="Resources\layout\row_template.axml" />
     <AndroidResource Include="Resources\drawable\border.xml" />
+    <AndroidResource Include="Resources\drawable\logo_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -420,6 +423,31 @@
     <AndroidAsset Include="Assets\icons\lineafraserosada.png" />
     <AndroidAsset Include="Assets\icons\lineafraseverde.png" />
     <AndroidAsset Include="Assets\fonts\HelveticaNeue.ttf" />
+    <AndroidAsset Include="Assets\icons\btnchat.png" />
+    <AndroidAsset Include="Assets\icons\btnchatazul.png" />
+    <AndroidAsset Include="Assets\icons\btncomentarios.png" />
+    <AndroidAsset Include="Assets\icons\btncomentariosazul.png" />
+    <AndroidAsset Include="Assets\icons\btncontenido.png" />
+    <AndroidAsset Include="Assets\icons\btncontenidoazul.png" />
+    <AndroidAsset Include="Assets\icons\btntareas.png" />
+    <AndroidAsset Include="Assets\icons\btntareasazul.png" />
+    <AndroidAsset Include="Assets\icons\btnunidades.png" />
+    <AndroidAsset Include="Assets\icons\btnunidadesazul.png" />
+    <AndroidAsset Include="Assets\icons\fondoselec.png" />
+    <AndroidAsset Include="Assets\icons\icona.png" />
+    <AndroidAsset Include="Assets\icons\iconb.png" />
+    <AndroidAsset Include="Assets\icons\iconc.png" />
+    <AndroidAsset Include="Assets\icons\icond.png" />
+    <AndroidAsset Include="Assets\icons\icone.png" />
+    <AndroidAsset Include="Assets\icons\iconf.png" />
+    <AndroidAsset Include="Assets\icons\icong.png" />
+    <AndroidAsset Include="Assets\icons\imga.png" />
+    <AndroidAsset Include="Assets\icons\imgautor.png" />
+    <AndroidAsset Include="Assets\icons\imgb.png" />
+    <AndroidAsset Include="Assets\icons\imgc.png" />
+    <AndroidAsset Include="Assets\icons\imgd.png" />
+    <AndroidAsset Include="Assets\icons\marcoimgautor.png" />
+    <AndroidAsset Include="Assets\icons\sombrafondoselec.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MLearning.Core\MLearning.Core.csproj">
