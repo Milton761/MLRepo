@@ -454,7 +454,19 @@ namespace MLearning.Droid.Views
 
 
 			imgChat.SetX (Configuration.getWidth(59)); imgChat.SetY (Configuration.getHeight(145));
+			imgChat.Click += delegate {
+				mDrawerLayout.CloseDrawer (mLeftDrawer);
+				mDrawerLayout.OpenDrawer (mRightDrawer);
+			};
+				
 			imgNotificacion.SetX (Configuration.getWidth(59));  imgNotificacion.SetY (Configuration.getHeight(233)); 
+			imgNotificacion.Click += delegate {
+				mDrawerLayout.CloseDrawer (mLeftDrawer);
+				main_ContentView.RemoveAllViews ();
+				main_ContentView.AddView(new NotificationView(this));
+			};
+
+
 			linearPendiente.SetX (Configuration.getWidth(94));  linearPendiente.SetY (Configuration.getHeight(217)); 
 
 			linearUserData.SetX (0); linearUserData.SetY (Configuration.getHeight(130));
@@ -625,22 +637,26 @@ namespace MLearning.Droid.Views
 			if (vm.LearningOjectsList != null) {
 				//lo.Author= vm.LearningOjectsList[].lo.name +" "+vm.LearningOjectsList[e.Position].lo.lastname;
 				//lo.Title = vm.LearningOjectsList [e.Position].lo.title;
-				lo.Chapter = "Flora y Fauna ";
+				//lo.Chapter = "Flora y Fauna ";
 				List<ImageLOView> list = new List<ImageLOView> ();
 				for (int i = 0; i < vm.LearningOjectsList.Count; i++) {
 					ImageLOView imgLO = new ImageLOView (this);
 
 					imgLO.Title = vm.LearningOjectsList [i].lo.title;
 					imgLO.Author = vm.LearningOjectsList [i].lo.name + " " + vm.LearningOjectsList [i].lo.lastname;
-					Bitmap bm = BitmapFactory.DecodeByteArray (vm.LearningOjectsList [i].cover_bytes, 0, vm.LearningOjectsList [i].cover_bytes.Length);
-					imgLO.ImageBitmap=bm;
+					//Bitmap bm = BitmapFactory.DecodeByteArray (vm.LearningOjectsList [i].cover_bytes, 0, vm.LearningOjectsList [i].cover_bytes.Length);
+					imgLO.ImageBitmap=Configuration.GetImageBitmapFromUrl(vm.LearningOjectsList[i].lo.url_cover);
 					imgLO.ImagenUsuario = getBitmapFromAsset ("icons/imgautor.png");
-
+					imgLO.Chapter = "Flora y Fauna";
 
 
 					list.Add (imgLO);
 				}
 				lo.ListImages = list;
+				lo.OpenLO.Click += Lo_ImagenLO_Click;
+				lo.OpenTasks.Click += Lo_OpenTasks_Click;
+				lo.OpenChat.Click += Lo_OpenChat_Click;
+				lo.OpenUnits.Click += Lo_OpenUnits_Click;
 				//lo.im= Configuration.GetImageBitmapFromUrl(vm.LearningOjectsList [e.Position].lo.url_cover);
 				//lo.ListImages = vm.LearningOjectsList[e.Position].lo.
 
@@ -651,6 +667,24 @@ namespace MLearning.Droid.Views
 
 			}
 
+		}
+
+		void Lo_OpenUnits_Click (object sender, EventArgs e)
+		{
+			resetMLOs ();
+		}
+
+		void Lo_OpenChat_Click (object sender, EventArgs e)
+		{
+			mDrawerLayout.CloseDrawer (mLeftDrawer);
+			mDrawerLayout.CloseDrawer (mRightDrawer);
+			mDrawerLayout.OpenDrawer (mRightDrawer);
+		}
+
+		void Lo_OpenTasks_Click (object sender, EventArgs e)
+		{
+			LoadQuiz ();
+			mDrawerLayout.CloseDrawer (mLeftDrawer);	
 		}
 
 
@@ -681,8 +715,8 @@ namespace MLearning.Droid.Views
 			listTasks.Adapter = new TaskAdapter (this, _currentTask);
 			listTasks.ItemClick+= ListTasks_ItemClick;
 
-
 		}
+
 
 		void ListTasks_ItemClick (object sender, AdapterView.ItemClickEventArgs e)
 		{
@@ -765,10 +799,7 @@ namespace MLearning.Droid.Views
 			var vm = this.ViewModel as MainViewModel;
 
 			vm.SelectCircleCommand.Execute(vm.CirclesList[circle.Index]);
-
-
-
-						
+			PositionLO = e.Position;
 		
 
 		}
@@ -824,31 +855,6 @@ namespace MLearning.Droid.Views
 				mDrawerLayout.CloseDrawer (mRightDrawer);
 				mDrawerToggle.OnOptionsItemSelected(item);
 				return true;
-
-			case Resource.Id.action_notif:
-
-				NotificationView notif = new NotificationView (this);
-
-
-				main_ContentView.RemoveAllViews ();
-
-				mDrawerLayout.CloseDrawer (mLeftDrawer);
-				mDrawerLayout.CloseDrawer (mRightDrawer);
-				main_ContentView.AddView (notif);
-
-				return true;
-
-				
-			case Resource.Id.action_share:
-
-				WallView wv = new WallView (this);
-				main_ContentView.RemoveAllViews ();
-				main_ContentView.AddView (wv);
-
-
-				return true;
-
-			
 
 			case Resource.Id.action_chat:
 				if (mDrawerLayout.IsDrawerOpen(mRightDrawer))

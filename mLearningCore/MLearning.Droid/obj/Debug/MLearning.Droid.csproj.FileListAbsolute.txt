@@ -789,6 +789,7 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\layout\row_template.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\drawable\border.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\drawable\logo_icon.png
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\drawable\gradiente.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\values\strings.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\drawable\icon.png
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\res\values\splashstyle.xml

@@ -14,6 +14,7 @@ namespace MLearning.Droid
 
 		RelativeLayout _mainLayout;
 		LinearLayout _fondo2;
+		LinearLayout linearGradiente;
 
 
 		//section_1
@@ -80,13 +81,7 @@ namespace MLearning.Droid
 				for (int i = 0; i < _ListLOImages_S2.Count; i++) {
 
 					_images_S2.AddView (_ListLOImages_S2[i]);
-					_ListLOImages_S2 [i].Click += delegate {
-						Drawable dr = new BitmapDrawable (_ListLOImages_S2 [i].ImageBitmap);
-						_fondo2.SetBackgroundDrawable (dr);
-						_txtTitle_S1.Text = _ListLOImages_S2 [i].Title;
-						_txtChapter_S1.Text = _ListLOImages_S2 [i].Chapter;
-						_txtAuthor_S1.Text = _ListLOImages_S2 [i].Author;
-					};
+					_ListLOImages_S2 [i].Click += imLoClick;
 				}
 			}
 		}
@@ -184,6 +179,12 @@ namespace MLearning.Droid
 
 			_mainLayout = new RelativeLayout (context);
 
+
+			linearGradiente = new LinearLayout (context);
+			linearGradiente.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (541));
+			linearGradiente.SetBackgroundResource (Resource.Drawable.gradiente);
+
+
 			var textFormat = Android.Util.ComplexUnitType.Px;
 
 			_mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
@@ -232,6 +233,9 @@ namespace MLearning.Droid
 			_linearTitle.SetGravity (Android.Views.GravityFlags.Center);
 			_linearTitle.AddView (_txtTitle_S1);
 			_linearTitle.SetY (Configuration.getHeight (60));
+
+			linearGradiente.SetX (0); linearGradiente.SetY (Configuration.getHeight(502));
+			_mainLayout.AddView (linearGradiente);
 			_mainLayout.AddView (_linearTitle);
 
 			//_txtTitle_S1.SetX (Configuration.getWidth (245));_txtTitle_S1.SetY (Configuration.getHeight (60));
@@ -279,6 +283,10 @@ namespace MLearning.Droid
 			_txtAuthor_S1.SetTextColor (Color.White);
 			_txtAuthor_S1.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 			_txtAuthor_S1.SetTextSize (textFormat,Configuration.getHeight(30));
+			//_txtAuthor_S1.SetBackgroundColor (Color.ParseColor ("#60000000"));
+			_txtAuthor_S1.SetShadowLayer (50.8f, 0.0f, 0.0f, Color.ParseColor ("#000000"));
+
+
 
 			_txtChapter_S1.Text = "FLORA Y FAUNA";
 			_txtChapter_S1.SetTextColor (Color.White);
@@ -349,7 +357,7 @@ namespace MLearning.Droid
 			_contentScrollView_S2.SetY (Configuration.getHeight (700));
 
 
-			ImageView im1 = new ImageView (context);
+			/*ImageView im1 = new ImageView (context);
 			im1.SetBackgroundColor (Color.White);
 			im1.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imga.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
 			_images_S2.AddView (im1);
@@ -376,7 +384,7 @@ namespace MLearning.Droid
 
 			im5.Click += imLoClick;
 			im6.Click += imLoClick;
-
+*/
 			_contentScrollView_S2.AddView (_images_S2);
 
 			//----------------------------------------------------------
@@ -422,7 +430,7 @@ namespace MLearning.Droid
 
 			//Drawable dr3 = new BitmapDrawable (getBitmapFromAsset("icons/fondonotif.png"));
 			//_contentLLayout_S3.SetBackgroundDrawable(dr3);
-			_contentLLayout_S3.SetBackgroundColor(Color.ParseColor("#80000000"));
+			//_contentLLayout_S3.SetBackgroundColor(Color.ParseColor("#80000000"));
 			_mainLayout.AddView (_contentLLayout_S3);
 			_mainLayout.AddView (_contentScrollView_S2);
 

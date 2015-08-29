@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="MLearning.Droid\MLearning.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Api15" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\TaskViewAdapter.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.4107ef0e0a1fcf43" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\MainView.cs">
     <Files>
-      <File FileName="MLearning.Droid\Views\WallView.cs" Line="261" Column="97" />
+      <File FileName="MLearning.Droid\Views\WallView.cs" Line="185" Column="61" />
       <File FileName="MLearning.Droid\Views\Template4.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\MainView.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\MainView.cs" Line="858" Column="5" />
       <File FileName="MLearning.Droid\Views\TemplateAdapter.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\TemplateItem.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\ImageAdapter.cs" Line="1" Column="1" />
@@ -12,13 +12,14 @@
       <File FileName="MLearning.Droid\Views\ChapterContainerView.cs" Line="1" Column="1" />
       <File FileName="..\..\..\..\..\..\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\FrontContainerView.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Resources\menu\action_menu.xml" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Resources\menu\action_menu.xml" Line="7" Column="3" />
       <File FileName="MLearning.Droid\CommentListViewAdapter.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\Configuration.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\CustomerImageView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\ImageLOView.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\TaskView.cs" Line="138" Column="4" />
-      <File FileName="MLearning.Droid\Views\TaskViewAdapter.cs" Line="48" Column="92" />
+      <File FileName="MLearning.Droid\Views\TaskView.cs" Line="1" Column="1" />
+      <File FileName="MLearning.Droid\Views\TaskViewAdapter.cs" Line="46" Column="44" />
+      <File FileName="MLearning.Droid\DataSource\LOSlideSource.cs" Line="147" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -18,6 +18,14 @@ MLearning.Droid.Views.LOView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6
 MLearning.Droid.Views.LOView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.LOView
 MLearning.Droid.Views.LOView;md592b02b43645085eab4f87360df9b5d6c.LOView
 mlearning.droid.views.LOView;md592b02b43645085eab4f87360df9b5d6c.LOView
+MLearning.Droid.Views.LOView/MyPageChangeListener, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListener
+MLearning.Droid.Views.LOView/MyPageChangeListener, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListener
+MLearning.Droid.Views.LOView.MyPageChangeListener;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListener
+mlearning.droid.views.LOView_MyPageChangeListener;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListener
+MLearning.Droid.Views.LOView/MyPageChangeListenerPager, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListenerPager
+MLearning.Droid.Views.LOView/MyPageChangeListenerPager, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListenerPager
+MLearning.Droid.Views.LOView.MyPageChangeListenerPager;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListenerPager
+mlearning.droid.views.LOView_MyPageChangeListenerPager;md592b02b43645085eab4f87360df9b5d6c.LOView_MyPageChangeListenerPager
 MLearning.Droid.Views.CreateAccountView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.CreateAccountView
 MLearning.Droid.Views.CreateAccountView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.CreateAccountView
 MLearning.Droid.Views.CreateAccountView;md592b02b43645085eab4f87360df9b5d6c.CreateAccountView

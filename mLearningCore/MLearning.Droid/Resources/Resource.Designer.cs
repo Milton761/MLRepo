@@ -1373,22 +1373,25 @@ namespace MLearning.Droid
 			public const int dboton = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int hamburger = 2130837568;
+			public const int gradiente = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int Icon = 2130837569;
+			public const int hamburger = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int logo_icon = 2130837570;
-			
-			// aapt resource value: 0x7f020045
-			public const int notification_template_icon_bg = 2130837573;
+			public const int Icon = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int progressBackground = 2130837571;
+			public const int logo_icon = 2130837571;
+			
+			// aapt resource value: 0x7f020046
+			public const int notification_template_icon_bg = 2130837574;
 			
 			// aapt resource value: 0x7f020044
-			public const int splash = 2130837572;
+			public const int progressBackground = 2130837572;
+			
+			// aapt resource value: 0x7f020045
+			public const int splash = 2130837573;
 			
 			static Drawable()
 			{
@@ -1430,8 +1433,8 @@ namespace MLearning.Droid
 			// aapt resource value: 0x7f060025
 			public const int action_bar_title = 2131099685;
 			
-			// aapt resource value: 0x7f06008b
-			public const int action_chat = 2131099787;
+			// aapt resource value: 0x7f060089
+			public const int action_chat = 2131099785;
 			
 			// aapt resource value: 0x7f060043
 			public const int action_context_bar = 2131099715;
@@ -1453,12 +1456,6 @@ namespace MLearning.Droid
 			
 			// aapt resource value: 0x7f060027
 			public const int action_mode_close_button = 2131099687;
-			
-			// aapt resource value: 0x7f06008a
-			public const int action_notif = 2131099786;
-			
-			// aapt resource value: 0x7f060089
-			public const int action_share = 2131099785;
 			
 			// aapt resource value: 0x7f060028
 			public const int activity_chooser_view_content = 2131099688;

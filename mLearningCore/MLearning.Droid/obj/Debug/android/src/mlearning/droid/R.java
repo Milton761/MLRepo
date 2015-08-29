@@ -1607,12 +1607,13 @@ containing a value of this type.
         public static final int border=0x7f02003d;
         public static final int cboton=0x7f02003e;
         public static final int dboton=0x7f02003f;
-        public static final int hamburger=0x7f020040;
-        public static final int icon=0x7f020041;
-        public static final int logo_icon=0x7f020042;
-        public static final int notification_template_icon_bg=0x7f020045;
-        public static final int progressbackground=0x7f020043;
-        public static final int splash=0x7f020044;
+        public static final int gradiente=0x7f020040;
+        public static final int hamburger=0x7f020041;
+        public static final int icon=0x7f020042;
+        public static final int logo_icon=0x7f020043;
+        public static final int notification_template_icon_bg=0x7f020046;
+        public static final int progressbackground=0x7f020044;
+        public static final int splash=0x7f020045;
     }
     public static final class id {
         public static final int MvxBindingTagUnique=0x7f06000a;
@@ -1624,7 +1625,7 @@ containing a value of this type.
         public static final int action_bar_spinner=0x7f060002;
         public static final int action_bar_subtitle=0x7f060026;
         public static final int action_bar_title=0x7f060025;
-        public static final int action_chat=0x7f06008b;
+        public static final int action_chat=0x7f060089;
         public static final int action_context_bar=0x7f060043;
         public static final int action_divider=0x7f06006c;
         public static final int action_menu_divider=0x7f060003;
@@ -1632,8 +1633,6 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f06003f;
         public static final int action_mode_bar_stub=0x7f06003e;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_notif=0x7f06008a;
-        public static final int action_share=0x7f060089;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int alertTitle=0x7f060032;
         public static final int always=0x7f060018;
