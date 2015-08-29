@@ -45,9 +45,10 @@ namespace TaskView
 			LinearLayout view = new LinearLayout (context);
 			LinearLayout linearItem = new LinearLayout (context);
 			TextView txtTask = new TextView (context);
+			txtTask.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 			ImageView img = new ImageView (context);
 
-			linearItem.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(85));
+			linearItem.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			relativeItem.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
 			relativeItem.SetGravity (Android.Views.GravityFlags.CenterVertical);
 

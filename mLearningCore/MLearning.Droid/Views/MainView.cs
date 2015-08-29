@@ -144,6 +144,11 @@ namespace MLearning.Droid.Views
 
 			//main_ContentView.AddView (LOContainer);
 			WallView wallview = new WallView(this);
+			//wallview.OpenLO.Click += Lo_ImagenLO_Click;
+			//lo.OpenTasks.Click += ListTasks_ItemClick;
+			wallview.OpenChat.Click += imBtn_Chat_Click;
+			wallview.OpenUnits.Click += imBtn_Units_Click;
+
 			main_ContentView.AddView (wallview);
 
 
@@ -639,10 +644,7 @@ namespace MLearning.Droid.Views
 				//lo.im= Configuration.GetImageBitmapFromUrl(vm.LearningOjectsList [e.Position].lo.url_cover);
 				//lo.ListImages = vm.LearningOjectsList[e.Position].lo.
 
-				lo.OpenLO.Click += Lo_ImagenLO_Click;
-				//lo.OpenTasks.Click += ListTasks_ItemClick;
-				lo.OpenChat.Click += imBtn_Chat_Click;
-				lo.OpenUnits.Click += imBtn_Units_Click;
+
 
 				//PositionLO = e.Position;
 

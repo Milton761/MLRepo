@@ -29,6 +29,8 @@ namespace MLearning.Droid
 
 		List<ImageLOView> _ListLOImages_S2;
 
+
+
 		string _title;
 		public string Title{
 			set{_title = value;
@@ -115,6 +117,18 @@ namespace MLearning.Droid
 		LinearLayout _images_S2;
 
 
+		private void imLoClick(object sender, EventArgs eventArgs)
+		{
+			ImageLOView imView = sender as ImageLOView;
+			Drawable imf = new BitmapDrawable(imView.ImageBitmap);
+			_fondo2.SetBackgroundDrawable(imf);
+
+			//actualizar titulo, nombreAuthor, capitulo, imAuthor
+			_txtTitle_S1.Text = imView.Title;
+			_txtAuthor_S1.Text = imView.Author;
+			_txtChapter_S1.Text = imView.Chapter;
+			_imAuthor_S1.SetImageBitmap (imView.ImagenUsuario);
+		}
 
 		//section_3
 
@@ -325,6 +339,7 @@ namespace MLearning.Droid
 
 			_contentScrollView_S2 = new HorizontalScrollView (context);
 			_contentScrollView_S2.LayoutParameters = new HorizontalScrollView.LayoutParams (-1, Configuration.getWidth(160));
+			_contentScrollView_S2.HorizontalScrollBarEnabled = false;
 
 			_images_S2 = new LinearLayout (context);
 			_images_S2.Orientation = Orientation.Horizontal;
@@ -351,10 +366,18 @@ namespace MLearning.Droid
 			im4.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imgd.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
 			_images_S2.AddView (im4);
 		
+			ImageLOView im5 = new ImageLOView (context);
+			im5.ImageBitmap = getBitmapFromAsset ("icons/imga.png");
+			_images_S2.AddView (im5);
+
+			ImageLOView im6 = new ImageLOView (context);
+			im6.ImageBitmap = getBitmapFromAsset ("icons/imgb.png");
+			_images_S2.AddView (im6);
+
+			im5.Click += imLoClick;
+			im6.Click += imLoClick;
+
 			_contentScrollView_S2.AddView (_images_S2);
-			_mainLayout.AddView (_contentScrollView_S2);
-
-
 
 			//----------------------------------------------------------
 
@@ -401,6 +424,7 @@ namespace MLearning.Droid
 			//_contentLLayout_S3.SetBackgroundDrawable(dr3);
 			_contentLLayout_S3.SetBackgroundColor(Color.ParseColor("#80000000"));
 			_mainLayout.AddView (_contentLLayout_S3);
+			_mainLayout.AddView (_contentScrollView_S2);
 
 			//----------------------------------------------------------
 

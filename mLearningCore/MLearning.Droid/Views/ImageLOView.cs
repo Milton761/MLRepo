@@ -20,10 +20,6 @@ namespace MLearning.Droid
 	{
 		Context context;
 
-		LinearLayout mainContent;
-
-		Bitmap imLO;
-
 		string sTitle;
 
 		string sAuthor;
@@ -64,8 +60,8 @@ namespace MLearning.Droid
 		void Initialize ()
 		{
 			
-			this.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getHeight (180), Configuration.getHeight (180));
-			//this.SetBackgroundDrawable (imLO);
+			this.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (160), Configuration.getWidth (160));
+
 
 		}
 
@@ -76,7 +72,7 @@ namespace MLearning.Droid
 			get{ return _imageBitmap;}
 			set{ _imageBitmap = value;			
 
-				Drawable dr = new BitmapDrawable (Bitmap.CreateScaledBitmap (_imageBitmap, Configuration.getWidth (180), Configuration.getHeight (180), true));
+				Drawable dr = new BitmapDrawable (ImageBitmap);
 				this.SetBackgroundDrawable (dr);
 			}
 

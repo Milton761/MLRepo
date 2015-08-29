@@ -82,11 +82,11 @@ namespace MLearning.Droid
 			//mainLayout.SetBackgroundDrawable (d);
 			mainLayout.SetBackgroundColor(Color.ParseColor("#ffffff"));
 
-			txtAuthor = new TextView (context);
-			txtChapter= new TextView (context);
-			txtNameLO = new TextView (context);
-			txtTaskComplete = new TextView (context);
-			txtTaskIncomplete = new TextView (context);
+			txtAuthor = new TextView (context);txtAuthor.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtChapter= new TextView (context);txtChapter.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtNameLO = new TextView (context);txtNameLO.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtTaskComplete = new TextView (context);txtTaskComplete.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
+			txtTaskIncomplete = new TextView (context);txtTaskIncomplete.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/HelveticaNeue.ttf");
 
 			listTaskComplete = new ListView (context);
 			listTaskIncomplete = new ListView (context);
@@ -133,6 +133,11 @@ namespace MLearning.Droid
 			txtAuthor.Text = "Author : David Spencer";
 			txtChapter.Text = "Flora y Fauna";
 			txtNameLO.Text = "Camino Inca";
+			txtAuthor.SetPadding (0, 0, Configuration.getWidth (30), 0);
+			txtChapter.SetPadding (0, 0, Configuration.getWidth (30), 0);
+			txtNameLO.SetPadding (0, 0, Configuration.getWidth (30), 0);
+
+
 			txtTaskComplete.Text = "Tareas Completadas";
 			txtTaskIncomplete.Text = "Tareas por completar";
 
