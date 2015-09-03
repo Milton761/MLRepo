@@ -115,6 +115,9 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Relea
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\Microsoft.WindowsAzure.Storage.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\MLearning.Core.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\Newtonsoft.Json.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\Square.OkHttp.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\Square.OkIO.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\Square.Picasso.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\System.Net.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\System.Net.Http.Extensions.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Release\System.Net.Http.Primitives.dll
@@ -172,6 +175,7 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Relea
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\layout\row_template.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\border.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\logo_icon.png
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\gradiente.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\values\strings.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\icon.png
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\values\splashstyle.xml
@@ -179,4 +183,3 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Relea
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\splash.png
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\R.cs.flag
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\uploadflags.txt
-C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Release\res\drawable\gradiente.xml

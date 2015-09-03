@@ -1607,12 +1607,13 @@ containing a value of this type.
         public static int border=0x7f02003d;
         public static int cboton=0x7f02003e;
         public static int dboton=0x7f02003f;
-        public static int hamburger=0x7f020040;
-        public static int icon=0x7f020041;
-        public static int logo_icon=0x7f020042;
-        public static int notification_template_icon_bg=0x7f020045;
-        public static int progressbackground=0x7f020043;
-        public static int splash=0x7f020044;
+        public static int gradiente=0x7f020040;
+        public static int hamburger=0x7f020041;
+        public static int icon=0x7f020042;
+        public static int logo_icon=0x7f020043;
+        public static int notification_template_icon_bg=0x7f020046;
+        public static int progressbackground=0x7f020044;
+        public static int splash=0x7f020045;
     }
     public static final class id {
         public static int MvxBindingTagUnique=0x7f06000a;

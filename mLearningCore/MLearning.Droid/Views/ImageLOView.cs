@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -24,6 +25,21 @@ namespace MLearning.Droid
 
 		string sAuthor;
 		string sChapter;
+
+		string sUrl;
+
+		public string Url{
+			get { return sUrl; }
+			set { sUrl = value; 
+				ImageView cover = new ImageView (context);
+				//cover.LayoutParameters = new LinearLayout.LayoutParams (-1, -1);
+				Picasso.With (context).Load (Url).Resize (Configuration.getWidth (160),Configuration.getWidth (160)).CenterCrop().Into (cover);
+				this.AddView (cover);
+
+
+
+			}
+		}
 
 		public string Title{
 			get{return sTitle;	}
@@ -61,8 +77,17 @@ namespace MLearning.Droid
 		{
 			
 			this.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (160), Configuration.getWidth (160));
+			//Drawable dr = new BitmapDrawable (getBitmapFromAsset("icons/imdownloading.png"));
+			//this.SetBackgroundDrawable (dr);
 
 
+		}
+
+		public Bitmap getBitmapFromAsset( String filePath) {
+			System.IO.Stream s = context.Assets.Open (filePath);
+			Bitmap bitmap = BitmapFactory.DecodeStream (s);
+
+			return bitmap;
 		}
 
 
@@ -74,6 +99,7 @@ namespace MLearning.Droid
 
 				Drawable dr = new BitmapDrawable (ImageBitmap);
 				this.SetBackgroundDrawable (dr);
+
 			}
 
 		}

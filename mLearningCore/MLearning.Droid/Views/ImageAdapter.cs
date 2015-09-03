@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.Content;
 using System.Collections.Generic;
 using Android.Graphics;
+using Square.Picasso;
 
 
 namespace MLearning.Droid
@@ -81,6 +82,7 @@ namespace MLearning.Droid
 			for (int i = 0; i < tam_row; i++) {
 				row_images.Add(new ImageView(context));
 				row_images[i].SetImageBitmap (Bitmap.CreateScaledBitmap (bimage[i], Configuration.getWidth ((int)ws[i]), Configuration.getHeight ((int)hs[i]), true));
+				//Picasso.With(context).Load()
 				contentLayout.AddView (row_images [i]);
 			}
 			view.AddView (contentLayout);

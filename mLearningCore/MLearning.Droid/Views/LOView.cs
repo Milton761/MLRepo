@@ -18,6 +18,7 @@ using DataSource;
 using System.Collections.ObjectModel;
 using Android.Content.PM;
 using Android.Content;
+using System.Threading;
 
 namespace MLearning.Droid.Views
 {
@@ -35,7 +36,7 @@ namespace MLearning.Droid.Views
 		List<FrontContainerView> listFront = new List<FrontContainerView> ();
 		List<FrontContainerViewPager> listFrontPager = new List<FrontContainerViewPager>();
 		//	VerticalScrollView scrollVertical;
-		//	bool ISLOADED= false;
+		bool ISLOADED= false;
 		int IndiceSection=0;
 
 		List<VerticalScrollViewPager> listaScroll = new List<VerticalScrollViewPager>();
@@ -117,6 +118,10 @@ namespace MLearning.Droid.Views
 		{
 
 			var vm = this.ViewModel as LOViewModel;
+			if (e.PropertyName == "IsWaiting") {
+				_progresD.Show ();
+			}
+
 			if (e.PropertyName == "LOsInCircle")
 			if (vm.LOsInCircle != null) {
 			}
@@ -150,20 +155,28 @@ namespace MLearning.Droid.Views
 					front.Chapter = vm.LOsInCircle [i].lo.description;
 					front.NameLO = vm.LOsInCircle [i].lo.title;
 					front.Like = "10";
+					front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
 					listFront.Add (front);
 
+					/*
 					if (vm.LOsInCircle [i].background_bytes != null) {
 						Bitmap bm = BitmapFactory.DecodeByteArray (vm.LOsInCircle [i].background_bytes, 0, vm.LOsInCircle [i].background_bytes.Length);
-						front.ImageChapterBitmap = bm;
 
+						front.ImageChapterBitmap = bm;
+						bm = null;
 					}
+					*/
 
 					vm.LOsInCircle[i].PropertyChanged += (s1, e1) =>
 					{
 						if (e1.PropertyName == "background_bytes")
 						{
+							/*
 							Bitmap bm = BitmapFactory.DecodeByteArray (vm.LOsInCircle [i].background_bytes, 0, vm.LOsInCircle [i].background_bytes.Length);
 							front.ImageChapterBitmap = bm;
+							bm = null;
+							*/
+							front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
 
 						}
 					};								
@@ -183,23 +196,41 @@ namespace MLearning.Droid.Views
 								section.Title = s_list [j].PagesList [k].page.title;
 								section.Container = s_list [j].PagesList [k].page.description;							
 								section.ColorText = Configuration.ListaColores [indice % 6];
+
+								section.Image = s_list [j].PagesList [k].page.url_img;
+								/*
 								if (s_list [j].PagesList [k].cover_bytes != null) {
 									Bitmap bm = BitmapFactory.DecodeByteArray (s_list [j].PagesList [k].cover_bytes, 0, s_list [j].PagesList[k].cover_bytes.Length);
 									section.ImageBitmap = bm;
-
+									bm = null;
 								}
+								*/
+
 								section.Indice = indice;								
 								section.Click += delegate {
+									
+
 									IndiceSection = section.Indice; 										
+
+
+
 									mainLayoutIndice.Visibility = ViewStates.Invisible;		
-									//if (ISLOADED == false) {		
+
+
+
+									if (ISLOADED == false) {		
 									LoadPagesDataSource();
-									//} else {
+									} else {
 
 									viewPager.CurrentItem= IndiceSection;
 									mainLayoutPages.Visibility = ViewStates.Visible;
+									
 									mainLayoutIndice.Visibility = ViewStates.Invisible;
-									//}
+
+
+										
+									}
+
 								};
 								linearScroll.AddView (section);
 								indice++;
@@ -219,22 +250,38 @@ namespace MLearning.Droid.Views
 									section.Title = s_list [j].PagesList [k].page.title;
 									section.Container = s_list [j].PagesList [k].page.description;							
 									section.ColorText = Configuration.ListaColores [indice % 6];
+
+									section.Image = s_list [j].PagesList [k].page.url_img;
+									/*
 									if (s_list [j].PagesList [k].cover_bytes != null) {
 										Bitmap bm = BitmapFactory.DecodeByteArray (s_list [j].PagesList [k].cover_bytes, 0, s_list [j].PagesList[k].cover_bytes.Length);
 										section.ImageBitmap = bm;
+										bm = null;
 									}
+									*/
 									section.Indice = indice;								
 									section.Click += delegate {
+
+
+
+
 										IndiceSection = section.Indice; 										
 										mainLayoutIndice.Visibility = ViewStates.Invisible;		
-										//if (ISLOADED == false) {		
-										LoadPagesDataSource();
-										//} else {
 
-										viewPager.CurrentItem= IndiceSection;
-										mainLayoutPages.Visibility = ViewStates.Visible;
-										mainLayoutIndice.Visibility = ViewStates.Invisible;
-										//}
+
+										if (ISLOADED == false) {	
+										
+
+										LoadPagesDataSource();
+
+
+										} else {
+											viewPager.CurrentItem= IndiceSection;
+											mainLayoutPages.Visibility = ViewStates.Visible;
+											mainLayoutIndice.Visibility = ViewStates.Invisible;
+										}
+
+
 									};
 									linearScroll.AddView (section);
 									indice++;
@@ -264,14 +311,14 @@ namespace MLearning.Droid.Views
 
 
 
-		async void LoadPagesDataSource()
+		void LoadPagesDataSource()
 		{
-			var vm = ViewModel as LOViewModel;
-			//var styles = new StyleConstants();
-			int scroll_index = 0;
 
-			//for styles
-			bool white_style = false, is_main = true;
+
+			LOViewModel vm = ViewModel as LOViewModel;
+			//var styles = new StyleConstants();
+			//vm.IsLoading.Execute(null);
+			bool is_main = true;
 
 			for (int i = 0; i < vm.LOsInCircle.Count; i++)
 			{
@@ -292,11 +339,20 @@ namespace MLearning.Droid.Views
 						var content = s_list [j].PagesList [k].content;
 						FrontContainerViewPager front = new FrontContainerViewPager (this);
 						front.Tag = "pager";
+
+						front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
+
+						/*
 						Bitmap bm = BitmapFactory.DecodeByteArray (s_list [j].PagesList [k].cover_bytes, 0, s_list [j].PagesList [k].cover_bytes.Length);
 						front.ImageChapterBitmap = bm;
+						bm = null;
+						*/
+
 						front.Title = s_list [j].PagesList [k].page.title;
 						front.Description =  s_list [j].PagesList [k].page.description;
 						var slides = s_list [j].PagesList [k].content.lopage.loslide;
+
+						//vm.OpenPageCommand.Execute (s_list [j].PagesList [k]);
 						//var slides2 = s_list [j].PagesList [k].content.lopage.loslide.
 						linearScroll.AddView (front);
 						listFrontPager.Add (front);
@@ -320,13 +376,17 @@ namespace MLearning.Droid.Views
 							if (slides[m].lotext != null) slidesource.Paragraph = slides[m].lotext;
 							if (slides[m].loauthor != null) slidesource.Author = slides[m].loauthor;
 							if (slides[m].lovideo != null) slidesource.VideoUrl = slides[m].lovideo;
-							if (slides[m].image_bytes != null) slidesource.ImageBytes = slides[m].image_bytes; 
+							//if (slides[m].image_bytes != null) slidesource.ImageBytes = slides[m].image_bytes; 
+
 
 							var c_slide = slides[m];
+							/*
 							c_slide.PropertyChanged+=(s,e)=>{
 								if (e.PropertyName == "image_bytes" && c_slide.image_bytes != null)
 									slidesource.ImageBytes = c_slide.image_bytes; 
 							};
+							*/
+
 							if (c_slide.loitemize != null){
 								slidesource.Itemize = new ObservableCollection<LOItemSource>();
 								var items = c_slide.loitemize.loitem;
@@ -335,13 +395,17 @@ namespace MLearning.Droid.Views
 									if (items[n].loimage != null) item.ImageUrl = items[n].loimage;
 									if (items[n].lotext != null) item.Text = items[n].lotext;
 									//imagebytes
-									if (items[n].image_bytes != null) item.ImageBytes = items[n].image_bytes; 
+									//if (items[n].image_bytes != null) item.ImageBytes = items[n].image_bytes; 
 
 									var c_item_ize = items[n];
+									/*
 									c_item_ize.PropertyChanged += (s1, e1) =>{
 										if (e1.PropertyName == "image_bytes" && c_item_ize.image_bytes != null)
 											item.ImageBytes = c_item_ize.image_bytes; 
+
+										
 									};
+									*/
 									slidesource.Itemize.Add(item);
 								}
 							}
@@ -404,6 +468,7 @@ namespace MLearning.Droid.Views
 			Bitmap bitmap = BitmapFactory.DecodeStream (s);
 
 			return bitmap;
+
 		}
 
 
@@ -488,7 +553,7 @@ namespace MLearning.Droid.Views
 			if (mainLayoutIndice.Visibility == ViewStates.Visible) {
 				base.OnBackPressed ();
 			}
-			//ISLOADED = true;
+			ISLOADED = true;
 			mainLayoutIndice.Visibility = ViewStates.Visible;
 			mainLayoutPages.Visibility = ViewStates.Invisible;
 

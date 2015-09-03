@@ -215,7 +215,9 @@ namespace MLearning.Core.ViewModels
             public ObservableCollection<page_wrapper> PagesList
             {
                 get { return _pagesList; }
-                set { _pagesList = value; RaisePropertyChanged("PagesList"); }
+                set { _pagesList = value;
+					
+					RaisePropertyChanged("PagesList"); }
             }
 
 
@@ -330,6 +332,11 @@ namespace MLearning.Core.ViewModels
             GroupedPagesList = LOsInCircle[_loCurrentIndex].stack.StacksList;
         }
 
+		bool _isWaiting;
+		public bool IsWaiting{
+			get{ return _isWaiting; }
+			set{ _isWaiting = value; RaisePropertyChanged ("IsWaiting");}
+		}
 
         string _title;
         public string Title
@@ -490,6 +497,26 @@ namespace MLearning.Core.ViewModels
         {
 
         }
+
+
+		MvxCommand _IsLoading;
+		public System.Windows.Input.ICommand IsLoading
+		{
+			get
+			{
+				_IsLoading= _IsLoading?? new MvxCommand(DoLoadingCommand);
+				return _IsLoading;
+			}
+		}
+
+		void DoLoadingCommand()
+		{
+			_isWaiting = true;
+		}
+
+
+
+
 
 
 

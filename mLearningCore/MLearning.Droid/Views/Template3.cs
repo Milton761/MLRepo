@@ -115,7 +115,7 @@ namespace MLearning.Droid
 					contentList.Clickable = false;
 					contentList.ChoiceMode = ChoiceMode.None;
 				}
-			
+
 			}
 
 		}

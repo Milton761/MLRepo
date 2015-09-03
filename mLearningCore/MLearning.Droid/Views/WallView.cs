@@ -5,7 +5,9 @@ using Android.Content;
 using Android.Util;
 using Android.Widget;
 using Android.Graphics;
+
 using Android.Graphics.Drawables;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -15,6 +17,10 @@ namespace MLearning.Droid
 		RelativeLayout _mainLayout;
 		LinearLayout _fondo2;
 		LinearLayout linearGradiente;
+
+		LinearLayout commentLayout;
+		ListView commentList;
+		List<CommentDataRow> _dataTemplateItem = new List<CommentDataRow> ();
 
 
 		//section_1
@@ -30,6 +36,21 @@ namespace MLearning.Droid
 
 		List<ImageLOView> _ListLOImages_S2;
 
+		private CommentDataRow[] _listItems;
+		public CommentDataRow[] ListItems{
+			set{_listItems = value;
+				for (int i = 0; i < _listItems.Length; i++) {
+					_dataTemplateItem.Add (new CommentDataRow (){name = _listItems[i].name, im_profile = _listItems[i].im_profile, date = _listItems[i].date, comment = _listItems[i].comment });
+					commentList.Adapter = new CommentAdapter (context, _dataTemplateItem);
+					commentList.SetBackgroundColor (Color.White);
+					commentList.DividerHeight = 0;
+					commentList.Clickable = false;
+					commentList.ChoiceMode = ChoiceMode.None;
+				}
+
+			}
+
+		}
 
 
 		string _title;
@@ -77,7 +98,7 @@ namespace MLearning.Droid
 
 		public List<ImageLOView> ListImages{
 			set{ _ListLOImages_S2 = value;
-			
+				_images_S2.RemoveAllViews ();		
 				for (int i = 0; i < _ListLOImages_S2.Count; i++) {
 
 					_images_S2.AddView (_ListLOImages_S2[i]);
@@ -116,7 +137,18 @@ namespace MLearning.Droid
 		{
 			ImageLOView imView = sender as ImageLOView;
 			Drawable imf = new BitmapDrawable(imView.ImageBitmap);
-			_fondo2.SetBackgroundDrawable(imf);
+
+			ImageView test = new ImageView (context);
+			test.DrawingCacheEnabled = true;
+			Drawable fondito = new BitmapDrawable( );
+			test.LayoutParameters = new LinearLayout.LayoutParams (-1, -1);
+
+			Picasso.With (context).Load (imView.Url).Resize(Configuration.getWidth(640),Configuration.getWidth(640)).CenterCrop().Into (test);
+			_fondo2.SetVerticalGravity (Android.Views.GravityFlags.Start);
+			//_fondo2.SetBackgroundDrawable (fondito);
+			_fondo2.RemoveAllViews();
+
+			_fondo2.AddView(test);
 
 			//actualizar titulo, nombreAuthor, capitulo, imAuthor
 			_txtTitle_S1.Text = imView.Title;
@@ -177,6 +209,22 @@ namespace MLearning.Droid
 
 		public void ini(){
 
+
+			//creating comment List
+
+
+
+			commentLayout = new LinearLayout(context);
+			commentLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (934));
+			commentList = new ListView (context);
+
+
+			//commentList.AddView (commentList);
+
+
+
+			//end comment List
+
 			_mainLayout = new RelativeLayout (context);
 
 
@@ -190,7 +238,7 @@ namespace MLearning.Droid
 			_mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
 
 			_fondo2 = new LinearLayout (context);
-			_fondo2.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (934));
+			_fondo2.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getWidth (640));
 			_fondo2.SetY (Configuration.getHeight (109));
 
 			Drawable dr1 = new BitmapDrawable (getBitmapFromAsset("icons/fondoselec.png"));
@@ -336,8 +384,10 @@ namespace MLearning.Droid
 				_txtItem_S1[i].SetTextSize (textFormat,Configuration.getHeight(30));
 				_mainLayout.AddView (_txtItem_S1 [i]);
 				_txtItem_S1 [i].SetX (inixItemTXT+(i*crecTXT));_txtItem_S1 [i].SetY (Configuration.getHeight(640));
-			}
+				_imItem_S1 [i] = null;
 
+			}
+			_imItem_S1 = null;
 
 
 			//-------------------------------------------------------
@@ -483,7 +533,10 @@ namespace MLearning.Droid
 
 			Drawable dr = new BitmapDrawable (getBitmapFromAsset("icons/fondo.png"));
 			_mainLayout.SetBackgroundDrawable (dr);
+			dr = null;
 		
+
+
 		}
 
 

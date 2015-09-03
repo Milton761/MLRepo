@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -87,6 +88,7 @@ namespace MLearning.Droid
 
 			Drawable drBack =new BitmapDrawable(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondocondiagonalm.png"), 640, 1136, true));
 			linearContainerFisrst.SetBackgroundDrawable (drBack);
+			drBack = null;
 
 
 			linearTextLO.Orientation = Orientation.Vertical;
@@ -101,8 +103,8 @@ namespace MLearning.Droid
 
 
 
-			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondounidad.png"), 480, 640, true));
-			linearImageLO.SetBackgroundDrawable (d);
+			//Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondounidad.png"), 480, 640, true));
+			//linearImageLO.SetBackgroundDrawable (d);
 
 			imgHeart.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true));
 
@@ -188,10 +190,18 @@ namespace MLearning.Droid
 		public String ImageChapter{
 			get{ return _imageChapter;}
 			set{ _imageChapter = value;
+				/*
 				Bitmap bm = Configuration.GetImageBitmapFromUrl (_imageChapter);
 				Console.WriteLine ("ESTOy DESCARGANDOO IMAGENNNNNNNNNNnnnnn");
 				Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (bm, 480, 640, true));
 				linearImageLO.SetBackgroundDrawable (d);
+				*/
+				ImageView fondoChapter = new ImageView (context);
+				//fondoChapter.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/imdownloading.png"), Configuration.getWidth (640), Configuration.getHeight (637), true));
+				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(637)).CenterCrop().Into (fondoChapter);
+				linearImageLO.RemoveAllViews ();
+				linearImageLO.AddView (fondoChapter);
+
 			}
 
 		}
@@ -201,12 +211,10 @@ namespace MLearning.Droid
 			set{ _imageChapterBitmap = value;
 				Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (_imageChapterBitmap, 480, 640, true));
 				linearImageLO.SetBackgroundDrawable (d);
+				ImageChapterBitmap = null;
 				}
 
 		}
-
-
-
 
 
 		public Bitmap getBitmapFromAsset( String filePath) {

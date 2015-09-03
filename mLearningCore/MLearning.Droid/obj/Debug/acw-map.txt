@@ -194,6 +194,10 @@ MLearning.Droid.ImageLOView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0
 MLearning.Droid.ImageLOView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
 MLearning.Droid.ImageLOView;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
 mlearning.droid.ImageLOView;md56f7ca2643ae6f795f77b881324800fc0.ImageLOView
+MLearning.Droid.CommentAdapter, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
+MLearning.Droid.CommentAdapter, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
+MLearning.Droid.CommentAdapter;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
+mlearning.droid.CommentAdapter;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
@@ -458,6 +462,14 @@ Xamarin.Auth._MobileServices.WebAuthenticatorActivity/Client, Microsoft.WindowsA
 Xamarin.Auth._MobileServices.WebAuthenticatorActivity/Client, Microsoft.WindowsAzure.Mobile.Ext, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity_Client
 Xamarin.Auth._MobileServices.WebAuthenticatorActivity.Client;md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity_Client
 xamarin.auth._mobileservices.WebAuthenticatorActivity_Client;md588920fb9403ed228b036d6919cddd329.WebAuthenticatorActivity_Client
+Square.Picasso.RequestCreator/ActionCallback, Square.Picasso;md5705fe36bf2d00fe2dcf64704df749224.RequestCreator_ActionCallback
+Square.Picasso.RequestCreator/ActionCallback, Square.Picasso, Version=2.5.2.0, Culture=neutral, PublicKeyToken=null;md5705fe36bf2d00fe2dcf64704df749224.RequestCreator_ActionCallback
+Square.Picasso.RequestCreator.ActionCallback;md5705fe36bf2d00fe2dcf64704df749224.RequestCreator_ActionCallback
+square.picasso.RequestCreator_ActionCallback;md5705fe36bf2d00fe2dcf64704df749224.RequestCreator_ActionCallback
+Square.Picasso.Picasso/IListenerImplementor, Square.Picasso;mono.com.squareup.picasso.Picasso_ListenerImplementor
+Square.Picasso.Picasso/IListenerImplementor, Square.Picasso, Version=2.5.2.0, Culture=neutral, PublicKeyToken=null;mono.com.squareup.picasso.Picasso_ListenerImplementor
+Square.Picasso.Picasso.IListenerImplementor;mono.com.squareup.picasso.Picasso_ListenerImplementor
+square.picasso.Picasso_IListenerImplementor;mono.com.squareup.picasso.Picasso_ListenerImplementor
 Android.Support.V4.View.ViewPager/IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager/IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager.IOnPageChangeListenerImplementor;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor

@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.Graphics;
 using System.Net;
+using Android.Graphics.Drawables;
 
 namespace MLearning.Droid
 {
@@ -10,6 +11,7 @@ namespace MLearning.Droid
 		public static int DIMENSION_DESING_HEIGHT= 1136; 
 		public static int WIDTH_PIXEL;
 		public static int HEIGHT_PIXEL;
+
 
 		public static int IndiceActual=0;
 
@@ -103,6 +105,25 @@ namespace MLearning.Droid
 			}
 
 			return imageBitmap;
+		}
+
+		public async static void GetImageBitmapFromUrl(string url,Bitmap img_bm)
+		{
+			Bitmap imageBitmap = null;
+
+			using (var webClient = new WebClient())
+			{
+				byte[] imageBytes = await webClient.DownloadDataTaskAsync (url);
+				if (imageBytes != null && imageBytes.Length > 0)
+				{
+					//imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+					img_bm = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+				}
+			}
+
+			//img_bm = imageBitmap;
+
+			//return imageBitmap;
 		}
 
 	}

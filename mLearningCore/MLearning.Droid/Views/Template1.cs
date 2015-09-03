@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Text;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -149,8 +150,8 @@ namespace MLearning.Droid
 
 			//imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/user.png"),Configuration.getWidth (124), Configuration.getHeight (124),true));
 			//imHeader.SetX (Configuration.getHeight (68));imHeader.SetY (Configuration.getWidth (792-desviacion));
-			imHeader.SetMinimumWidth (Configuration.getWidth (124));
-			imHeader.SetMinimumHeight (Configuration.getWidth (124));
+			imHeader.SetMaxWidth (Configuration.getWidth (124));
+			imHeader.SetMaxHeight (Configuration.getWidth (124));
 
 
 
@@ -207,15 +208,24 @@ namespace MLearning.Droid
 		public Bitmap Image{
 			get{return _imageBitmap; }
 			set{_imageBitmap = value;
-				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (_imageBitmap,Configuration.getWidth (124), Configuration.getHeight (124),true));}
+				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (_imageBitmap,Configuration.getWidth (60), Configuration.getHeight (60),true));
+
+				}
 		}
 
 		private string _imageUrl;
 		public string ImageUrl{
 			get{return _imageUrl; }
 			set{_imageUrl = value;
+				/*
 				Bitmap bm = Configuration.GetImageBitmapFromUrl (_imageUrl);
-				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (124), Configuration.getHeight (124),true));}
+				imHeader.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (60), Configuration.getHeight (60),true));
+				bm = null;
+				*/
+				Picasso.With (context).Load (ImageUrl).Resize(Configuration.getWidth(124),Configuration.getHeight(124)).CenterCrop().Into (imHeader);
+				//Picasso.With (context).Load (ImageUrl).CenterCrop().Into (imHeader);
+			}
+	
 		}
 
 	}

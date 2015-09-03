@@ -62,3 +62,4 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Core\bin\Releas
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Core\obj\Release\MLearning.Core.csproj.App.config
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Core\obj\Release\MLearning.Core.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Core\obj\Release\MLearning.Core.pdb
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Core\obj\Release\MLearning.Core.csprojResolveAssemblyReference.cache

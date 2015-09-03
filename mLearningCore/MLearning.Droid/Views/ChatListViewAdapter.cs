@@ -5,6 +5,7 @@ using Android.Views;
 using Android.Content;
 using Android.Graphics;
 using Android.Text;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -60,18 +61,20 @@ namespace MLearning.Droid
 			string path = mItems [position].imageProfile;
 			Bitmap bm;
 			if (path==null) {
-				bm = getBitmapFromAsset ("images/e1.jpg");
-
+				bm = getBitmapFromAsset ("icons/nouser.png");
+				imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getWidth(52),true));
 
 			} else {
-				bm=Configuration.GetImageBitmapFromUrl (path);
+				//bm=Configuration.GetImageBitmapFromUrl (path);
+				Picasso.With(mContext).Load(path).Resize(Configuration.getWidth (52), Configuration.getWidth (52)).Into(imProfile);
 			}
 				
-			imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getHeight (52),true));
+			//imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getHeight (52),true));
 			imProfile.SetX (Configuration.getHeight (75));
 
 
 			TextView state = row.FindViewById<TextView> (Resource.Id.textView_status_CL);
+			state.Typeface =  Typeface.CreateFromAsset(mContext.Assets, "fonts/HelveticaNeue.ttf");
 
 			if (mItems [position].state == true) 
 			{

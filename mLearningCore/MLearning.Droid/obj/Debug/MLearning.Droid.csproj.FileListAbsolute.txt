@@ -732,6 +732,9 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\MLearning.Core.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\Square.OkHttp.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\Square.OkIO.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\Square.Picasso.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\System.Net.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\System.Net.Http.Extensions.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\bin\Debug\System.Net.Http.Primitives.dll

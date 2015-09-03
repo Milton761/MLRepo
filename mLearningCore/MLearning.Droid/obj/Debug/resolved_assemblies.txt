@@ -21,6 +21,9 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Microsoft.WindowsAzure.Storage.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\MLearning.Core.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Newtonsoft.Json.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Square.OkHttp.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Square.OkIO.dll
+C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Square.Picasso.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\System.Net.Http.Extensions.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\System.Net.Http.Primitives.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\obj\Debug\assemblies\Xamarin.Android.Support.v4.dll

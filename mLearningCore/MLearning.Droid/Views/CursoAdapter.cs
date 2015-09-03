@@ -83,7 +83,7 @@ namespace MLearning.Droid.Views
 			linearNumLO.Orientation = Orientation.Vertical;
 			linearNumLO.SetGravity (Android.Views.GravityFlags.CenterVertical);
 
-			linearContentNumLO.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(33),Configuration.getHeight(33));
+			linearContentNumLO.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(33),Configuration.getWidth(33));
 			linearContentNumLO.Orientation = Orientation.Horizontal;
 			linearContentNumLO.SetGravity (Android.Views.GravityFlags.Center);
 			linearContentNumLO.SetBackgroundColor (Color.Gray);

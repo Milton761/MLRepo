@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -166,6 +167,7 @@ namespace MLearning.Droid
 				img.SetImageBitmap (Bitmap.CreateScaledBitmap (_imageBitmap, Configuration.getWidth (232), Configuration.getHeight (162), true));
 				la.AddView (img);
 				linearPanelScroll.AddView (la);
+				_imageBitmap = null;
 			}
 
 		}
@@ -180,7 +182,9 @@ namespace MLearning.Droid
 				la.SetGravity (GravityFlags.Center);
 
 				ImageView img = new ImageView (context);
-				img.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset (_image), Configuration.getWidth (232), Configuration.getHeight (162), true));
+				//img.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/imdownloading.png"), Configuration.getWidth (232), Configuration.getHeight (162), true));
+				//img.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset (_image), Configuration.getWidth (232), Configuration.getHeight (162), true));
+				Picasso.With (context).Load (Image).Resize(Configuration.getWidth(232),Configuration.getHeight(162)).Into (img);
 				la.AddView (img);
 				linearPanelScroll.AddView (la);
 			}
