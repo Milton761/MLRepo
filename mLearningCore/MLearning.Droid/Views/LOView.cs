@@ -19,6 +19,7 @@ using System.Collections.ObjectModel;
 using Android.Content.PM;
 using Android.Content;
 using System.Threading;
+using Android.Graphics.Drawables;
 
 namespace MLearning.Droid.Views
 {
@@ -26,14 +27,23 @@ namespace MLearning.Droid.Views
 	public class LOView : MvxActivity, VerticalScrollViewPager.ScrollViewListenerPager
 	{
 
+		LOViewModel vm; 
+		Bitmap bm_user;
+		Bitmap bmLike;
+		Drawable drBack;
+
 		ProgressDialog _progresD;
 		//	LinearLayout layoutPanelScroll;
 		RelativeLayout mainLayout;
 		RelativeLayout mainLayoutIndice;
 		RelativeLayout mainLayoutPages;
+
+
 		int widthInDp;
 		int heightInDp;
 		List<FrontContainerView> listFront = new List<FrontContainerView> ();
+
+
 		List<FrontContainerViewPager> listFrontPager = new List<FrontContainerViewPager>();
 		//	VerticalScrollView scrollVertical;
 		bool ISLOADED= false;
@@ -47,6 +57,7 @@ namespace MLearning.Droid.Views
 
 		async protected  override  void OnCreate(Bundle bundle)
 		{
+			
 			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 			base.OnCreate(bundle);
 			var metrics = Resources.DisplayMetrics;
@@ -54,6 +65,17 @@ namespace MLearning.Droid.Views
 			heightInDp = ((int)metrics.HeightPixels);
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
+			vm = this.ViewModel as LOViewModel;
+
+			int tam = Configuration.getWidth (80);
+			bm_user = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap(getBitmapFromAsset ("icons/nouser.png"), tam,tam, true)
+				,tam,tam);
+
+			bmLike = Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth (43), Configuration.getWidth (35), true);
+
+			drBack = new BitmapDrawable(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondocondiagonalm.png"), 640, 1136, true));
+
+
 			await ini();
 			//LoadPagesDataSource ();
 
@@ -103,10 +125,11 @@ namespace MLearning.Droid.Views
 			mainLayout.AddView (mainLayoutIndice);
 			//mainLayout.AddView (scrollVertical);
 
-			var vm = this.ViewModel as LOViewModel;
+			//var vm = this.ViewModel as LOViewModel;
 
 			await vm.InitLoad();
 			loadLOsInCircle(0);
+
 			viewPagerIni.SetOnPageChangeListener (new MyPageChangeListener (this,listFront));
 			viewPager.SetOnPageChangeListener (new MyPageChangeListenerPager (this, listFrontPager));
 			vm.PropertyChanged += Vm_PropertyChanged;
@@ -117,7 +140,7 @@ namespace MLearning.Droid.Views
 		void Vm_PropertyChanged (object sender, PropertyChangedEventArgs e)
 		{
 
-			var vm = this.ViewModel as LOViewModel;
+			//var vm = this.ViewModel as LOViewModel;
 			if (e.PropertyName == "IsWaiting") {
 				_progresD.Show ();
 			}
@@ -137,7 +160,8 @@ namespace MLearning.Droid.Views
 
 		void loadLOsInCircle(int index){
 
-			var vm = this.ViewModel as LOViewModel;
+
+			//var vm = this.ViewModel as LOViewModel;
 			if (vm.LOsInCircle != null) {		
 
 
@@ -156,7 +180,10 @@ namespace MLearning.Droid.Views
 					front.NameLO = vm.LOsInCircle [i].lo.title;
 					front.Like = "10";
 					front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
+
 					listFront.Add (front);
+					listFront [i].setBack (drBack,bmLike);
+
 
 					/*
 					if (vm.LOsInCircle [i].background_bytes != null) {
@@ -196,6 +223,8 @@ namespace MLearning.Droid.Views
 								section.Title = s_list [j].PagesList [k].page.title;
 								section.Container = s_list [j].PagesList [k].page.description;							
 								section.ColorText = Configuration.ListaColores [indice % 6];
+								section.setDefaultProfileUserBitmap (bm_user);
+
 
 								section.Image = s_list [j].PagesList [k].page.url_img;
 								/*
@@ -250,6 +279,7 @@ namespace MLearning.Droid.Views
 									section.Title = s_list [j].PagesList [k].page.title;
 									section.Container = s_list [j].PagesList [k].page.description;							
 									section.ColorText = Configuration.ListaColores [indice % 6];
+									section.setDefaultProfileUserBitmap (bm_user);
 
 									section.Image = s_list [j].PagesList [k].page.url_img;
 									/*
@@ -292,7 +322,9 @@ namespace MLearning.Droid.Views
 
 					}
 
+					scrollPager.VerticalScrollBarEnabled = false;
 					scrollPager.AddView (linearScroll);
+
 					listaScrollIni.Add (scrollPager);
 
 				}
@@ -315,7 +347,7 @@ namespace MLearning.Droid.Views
 		{
 
 
-			LOViewModel vm = ViewModel as LOViewModel;
+			//LOViewModel vm = ViewModel as LOViewModel;
 			//var styles = new StyleConstants();
 			//vm.IsLoading.Execute(null);
 			bool is_main = true;
@@ -352,10 +384,14 @@ namespace MLearning.Droid.Views
 						front.Description =  s_list [j].PagesList [k].page.description;
 						var slides = s_list [j].PagesList [k].content.lopage.loslide;
 
+
+						//revisar si slides == null;
+
 						//vm.OpenPageCommand.Execute (s_list [j].PagesList [k]);
 						//var slides2 = s_list [j].PagesList [k].content.lopage.loslide.
 						linearScroll.AddView (front);
 						listFrontPager.Add (front);
+						listFrontPager [i].setBack (drBack);
 						//vm.OpenPageCommand.Execute(s_list[j].PagesList[k]);
 						var currentpage = s_list [j].PagesList [k];
 						//var pagerr = s_list[j].PagesList[k].content.lopage.loslide
@@ -413,6 +449,7 @@ namespace MLearning.Droid.Views
 							linearScroll.AddView (slidesource.getViewSlide());
 
 						} 
+						scrollPager.VerticalScrollBarEnabled = false;
 						scrollPager.AddView (linearScroll);
 						listaScroll.Add (scrollPager);
 						indice++;

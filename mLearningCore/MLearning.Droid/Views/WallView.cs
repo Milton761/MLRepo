@@ -74,7 +74,10 @@ namespace MLearning.Droid
 		Bitmap _imageAuthor;
 		public Bitmap ImageAuthor {
 			set{_imageAuthor = value;
-				_imAuthor_S1.SetImageBitmap (_imageAuthor);}
+				_imAuthor_S1.SetImageBitmap (_imageAuthor);
+				//_imageAuthor.Recycle ();
+				_imageAuthor = null;
+				}
 		
 		}
 
@@ -136,16 +139,13 @@ namespace MLearning.Droid
 		private void imLoClick(object sender, EventArgs eventArgs)
 		{
 			ImageLOView imView = sender as ImageLOView;
-			Drawable imf = new BitmapDrawable(imView.ImageBitmap);
-
 			ImageView test = new ImageView (context);
 			test.DrawingCacheEnabled = true;
-			Drawable fondito = new BitmapDrawable( );
+
 			test.LayoutParameters = new LinearLayout.LayoutParams (-1, -1);
 
 			Picasso.With (context).Load (imView.Url).Resize(Configuration.getWidth(640),Configuration.getWidth(640)).CenterCrop().Into (test);
 			_fondo2.SetVerticalGravity (Android.Views.GravityFlags.Start);
-			//_fondo2.SetBackgroundDrawable (fondito);
 			_fondo2.RemoveAllViews();
 
 			_fondo2.AddView(test);
@@ -243,7 +243,7 @@ namespace MLearning.Droid
 
 			Drawable dr1 = new BitmapDrawable (getBitmapFromAsset("icons/fondoselec.png"));
 			_fondo2.SetBackgroundDrawable (dr1);
-
+			dr1 = null;
 			_mainLayout.AddView (_fondo2);
 
 			//section1-----------------------------------------------
@@ -289,12 +289,10 @@ namespace MLearning.Droid
 			//_txtTitle_S1.SetX (Configuration.getWidth (245));_txtTitle_S1.SetY (Configuration.getHeight (60));
 
 			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap( getBitmapFromAsset("icons/imgautor.png"), Configuration.getWidth(170), Configuration.getWidth(170), true),Configuration.getWidth(170),Configuration.getHeight(170));
-			
-
-		//	Bitmap test = Configuration.GetRoundedCornerBitmap (getBitmapFromAsset("icons/imgc.png"));
-
-
+		
 			_imAuthor_S1.SetImageBitmap (newbm);
+		//	newbm.Recycle ();
+			newbm = null;
 
 			_imAuthor_S1.SetX (Configuration.getWidth (240));_imAuthor_S1.SetY (Configuration.getHeight (189));
 
@@ -373,6 +371,7 @@ namespace MLearning.Droid
 					_mainLayout.AddView (linea);
 					linea.SetX (inixLinea + (i * crecIM));
 					linea.SetY (Configuration.getHeight (605));
+					linea = null;
 				}
 
 
@@ -407,34 +406,6 @@ namespace MLearning.Droid
 			_contentScrollView_S2.SetY (Configuration.getHeight (700));
 
 
-			/*ImageView im1 = new ImageView (context);
-			im1.SetBackgroundColor (Color.White);
-			im1.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imga.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
-			_images_S2.AddView (im1);
-
-			ImageView im2 = new ImageView (context);
-			im2.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imgb.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
-			_images_S2.AddView (im2);
-
-			ImageView im3 = new ImageView (context);
-			im3.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imgc.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
-			_images_S2.AddView (im3);
-
-			ImageView im4 = new ImageView (context);
-			im4.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/imgd.png"), Configuration.getWidth (160), Configuration.getWidth (160), true));
-			_images_S2.AddView (im4);
-		
-			ImageLOView im5 = new ImageLOView (context);
-			im5.ImageBitmap = getBitmapFromAsset ("icons/imga.png");
-			_images_S2.AddView (im5);
-
-			ImageLOView im6 = new ImageLOView (context);
-			im6.ImageBitmap = getBitmapFromAsset ("icons/imgb.png");
-			_images_S2.AddView (im6);
-
-			im5.Click += imLoClick;
-			im6.Click += imLoClick;
-*/
 			_contentScrollView_S2.AddView (_images_S2);
 
 			//----------------------------------------------------------

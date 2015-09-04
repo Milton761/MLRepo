@@ -20,7 +20,7 @@ namespace MLearning.Droid
 	public class FrontContainerView : RelativeLayout
 	{
 
-
+		Drawable drBack;
 		LinearLayout linearImageLO;
 		LinearLayout linearLike;
 
@@ -49,6 +49,16 @@ namespace MLearning.Droid
 		}
 
 
+		public void setBack(Drawable dr, Bitmap bm)
+		{
+			//drBack = dr;
+			linearContainerFisrst.SetBackgroundDrawable (dr);
+
+			//Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true)
+			imgHeart.SetImageBitmap (bm);
+
+
+		}
 
 		void Initialize ()
 		{
@@ -86,9 +96,9 @@ namespace MLearning.Droid
 			linearLike.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(120), Configuration.getHeight(80));
 
 
-			Drawable drBack =new BitmapDrawable(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondocondiagonalm.png"), 640, 1136, true));
-			linearContainerFisrst.SetBackgroundDrawable (drBack);
-			drBack = null;
+			//Drawable drBack =new BitmapDrawable(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondocondiagonalm.png"), 640, 1136, true));
+			//linearContainerFisrst.SetBackgroundDrawable (drBack);
+			//drBack = null;
 
 
 			linearTextLO.Orientation = Orientation.Vertical;
@@ -106,7 +116,7 @@ namespace MLearning.Droid
 			//Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondounidad.png"), 480, 640, true));
 			//linearImageLO.SetBackgroundDrawable (d);
 
-			imgHeart.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true));
+			//imgHeart.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true));
 
 
 
@@ -198,7 +208,7 @@ namespace MLearning.Droid
 				*/
 				ImageView fondoChapter = new ImageView (context);
 				//fondoChapter.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/imdownloading.png"), Configuration.getWidth (640), Configuration.getHeight (637), true));
-				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(637)).CenterCrop().Into (fondoChapter);
+				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(640)).CenterCrop().Into (fondoChapter);
 				linearImageLO.RemoveAllViews ();
 				linearImageLO.AddView (fondoChapter);
 

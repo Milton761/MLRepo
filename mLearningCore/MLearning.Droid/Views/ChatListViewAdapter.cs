@@ -63,11 +63,14 @@ namespace MLearning.Droid
 			if (path==null) {
 				bm = getBitmapFromAsset ("icons/nouser.png");
 				imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getWidth(52),true));
+				bm.Recycle ();
 
 			} else {
 				//bm=Configuration.GetImageBitmapFromUrl (path);
 				Picasso.With(mContext).Load(path).Resize(Configuration.getWidth (52), Configuration.getWidth (52)).Into(imProfile);
 			}
+
+			bm = null;
 				
 			//imProfile.SetImageBitmap (Bitmap.CreateScaledBitmap (bm,Configuration.getWidth (52), Configuration.getHeight (52),true));
 			imProfile.SetX (Configuration.getHeight (75));

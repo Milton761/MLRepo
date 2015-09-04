@@ -20,7 +20,7 @@ namespace MLearning.Droid
 	public class FrontContainerViewPager : RelativeLayout
 	{
 
-
+		Drawable drBack;
 		LinearLayout linearImageLO;
 		//LinearLayout linearLike;
 
@@ -87,11 +87,6 @@ namespace MLearning.Droid
 		//	linearLike.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth(120), Configuration.getHeight(80));
 
 
-			Drawable drBack =new BitmapDrawable(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondocondiagonalm.png"), 640, 1136, true));
-			linearContainerFisrst.SetBackgroundDrawable (drBack);
-			drBack = null;
-
-
 
 			linearTextLO.Orientation = Orientation.Vertical;
 			linearTextLO.SetGravity(GravityFlags.Right);
@@ -149,6 +144,13 @@ namespace MLearning.Droid
 			//this.AddView (imgBack);
 			this.AddView (linearContainerFisrst);
 
+		}
+
+		public void setBack(Drawable dr)
+		{
+			drBack = dr;
+			linearContainerFisrst.SetBackgroundDrawable (drBack);
+			drBack = null;
 		}
 
 		public LinearLayout Imagen{

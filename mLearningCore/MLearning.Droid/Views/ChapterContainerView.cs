@@ -27,6 +27,9 @@ namespace MLearning.Droid
 		HorizontalScrollView scrollImage;
 		LinearLayout linearPanelScroll;
 
+		Bitmap defaultUser;
+
+
 		LinearLayout linearImage;
 		LinearLayout linearContainer;
 		LinearLayout linearAll;
@@ -55,6 +58,7 @@ namespace MLearning.Droid
 
 			imgUser = new ImageView (context);
 			scrollImage = new HorizontalScrollView (context);
+			scrollImage.HorizontalScrollBarEnabled = false;
 			linearImage = new LinearLayout (context);
 			linearPanelScroll = new LinearLayout (context);
 			linearContainer = new LinearLayout (context);
@@ -100,11 +104,14 @@ namespace MLearning.Droid
 			linearContainer.AddView (txtContainer);
 			linearContainer.AddView (scrollImage);
 
-			iniUserList (imgUser,"images/e1.jpg");
+			int space = Configuration.getHeight (50);
 
+
+
+			scrollImage.SetPadding (0, 0, 0, space);
 			this.AddView (linearAll);
 			this.AddView (linea_separador);
-			this.SetPadding (0, 0,0, 100);
+			this.SetPadding (0, 0,0, space);
 
 
 		}
@@ -119,7 +126,7 @@ namespace MLearning.Droid
 		public String ImgUsuario{
 			get{return _imgUser; }
 			set{_imgUser = value;
-				iniUserList (imgUser,_imgUser);}
+				iniUserList (imgUser);}
 		}
 
 		private String _title;
@@ -191,15 +198,15 @@ namespace MLearning.Droid
 
 		}
 
+		public void setDefaultProfileUserBitmap (Bitmap bm)
+		{
+			defaultUser = bm;
+			iniUserList (imgUser);
+		}
 
-		private void iniUserList(ImageView imguserlist,String path){		
-
-
-			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap(getBitmapFromAsset (path), Configuration.getWidth(200), Configuration.getHeight(200), true)
-				,Configuration.getWidth(85),Configuration.getHeight(85));
-
-			imguserlist.SetImageBitmap (newbm);
-
+		private void iniUserList(ImageView imguserlist){		
+			imguserlist.SetImageBitmap (defaultUser);
+			defaultUser = null;
 		}
 
 		public Bitmap getBitmapFromAsset( String filePath) {

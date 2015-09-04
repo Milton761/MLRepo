@@ -224,7 +224,7 @@ namespace DataSource
 				CustomerVideoView plantilla = new CustomerVideoView (context);
 				plantilla.Title = _title;
 				//plantilla.Imagen = _imageurl;
-				plantilla.ImagenPlay = "images/playa.png";
+				//plantilla.ImagenPlay = "images/playa.png";
 				return plantilla;
 			}
 			return null;

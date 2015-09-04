@@ -37,7 +37,7 @@ namespace MLearning.Droid
 		protected override void OnScrollChanged(int l, int t, int oldl, int oldt)
 		{
 
-
+			this.VerticalScrollBarEnabled = false;
 			base.OnScrollChanged (l, t, oldl, oldt); 
 			if (scrollViewListener != null) {
 				scrollViewListener.OnScrollChanged (this, l, t, oldl, oldt);
