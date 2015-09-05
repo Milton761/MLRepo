@@ -14,6 +14,7 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Square.Picasso;
+using Android.Widget;
 
 namespace MLearning.Droid
 {
@@ -192,9 +193,10 @@ namespace MLearning.Droid
 
 				ImageView fondoChapter = new ImageView (context);
 				//fondoChapter.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/imdownloading.png"), Configuration.getWidth (640), Configuration.getHeight (637), true));
-				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(637)).CenterCrop().Into(fondoChapter);
+				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(640)).CenterCrop().Into(fondoChapter);
 				linearImageLO.RemoveAllViews ();
 				linearImageLO.AddView (fondoChapter);
+				fondoChapter = null;
 
 
 			}

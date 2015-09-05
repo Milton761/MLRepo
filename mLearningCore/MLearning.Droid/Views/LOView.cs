@@ -372,8 +372,8 @@ namespace MLearning.Droid.Views
 						FrontContainerViewPager front = new FrontContainerViewPager (this);
 						front.Tag = "pager";
 
-						front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
-
+						//front.ImageChapter = vm.LOsInCircle [i].lo.url_background;
+						front.ImageChapter = s_list [j].PagesList[k].page.url_img;
 						/*
 						Bitmap bm = BitmapFactory.DecodeByteArray (s_list [j].PagesList [k].cover_bytes, 0, s_list [j].PagesList [k].cover_bytes.Length);
 						front.ImageChapterBitmap = bm;
@@ -383,7 +383,7 @@ namespace MLearning.Droid.Views
 						front.Title = s_list [j].PagesList [k].page.title;
 						front.Description =  s_list [j].PagesList [k].page.description;
 						var slides = s_list [j].PagesList [k].content.lopage.loslide;
-
+						front.setBack (drBack);
 
 						//revisar si slides == null;
 
@@ -391,7 +391,7 @@ namespace MLearning.Droid.Views
 						//var slides2 = s_list [j].PagesList [k].content.lopage.loslide.
 						linearScroll.AddView (front);
 						listFrontPager.Add (front);
-						listFrontPager [i].setBack (drBack);
+						//listFrontPager [i].setBack (drBack);
 						//vm.OpenPageCommand.Execute(s_list[j].PagesList[k]);
 						var currentpage = s_list [j].PagesList [k];
 						//var pagerr = s_list[j].PagesList[k].content.lopage.loslide

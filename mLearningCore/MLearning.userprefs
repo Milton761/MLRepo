@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="MLearning.Droid\MLearning.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.4107ef0e0a1fcf43" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\FrontContainerViewPager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Api15" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MLearning.Droid\Views\FrontContainerView.cs">
     <Files>
       <File FileName="MLearning.Droid\Views\WallView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\ImageAdapter.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\LoginView.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\ChapterContainerView.cs" Line="1" Column="1" />
       <File FileName="..\..\..\..\..\..\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\FrontContainerView.cs" Line="217" Column="4" />
+      <File FileName="MLearning.Droid\Views\FrontContainerView.cs" Line="210" Column="63" />
       <File FileName="MLearning.Droid\Resources\menu\action_menu.xml" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\TaskViewAdapter.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\DataSource\LOSlideSource.cs" Line="1" Column="1" />
-      <File FileName="MLearning.Droid\Views\LOView.cs" Line="78" Column="4" />
+      <File FileName="MLearning.Droid\DataSource\LOSlideSource.cs" Line="18" Column="3" />
+      <File FileName="MLearning.Droid\Views\LOView.cs" Line="376" Column="22" />
       <File FileName="MLearning.Droid\Views\Template1.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\FrontContainerViewPager.cs" Line="193" Column="54" />
+      <File FileName="c:\Users\ImBonus\Documents\GitHub\MLRepo\mLearningCore\MLearning.Droid\Views\FrontContainerViewPager.cs" Line="196" Column="110" />
       <File FileName="MLearning.Droid\Views\CommentDataRow.cs" Line="10" Column="3" />
       <File FileName="MLearning.Droid\Views\CommentAdapter.cs" Line="1" Column="1" />
       <File FileName="MLearning.Droid\Views\Template3.cs" Line="1" Column="1" />

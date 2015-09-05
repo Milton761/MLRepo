@@ -211,6 +211,7 @@ namespace MLearning.Droid
 				Picasso.With (context).Load (ImageChapter).Resize(Configuration.getWidth(640),Configuration.getHeight(640)).CenterCrop().Into (fondoChapter);
 				linearImageLO.RemoveAllViews ();
 				linearImageLO.AddView (fondoChapter);
+				fondoChapter = null;
 
 			}
 

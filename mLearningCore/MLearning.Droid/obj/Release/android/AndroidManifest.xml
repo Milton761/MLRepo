@@ -8,11 +8,11 @@
         <category android:name="mLearning.Droid" />
       </intent-filter>
       <intent-filter>
-        <action android:name="com.google.android.gcm.intent.RETRY" />
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
         <category android:name="mLearning.Droid" />
       </intent-filter>
       <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+        <action android:name="com.google.android.gcm.intent.RETRY" />
         <category android:name="mLearning.Droid" />
       </intent-filter>
     </receiver>
