@@ -28,6 +28,8 @@ namespace MLearning.Droid
 
 		string sUrl;
 
+		public int index;
+
 		public string Url{
 			get { return sUrl; }
 			set { sUrl = value; 

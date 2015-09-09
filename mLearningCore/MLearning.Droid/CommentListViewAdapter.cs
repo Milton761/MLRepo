@@ -85,7 +85,7 @@ namespace MLearning.Droid
 			string path = mItems [position].im_profile;
 			Bitmap bm;
 			if (path==null) {
-				bm = getBitmapFromAsset ("images/e1.jpg");
+				bm = getBitmapFromAsset ("icons/nouser.png");
 
 
 			} else {
@@ -108,10 +108,12 @@ namespace MLearning.Droid
 				Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/circplomo.png"), 100, 100, true));
 				row_image.SetImageDrawable (d);
 				row.SetBackgroundColor (Color.ParseColor ("#ffffff"));
+				d = null;
 
 			} else {
 				Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/circplomo.png"), 100, 100, true));
 				row_image.SetImageDrawable (d);
+				d = null;
 				row.SetBackgroundColor (Color.ParseColor ("#eeeeee"));
 			}
 

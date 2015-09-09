@@ -14,6 +14,7 @@ using Android.Widget;
 using TaskView;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -111,7 +112,7 @@ namespace MLearning.Droid
 			linearTextLO.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(250));
 			linearContentTask.LayoutParameters = new LinearLayout.LayoutParams(-1,-2);
 			linearListTaskC.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(255));
-			linearListTaskI.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(340));
+			linearListTaskI.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(255));
 
 
 			linearTaskComplete.Orientation = Orientation.Horizontal;
@@ -133,6 +134,8 @@ namespace MLearning.Droid
 			txtAuthor.Text = "Author : David Spencer";
 			txtChapter.Text = "Flora y Fauna";
 			txtNameLO.Text = "Camino Inca";
+
+
 			txtAuthor.SetPadding (0, 0, Configuration.getWidth (30), 0);
 			txtChapter.SetPadding (0, 0, Configuration.getWidth (30), 0);
 			txtNameLO.SetPadding (0, 0, Configuration.getWidth (30), 0);
@@ -160,8 +163,8 @@ namespace MLearning.Droid
 			linearTaskComplete.SetBackgroundColor (Color.ParseColor ("#eeeeee"));
 			linearTaskIncomplete.SetBackgroundColor (Color.ParseColor ("#eeeeee"));
 
-			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/desert.jpg"), 480, 640, true));
-			linearImageLO.SetBackgroundDrawable (d);
+			//Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/desert.jpg"), 480, 640, true));
+			//linearImageLO.SetBackgroundDrawable (d);
 
 			imgLinea.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/lineatareas.png"), 4,2000 , true));
 
@@ -200,6 +203,19 @@ namespace MLearning.Droid
 
 
 
+		}
+
+		private String _coverUrl;
+		public String CoverUrl{
+			get{ return _coverUrl;}
+			set{ _coverUrl = value;
+
+				ImageView cover = new ImageView (context);
+				Picasso.With (context).Load (CoverUrl).Resize(Configuration.getWidth(640),Configuration.getHeight(372)).CenterCrop().Into (cover);
+				linearImageLO.RemoveAllViews ();
+				linearImageLO.AddView (cover);
+
+			}
 		}
 
 		private String _author;

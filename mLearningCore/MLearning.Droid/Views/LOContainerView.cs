@@ -15,6 +15,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using MLearning.Core.ViewModels;
 using Square.Picasso;
+using Android.Text;
 
 namespace MLearning.Droid
 {
@@ -127,6 +128,12 @@ namespace MLearning.Droid
 			txtNameLO.Text = "Camino Inca";
 			txtLike.Text = "10";
 
+			//txtChapter.SetMaxWidth (Configuration.getWidth (580));
+			//txtChapter.Ellipsize = TextUtils.TruncateAt.End;
+			//txtChapter.SetMaxLines(1);
+
+
+
 			txtAuthor.SetTextColor (Color.ParseColor("#ffffff"));
 			txtChapter.SetTextColor (Color.ParseColor("#ffffff"));
 			txtNameLO.SetTextColor (Color.ParseColor("#ffffff"));
@@ -164,7 +171,7 @@ namespace MLearning.Droid
 			_mCommentData.Add (new CommentDataRow (){im_profile="images/e1.jpg" , name="Ryan Elliot", date = "10:00pm", comment = "Esto es un comentario" });
 */
 //			commentList.Adapter = new CommentListViewAdapter (context, _mCommentData);
-			commentList.LayoutParameters = new LinearLayout.LayoutParams (-1, 800);
+			commentList.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(654));
 
 
 			commentList.SetX (0);commentList.SetY (Configuration.getHeight (530));

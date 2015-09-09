@@ -17,6 +17,7 @@ using MLearning.Core.Configuration;
 using System.IO;
 using AzureBlobUploader;
 using Microsoft.WindowsAzure.Storage;
+using Referee.Core.Session;
 
 namespace MLearning.Core.Services
 {
@@ -636,7 +637,17 @@ namespace MLearning.Core.Services
 
             //await _repositoryService.InsertAsync<User>(myuser);
 
-           var result = await CreateAccount<User>(myuser, u => u.id, UserType.Consumer);
+			var result = await CreateAndRegisterConsumer (myuser, 13);
+
+
+			SharedPreferences prefs = Constants.GetSharedPreferences(Constants.PreferencesFileName);
+			prefs.PutString(Constants.UserFirstNameKey,  myuser.name);
+			prefs.PutString(Constants.UserLastNameKey, myuser.lastname);
+			prefs.PutString(Constants.UserImageUrlKey, myuser.image_url);
+
+			prefs.Commit();
+
+				//CreateAccount<User>(myuser, u => u.id, UserType.Consumer);
            return result.id;
         }
 

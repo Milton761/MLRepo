@@ -4,6 +4,7 @@ using Android.App;
 using System.Collections.Generic;
 using Android.Graphics;
 using Android.Content;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -61,7 +62,8 @@ namespace MLearning.Droid
 			txtComment.Text = item.comment;
 
 			imgCircle.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/circplomo"), Configuration.getWidth (20), Configuration.getWidth (20), true));
-			imgProfile.SetImageBitmap(Configuration.getRoundedShape(Bitmap.CreateScaledBitmap( getBitmapFromAsset(item.im_profile), Configuration.getWidth(45), Configuration.getWidth(45), true),Configuration.getWidth(45),Configuration.getHeight(45)));
+			//imgProfile.SetImageBitmap(Configuration.getRoundedShape(Bitmap.CreateScaledBitmap( getBitmapFromAsset(item.im_profile), Configuration.getWidth(45), Configuration.getWidth(45), true),Configuration.getWidth(45),Configuration.getHeight(45)));
+			Picasso.With(context).Load(item.im_profile).Resize(Configuration.getWidth(45),Configuration.getWidth(45)).CenterCrop().Into(imgProfile);
 
 			linearItem.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			linearItem.Orientation = Orientation.Vertical;

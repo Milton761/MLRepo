@@ -36,6 +36,8 @@ namespace MLearning.Droid.Views
 		private ListView mListViewChat;
 		private LOContainerView _foro;
 
+		private int currentIndexLO;
+
 		TextView title_view;
 		TextView title_list;
 		TextView info1;
@@ -108,6 +110,7 @@ namespace MLearning.Droid.Views
 
 			vm = this.ViewModel as MainViewModel;
 			lo = new WallView(this);
+			currentIndexLO = 0;
 
 			LinearLayout linearMainLayout = FindViewById<LinearLayout>(Resource.Id.left_drawer);
 
@@ -650,6 +653,7 @@ namespace MLearning.Droid.Views
 					imgLO.Url = vm.LearningOjectsList [i].lo.url_background;
 					imgLO.ImagenUsuario = getBitmapFromAsset ("icons/imgautor.png");
 					imgLO.Chapter = "Flora y Fauna";
+					imgLO.index = i;
 
 
 					list.Add (imgLO);
@@ -747,6 +751,7 @@ namespace MLearning.Droid.Views
 			}
 			if (e.Position == 2) {
 				//salir command
+				vm.LogoutCommand.Execute(null);
 			}
 			
 				
@@ -758,29 +763,28 @@ namespace MLearning.Droid.Views
 			lo.getWorkSpaceLayout.RemoveAllViews();
 			lo.getWorkSpaceLayout.AddView (_foro);
 
-			_foro.Author=vm.LearningOjectsList[0].lo.name +" "+vm.LearningOjectsList[0].lo.lastname;
-			_foro.NameLO = vm.LearningOjectsList [0].lo.title;
-			_foro.Chapter = "Flora y Fauna ";
-			_foro.CoverUrl = vm.LearningOjectsList [0].lo.url_background;
-			/*
+			_foro.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
+			_foro.NameLO = vm.LearningOjectsList [lo.currentLOImageIndex].lo.title;
+			_foro.Chapter = vm.LearningOjectsList [lo.currentLOImageIndex].lo.description;
+			_foro.CoverUrl = vm.LearningOjectsList [lo.currentLOImageIndex].lo.url_background;
+
+
 			int i = 0;
 			List<CommentDataRow> _currentComments = new List<CommentDataRow> ();
-			foreach (var quiz in vm.QuizzesList) 
+			foreach (var quiz in vm.PostsList) 
 			{
-				var newinfo = new CommentDataRow ()
-				{
-					comment = vm.LOCommentsList[i].lo_comment.text,
-					date = vm.LOCommentsList[i].lo_comment.created_at.ToString(),
-					im_profile = vm.LOCommentsList[i].lo_comment.image_url,
-					name = vm.LOCommentsList[i].lo_comment.name
+				var newinfo = new CommentDataRow ();
+				newinfo.comment = vm.PostsList [i].post.text;
+				newinfo.date = vm.PostsList [i].post.created_at.ToString ();
+				newinfo.im_profile = vm.PostsList [i].post.image_url;
+				newinfo.name = vm.PostsList [i].post.name;
 
-				};
 				_currentComments.Add(newinfo);
 				i++;
 			}
 
 			_foro.ListaComentarios = _currentComments;
-		*/
+		
 
 		}
 
@@ -793,9 +797,10 @@ namespace MLearning.Droid.Views
 			lo.getWorkSpaceLayout.AddView (task);
 
 
-			task.Author=vm.LearningOjectsList[0].lo.name +" "+vm.LearningOjectsList[0].lo.lastname;
-			task.NameLO = vm.LearningOjectsList [0].lo.title;
-			task.Chapter = "Flora y Fauna ";
+			task.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
+			task.NameLO = vm.LearningOjectsList [lo.currentLOImageIndex].lo.title;
+			task.Chapter = vm.LearningOjectsList [lo.currentLOImageIndex].lo.description;
+			task.CoverUrl = vm.LearningOjectsList [lo.currentLOImageIndex].lo.url_background;
 		
 
 			loadCompleteQuizzes ();

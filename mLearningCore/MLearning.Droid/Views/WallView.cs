@@ -25,6 +25,7 @@ namespace MLearning.Droid
 
 		LinearLayout _workspace;
 
+		public int currentLOImageIndex = 0;
 
 		//section_1
 		RelativeLayout _contentRLayout_S1;
@@ -162,6 +163,8 @@ namespace MLearning.Droid
 			_txtAuthor_S1.Text = imView.Author;
 			_txtChapter_S1.Text = imView.Chapter;
 			_imAuthor_S1.SetImageBitmap (imView.ImagenUsuario);
+			currentLOImageIndex = imView.index;
+
 		}
 
 		//section_3
