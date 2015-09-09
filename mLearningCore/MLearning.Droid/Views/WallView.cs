@@ -23,6 +23,9 @@ namespace MLearning.Droid
 		List<CommentDataRow> _dataTemplateItem = new List<CommentDataRow> ();
 
 
+		LinearLayout _workspace;
+
+
 		//section_1
 		RelativeLayout _contentRLayout_S1;
 		TextView _txtTitle_S1;
@@ -110,6 +113,10 @@ namespace MLearning.Droid
 			}
 		}
 
+		public LinearLayout getWorkSpaceLayout{
+			get{ return _workspace;}
+		}
+
 		public ImageView OpenUnits{
 			get{return _imItems_S4 [0]; }
 		}
@@ -138,8 +145,8 @@ namespace MLearning.Droid
 
 		private void imLoClick(object sender, EventArgs eventArgs)
 		{
-			ImageLOView imView = sender as ImageLOView;
-			ImageView test = new ImageView (context);
+			var imView = sender as ImageLOView;
+			var test = new ImageView (context);
 			test.DrawingCacheEnabled = true;
 
 			test.LayoutParameters = new LinearLayout.LayoutParams (-1, -1);
@@ -191,12 +198,11 @@ namespace MLearning.Droid
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
 
+
 			ini ();
 
+
 			this.AddView (_mainLayout);
-
-
-
 		}
 
 
@@ -451,7 +457,7 @@ namespace MLearning.Droid
 
 			//Drawable dr3 = new BitmapDrawable (getBitmapFromAsset("icons/fondonotif.png"));
 			//_contentLLayout_S3.SetBackgroundDrawable(dr3);
-			//_contentLLayout_S3.SetBackgroundColor(Color.ParseColor("#80000000"));
+				//_contentLLayout_S3.SetBackgroundColor(Color.ParseColor("#80000000"));
 			_mainLayout.AddView (_contentLLayout_S3);
 			_mainLayout.AddView (_contentScrollView_S2);
 
@@ -501,11 +507,18 @@ namespace MLearning.Droid
 			//----------------------------------------------------------
 
 
-
+			
 			Drawable dr = new BitmapDrawable (getBitmapFromAsset("icons/fondo.png"));
 			_mainLayout.SetBackgroundDrawable (dr);
 			dr = null;
 		
+			_workspace = new LinearLayout (context);
+			_workspace.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (1045));
+			//_workspace.SetY (Configuration.getHeight (110));
+
+			_mainLayout.AddView (_workspace);
+			//_workspace.AddView (_foro);
+			//_workspace.Visibility = Android.Views.ViewStates.Invisible;
 
 
 		}

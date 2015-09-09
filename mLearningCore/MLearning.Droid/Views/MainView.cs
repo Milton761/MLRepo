@@ -34,6 +34,7 @@ namespace MLearning.Droid.Views
 
 		private List<ChatDataRow> mItemsChat;
 		private ListView mListViewChat;
+		private LOContainerView _foro;
 
 		TextView title_view;
 		TextView title_list;
@@ -173,19 +174,11 @@ namespace MLearning.Droid.Views
 
 			mListViewChat = FindViewById<ListView> (Resource.Id.chat_list_view);
 
-			//ChatListViewAdapter adapter_chatList = new ChatListViewAdapter (this, mItemsChat);
-			//mListViewChat.Adapter = adapter_chatList;
-
-			//ln_chat_row = FindViewById<LinearLayout> (Resource.Id.info_Row_CL);
-			//ln_chat_row.SetX (Configuration.getWidth(74));
-
-
 			title_view.SetX (Configuration.getWidth(74));
 			title_view.SetY (Configuration.getHeight (202));
 
 			title_view.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			title_view.SetTypeface (null, TypefaceStyle.Bold);
-
 
 			info1.SetX (Configuration.getWidth (76));
 			info1.SetY (Configuration.getHeight (250));
@@ -210,14 +203,9 @@ namespace MLearning.Droid.Views
 
 			linearMainLayout.AddView (mainLayout);
 
-            //var vm = ViewModel as MainViewModel;
-
-
-
             vm.PropertyChanged += new PropertyChangedEventHandler(logout_propertyChanged);
 
             RegisterWithGCM();
-
 
 			mDrawerToggle = new MyActionBarDrawerToggle(
 				this,							//Host Activity
@@ -231,7 +219,6 @@ namespace MLearning.Droid.Views
 			SupportActionBar.SetDisplayShowTitleEnabled(false);
 
 			mDrawerToggle.SyncState();
-
 
 			if (bundle != null)
 			{
@@ -247,11 +234,9 @@ namespace MLearning.Droid.Views
 			}
 			else
 			{
-				//This is the first the time the activity is ran
 				SupportActionBar.SetTitle(Resource.String.closeDrawer);
 			}
-
-
+				
 			initListCursos ();
 			iniPeoples ();
 			initListTasks ();
@@ -263,6 +248,8 @@ namespace MLearning.Droid.Views
 
 		private void iniMenu(){
 			mainLayout = new RelativeLayout (this);
+
+			_foro = new LOContainerView (this);
 
 			_dialogDownload = new ProgressDialog (this);
 			_dialogDownload.SetCancelable (false);
@@ -299,7 +286,7 @@ namespace MLearning.Droid.Views
 			linearTxtValorBarra = new LinearLayout (this);
 
 			listCursos = new ListView (this);
-			listTasks = new ListView (this);
+			listTasks = new ListView (this);	
 			mItemsChat = new List<ChatDataRow> ();
 
 			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
@@ -481,9 +468,7 @@ namespace MLearning.Droid.Views
 			linearSchool.SetX (0); linearSchool.SetY (Configuration.getHeight(532));
 			linearList.SetX (0); linearList.SetY (Configuration.getHeight(583));
 
-			//	linearUser.SetX (0); linearUser.SetY (Configuration.getHeight(250));
 			Bitmap bm;
-			//var vm = this.ViewModel as MainViewModel;
 			txtUserName.Text = vm.UserFirstName + " "+ vm.UserLastName;
 
 			if (vm.UserImage != null) {
@@ -590,11 +575,8 @@ namespace MLearning.Droid.Views
 
 		void populateCircleScroll(int index){
 			_currentCursos = new List<CursoItem> ();
-			//var vm = ViewModel as MainViewModel;
-
 
 			Console.WriteLine ("POPULATE_CIRCLE_SCROLL");
-
 
 			if (vm.CirclesList != null)
 			{
@@ -610,7 +592,6 @@ namespace MLearning.Droid.Views
 
 				listCursos.Adapter = new CursoAdapter(this, _currentCursos);
 				listCursos.ItemClick+= ListCursos_ItemClick;
-
 			}
 		}
 
@@ -621,7 +602,6 @@ namespace MLearning.Droid.Views
 
 		void populatePeopleScroll(int indice){
 			mItemsChat = new List<ChatDataRow> ();
-			//var vm = ViewModel as MainViewModel;
 
 			if (vm.UsersList!= null)
 			{
@@ -630,7 +610,6 @@ namespace MLearning.Droid.Views
 					var newinfo = new ChatDataRow()
 					{
 						name = vm.UsersList[i].user.name + " " + vm.UsersList[i].user.lastname,
-						//image = Resource.Drawable.state,
 						state = vm.UsersList[i].user.is_online,
 						index = i,
 						imageProfile = vm.UsersList[i].user.image_url
@@ -653,10 +632,6 @@ namespace MLearning.Droid.Views
 			main_ContentView.RemoveAllViews ();
 			main_ContentView.AddView (lo);
 			mDrawerLayout.CloseDrawer (mLeftDrawer);
-
-			//List<CommentDataRow> _currentComment = new List<CommentDataRow> ();
-
-			//var vm = this.ViewModel as MainViewModel;
 
 
 			if (vm.LearningOjectsList != null) {
@@ -681,11 +656,15 @@ namespace MLearning.Droid.Views
 
 				}
 
+				//lo.getWorkSpaceLayout.Visibility = ViewStates.Invisible;
 				lo.ListImages = list;
 				lo.OpenLO.Click += Lo_ImagenLO_Click;
 				lo.OpenTasks.Click += Lo_OpenTasks_Click;
 				lo.OpenChat.Click += Lo_OpenChat_Click;
-				lo.OpenUnits.Click += Lo_OpenUnits_Click;
+				//lo.OpenUnits.Click += Lo_OpenUnits_Click;
+				lo.OpenComments.Click += Lo_OpenComments_Click;
+
+
 				//lo.im= Configuration.GetImageBitmapFromUrl(vm.LearningOjectsList [e.Position].lo.url_cover);
 				//lo.ListImages = vm.LearningOjectsList[e.Position].lo.
 
@@ -698,10 +677,13 @@ namespace MLearning.Droid.Views
 
 		}
 
-		void Lo_OpenUnits_Click (object sender, EventArgs e)
+		void Lo_OpenComments_Click (object sender, EventArgs e)
 		{
-			resetMLOs ();
+			lo.getWorkSpaceLayout.RemoveAllViews ();
+			lo.getWorkSpaceLayout.AddView (_foro);
+			LoadForo ();
 		}
+
 
 		void Lo_OpenChat_Click (object sender, EventArgs e)
 		{
@@ -732,14 +714,19 @@ namespace MLearning.Droid.Views
 		public void initListTasks (){
 			TaskItem item1 = new TaskItem();
 			TaskItem item2 = new TaskItem();
+			TaskItem item3 = new TaskItem ();
 
 			item1.Name = "Ver Tareas";
 			item1.Asset = "icons/tareas.png";
 			item2.Name = "Hacer una pregunta";
 			item2.Asset = "icons/pregunta.png";
 
+			item3.Name = "Salir";
+			item3.Asset = "icons/salir.png";
+
 			_currentTask.Add (item1);
 			_currentTask.Add (item2);
+			_currentTask.Add (item3);
 
 			listTasks.Adapter = new TaskAdapter (this, _currentTask);
 			listTasks.ItemClick+= ListTasks_ItemClick;
@@ -757,19 +744,53 @@ namespace MLearning.Droid.Views
 
 			if (e.Position == 0) {
 				LoadQuiz ();
-			} else {
-				
 			}
+			if (e.Position == 2) {
+				//salir command
+			}
+			
 				
 			mDrawerLayout.CloseDrawer (mLeftDrawer);
 
 		}
 
+		void LoadForo(){
+			lo.getWorkSpaceLayout.RemoveAllViews();
+			lo.getWorkSpaceLayout.AddView (_foro);
+
+			_foro.Author=vm.LearningOjectsList[0].lo.name +" "+vm.LearningOjectsList[0].lo.lastname;
+			_foro.NameLO = vm.LearningOjectsList [0].lo.title;
+			_foro.Chapter = "Flora y Fauna ";
+			_foro.CoverUrl = vm.LearningOjectsList [0].lo.url_background;
+			/*
+			int i = 0;
+			List<CommentDataRow> _currentComments = new List<CommentDataRow> ();
+			foreach (var quiz in vm.QuizzesList) 
+			{
+				var newinfo = new CommentDataRow ()
+				{
+					comment = vm.LOCommentsList[i].lo_comment.text,
+					date = vm.LOCommentsList[i].lo_comment.created_at.ToString(),
+					im_profile = vm.LOCommentsList[i].lo_comment.image_url,
+					name = vm.LOCommentsList[i].lo_comment.name
+
+				};
+				_currentComments.Add(newinfo);
+				i++;
+			}
+
+			_foro.ListaComentarios = _currentComments;
+		*/
+
+		}
+
 		void LoadQuiz(){
-			main_ContentView.RemoveAllViews ();
-			main_ContentView.AddView (task);
+			//main_ContentView.RemoveAllViews ();
+			//main_ContentView.AddView (task);
 
 			//var vm = ViewModel as MainViewModel;
+			lo.getWorkSpaceLayout.RemoveAllViews();
+			lo.getWorkSpaceLayout.AddView (task);
 
 
 			task.Author=vm.LearningOjectsList[0].lo.name +" "+vm.LearningOjectsList[0].lo.lastname;
@@ -830,6 +851,7 @@ namespace MLearning.Droid.Views
 		void ListCursos_ItemClick (object sender, AdapterView.ItemClickEventArgs e)
 		{
 
+
 			var circle = _currentCursos [e.Position];
 
 			//var vm = this.ViewModel as MainViewModel;
@@ -843,12 +865,13 @@ namespace MLearning.Droid.Views
 
 		void imBtn_Units_Click(object sender, EventArgs e)
 		{
-			mDrawerLayout.CloseDrawer (mLeftDrawer);
-			mDrawerLayout.CloseDrawer (mRightDrawer);
-			mDrawerLayout.OpenDrawer (mLeftDrawer);
+			lo.getWorkSpaceLayout.RemoveAllViews ();
 		}
+
 		void imBtn_Comments_Click(object sender, EventArgs e)
 		{
+			//vm.LogoutCommand.Execute (null);
+
 		}
 
 		void imBtn_Chat_Click(object sender, EventArgs e)

@@ -14,6 +14,7 @@ using Android.Widget;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using MLearning.Core.ViewModels;
+using Square.Picasso;
 
 namespace MLearning.Droid
 {
@@ -115,8 +116,8 @@ namespace MLearning.Droid
 			linearContainer.Orientation = Orientation.Vertical;
 			//linearContainer.SetGravity (GravityFlags.Center);
 
-			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondounidad.png"), 480, 640, true));
-			linearImageLO.SetBackgroundDrawable (d);
+			//Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/fondounidad.png"), 480, 640, true));
+			//linearImageLO.SetBackgroundDrawable (d);
 
 			imgHeart.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("images/like.png"), Configuration.getWidth(43), Configuration.getHeight(43), true));
 
@@ -193,6 +194,19 @@ namespace MLearning.Droid
 
 		}
 
+
+		private String _coverUrl;
+		public String CoverUrl{
+			get{ return _coverUrl;}
+			set{ _coverUrl = value;
+
+				ImageView cover = new ImageView (context);
+				Picasso.With (context).Load (CoverUrl).Resize(Configuration.getWidth(640),Configuration.getHeight(372)).CenterCrop().Into (cover);
+				linearImageLO.RemoveAllViews ();
+				linearImageLO.AddView (cover);
+
+				}
+		}
 
 		private String _author;
 		public String Author{

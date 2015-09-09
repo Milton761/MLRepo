@@ -64,9 +64,10 @@ namespace MLearning.Droid
 
 		private void iniUserList(ImageView imguserlist,String path){		
 
+			int tam = Configuration.getWidth (85);
 
-			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap(getBitmapFromAsset (path), Configuration.getWidth(200), Configuration.getWidth(200), true)
-				,Configuration.getWidth(85),Configuration.getHeight(85));
+			Bitmap newbm = Configuration.getRoundedShape(Bitmap.CreateScaledBitmap(getBitmapFromAsset (path), Configuration.getWidth(100), Configuration.getWidth(100), true)
+				,tam,tam);
 
 			imguserlist.SetImageBitmap (newbm);
 

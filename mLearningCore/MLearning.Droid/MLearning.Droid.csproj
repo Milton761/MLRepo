@@ -461,6 +461,7 @@
     <AndroidAsset Include="Assets\icons\sombrafondoselec.png" />
     <AndroidAsset Include="Assets\icons\imdownloading.png" />
     <AndroidAsset Include="Assets\icons\nouser.png" />
+    <AndroidAsset Include="Assets\icons\salir.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MLearning.Core\MLearning.Core.csproj">

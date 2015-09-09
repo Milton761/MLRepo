@@ -11,6 +11,10 @@ using Android.Views.Animations;
 using Android.Text;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Android.Content.PM;
+using Microsoft.WindowsAzure.MobileServices;
+using System.Threading.Tasks;
+using Core.Repositories;
+using Cirrious.CrossCore;
 
 namespace MLearning.Droid.Views
 {
@@ -258,9 +262,15 @@ namespace MLearning.Droid.Views
 
 
 			btnLogin.Click+= BtnLogin_Click;
-			btnFacebook.Click += delegate {
-				var com = ((LoginViewModel)this.DataContext).FacebookLoginCommand;
+
+			btnFacebook.Click += async delegate {
+
+
+				await Authenticate(MobileServiceAuthenticationProvider.Facebook);
+
+				/*var com = ((LoginViewModel)this.DataContext).FacebookLoginCommand;
 				com.Execute(null);
+				*/
 			};
 
 
@@ -520,6 +530,23 @@ namespace MLearning.Droid.Views
 			relSingup.Alpha = 255;
 		}
 */
+		MobileServiceUser user ;
 
+		private async Task Authenticate(MobileServiceAuthenticationProvider provider)
+		{
+			while (user == null)
+			{ 
+				try
+				{
+					WAMSRepositoryService service = Mvx.Resolve<IRepositoryService>() as WAMSRepositoryService;
+					user = await service.MobileService.LoginAsync(this, provider); 
+					Console.WriteLine ("Facebook : " + user.UserId + "  " + user.MobileServiceAuthenticationToken ) ;
+				}
+				catch (InvalidOperationException e)
+				{} 
+			} 
+			var vm = ViewModel as LoginViewModel;
+			vm.CreateUserCommand.Execute(user);
+		}
 	}
 }
