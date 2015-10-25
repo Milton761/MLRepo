@@ -34,10 +34,6 @@ MLearning.Droid.Views.CreateInstitutionView, MLearning.Droid;md592b02b43645085ea
 MLearning.Droid.Views.CreateInstitutionView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.CreateInstitutionView
 MLearning.Droid.Views.CreateInstitutionView;md592b02b43645085eab4f87360df9b5d6c.CreateInstitutionView
 mlearning.droid.views.CreateInstitutionView;md592b02b43645085eab4f87360df9b5d6c.CreateInstitutionView
-MLearning.Droid.Views.LoginView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.LoginView
-MLearning.Droid.Views.LoginView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.LoginView
-MLearning.Droid.Views.LoginView;md592b02b43645085eab4f87360df9b5d6c.LoginView
-mlearning.droid.views.LoginView;md592b02b43645085eab4f87360df9b5d6c.LoginView
 MLearning.Droid.Views.AuthView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.AuthView
 MLearning.Droid.Views.AuthView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.AuthView
 MLearning.Droid.Views.AuthView;md592b02b43645085eab4f87360df9b5d6c.AuthView
@@ -70,18 +66,6 @@ MLearning.Droid.Views.ManagePublishersView, MLearning.Droid;md592b02b43645085eab
 MLearning.Droid.Views.ManagePublishersView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.ManagePublishersView
 MLearning.Droid.Views.ManagePublishersView;md592b02b43645085eab4f87360df9b5d6c.ManagePublishersView
 mlearning.droid.views.ManagePublishersView;md592b02b43645085eab4f87360df9b5d6c.ManagePublishersView
-MLearning.Droid.Views.RegistrationView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
-MLearning.Droid.Views.RegistrationView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
-MLearning.Droid.Views.RegistrationView;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
-mlearning.droid.views.RegistrationView;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
-MLearning.Droid.CameraView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.CameraView
-MLearning.Droid.CameraView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.CameraView
-MLearning.Droid.CameraView;md56f7ca2643ae6f795f77b881324800fc0.CameraView
-mlearning.droid.CameraView;md56f7ca2643ae6f795f77b881324800fc0.CameraView
-MLearning.Droid.RegisterView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
-MLearning.Droid.RegisterView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
-MLearning.Droid.RegisterView;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
-mlearning.droid.RegisterView;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
 MLearning.Droid.Views.CursoAdapter, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.CursoAdapter
 MLearning.Droid.Views.CursoAdapter, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.CursoAdapter
 MLearning.Droid.Views.CursoAdapter;md592b02b43645085eab4f87360df9b5d6c.CursoAdapter
@@ -198,6 +182,22 @@ MLearning.Droid.CommentAdapter, MLearning.Droid;md56f7ca2643ae6f795f77b881324800
 MLearning.Droid.CommentAdapter, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
 MLearning.Droid.CommentAdapter;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
 mlearning.droid.CommentAdapter;md56f7ca2643ae6f795f77b881324800fc0.CommentAdapter
+MLearning.Droid.Views.RegistrationView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
+MLearning.Droid.Views.RegistrationView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
+MLearning.Droid.Views.RegistrationView;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
+mlearning.droid.views.RegistrationView;md592b02b43645085eab4f87360df9b5d6c.RegistrationView
+MLearning.Droid.CameraView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.CameraView
+MLearning.Droid.CameraView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.CameraView
+MLearning.Droid.CameraView;md56f7ca2643ae6f795f77b881324800fc0.CameraView
+mlearning.droid.CameraView;md56f7ca2643ae6f795f77b881324800fc0.CameraView
+MLearning.Droid.Views.LoginView, MLearning.Droid;md592b02b43645085eab4f87360df9b5d6c.LoginView
+MLearning.Droid.Views.LoginView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md592b02b43645085eab4f87360df9b5d6c.LoginView
+MLearning.Droid.Views.LoginView;md592b02b43645085eab4f87360df9b5d6c.LoginView
+mlearning.droid.views.LoginView;md592b02b43645085eab4f87360df9b5d6c.LoginView
+MLearning.Droid.RegisterView, MLearning.Droid;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
+MLearning.Droid.RegisterView, MLearning.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
+MLearning.Droid.RegisterView;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
+mlearning.droid.RegisterView;md56f7ca2643ae6f795f77b881324800fc0.RegisterView
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer, Cirrious.CrossCore.Droid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer
 Cirrious.CrossCore.Droid.MvxJavaContainer;md594e974f7daaa4f544d8fe5f075a74d26.MvxJavaContainer

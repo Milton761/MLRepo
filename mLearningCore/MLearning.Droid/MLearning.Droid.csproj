@@ -157,17 +157,13 @@
     <Compile Include="Views\LOView.cs" />
     <Compile Include="Views\CreateAccountView.cs" />
     <Compile Include="Views\CreateInstitutionView.cs" />
-    <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\AuthView.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\ManageCirclesView.cs" />
     <Compile Include="Views\HeadMainView.cs" />
     <Compile Include="Views\PublisherMainView.cs" />
     <Compile Include="Views\ManagePublishersView.cs" />
-    <Compile Include="Views\RegistrationView.cs" />
     <Compile Include="Views\Configuration.cs" />
-    <Compile Include="Views\CameraView.cs" />
-    <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\CursoAdapter.cs" />
     <Compile Include="Views\CursoItem.cs" />
     <Compile Include="Views\TaskAdapter.cs" />
@@ -214,6 +210,10 @@
     <Compile Include="Views\WallView.cs" />
     <Compile Include="Views\ImageLOView.cs" />
     <Compile Include="Views\CommentAdapter.cs" />
+    <Compile Include="Views\RegistrationView.cs" />
+    <Compile Include="Views\CameraView.cs" />
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\RegisterView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

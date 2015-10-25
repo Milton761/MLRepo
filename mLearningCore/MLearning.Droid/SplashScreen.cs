@@ -6,7 +6,7 @@ using Android.Views;
 namespace MLearning.Droid
 {
     [Activity(
-		Label = "MLearning.Droid"
+		Label = "EduticNow"
 		, MainLauncher = true
 		, Icon = "@drawable/icon"
 		, Theme = "@style/Theme.Splash"

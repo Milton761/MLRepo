@@ -21,99 +21,104 @@ namespace MLearning.Droid.Views
 	[Activity(Label = "View for FirstViewModel", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class LoginView : MvxActivity
 	{
+		int widthInDp;
+		int heightInDp;
+
+
 
 		RelativeLayout mainLayout;
+		ProgressDialog _dialog;
 
-		//VIEWS FOR SINGUP
+		#region SignUp_views
 		RelativeLayout relSingup;
 		RelativeLayout relLogin;
-		ImageButton btnLogin;
-		ImageButton btnSingUp;
-		ImageButton btnFacebook;
-		ImageView imgLogo;
-		CheckBox chkLogin;
-		TextView txtLicencia_a;
-		TextView txtLicencia_b;
+
 		LinearLayout linearLogo;
 		LinearLayout linearLicencia;
 		LinearLayout linearLogin;
 		LinearLayout linearSingup;
-		int widthInDp;
-		int heightInDp;
-		ProgressDialog _dialog;
-		TextView txtlogin_a1;
-		TextView txtlogin_a2;
-		TextView txtlogin_b1;
-		TextView txtlogin_b2;
-		TextView txtlogin_c1;
-		TextView txtlogin_c2;
 
 		LinearLayout linearTxta;
 		LinearLayout linearTxtb;
 		LinearLayout linearTxtc;
 		LinearLayout linearContentText;
 
-		// VIEWS FOR LOGIN
-		EditText etxtUser;
-		EditText etxtPassword;
-		ImageButton btnLoginInto;
-		TextView txtLogin_a;
-		TextView txtLogin_b;
-		TextView txtInicioSesion;
+		ImageButton btnLogin;
+		ImageButton btnSingUp;
+		ImageButton btnFacebook;
 
+		ImageView imgLogo;
+
+		CheckBox chkLogin;
+
+		TextView txtLicencia_a;
+		TextView txtLicencia_b;
+
+		TextView txtlogin_a1;
+		TextView txtlogin_a2;
+		TextView txtlogin_b1;
+		TextView txtlogin_b2;
+		TextView txtlogin_c1;
+		TextView txtlogin_c2;
+		#endregion
+		#region Login_views
 		LinearLayout linearButtonLogin;
 		LinearLayout linearEditTextLogin;
 		LinearLayout linearTextLogin;
 
+		EditText etxtUser;
+		EditText etxtPassword;
+
+		ImageButton btnLoginInto;
+
+		TextView txtLogin_a;
+		TextView txtLogin_b;
+		TextView txtInicioSesion;
+		#endregion
 
 		protected override void OnCreate(Bundle bundle)
 		{
-			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
-			base.OnCreate(bundle);
+			this.Window.AddFlags (WindowManagerFlags.Fullscreen);
+			base.OnCreate (bundle);
+
+
+
 			var metrics = Resources.DisplayMetrics;
+
 			widthInDp = ((int)metrics.WidthPixels);
 			heightInDp = ((int)metrics.HeightPixels);
+
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
 
-
-		//	Console.WriteLine ("DIMESIONES DEL DEVICEEEEEEEEEEEE WIDTH= "+ widthInDp + " HEIGHT = "+heightInDp);
-
-			init ();
+			initUi ();
 
 			SetContentView (mainLayout);
-			//SetContentView(Resource.Layout.LoginView);
 		}
 
-		public void init(){
-
-
-
-			var textFormat = Android.Util.ComplexUnitType.Px;
-
-			_dialog = new ProgressDialog(this);
-
-
-			//popupBuilder.SetView(_dialog);
-
-
-			_dialog.SetMessage("Espere por favor...");
-			_dialog.SetCancelable(false);
-			//_dialog.Show();
-
-			mainLayout = new RelativeLayout (this);
+		private void initUi_SignUp()
+		{
+			#region initialize
 			relSingup = new RelativeLayout (this);
 			relLogin = new RelativeLayout (this);
+
 			linearLicencia = new LinearLayout (this);
 			linearLogin = new LinearLayout (this);
 			linearSingup = new LinearLayout (this);
 			linearLogo = new LinearLayout (this);
 
+			linearTxta = new LinearLayout (this);
+			linearTxtb = new LinearLayout (this);
+			linearTxtc = new LinearLayout (this);
+			linearContentText = new LinearLayout (this);
+
 			imgLogo = new ImageView (this);
 			btnLogin = new ImageButton (this);
 			btnSingUp = new ImageButton (this);
 			btnFacebook = new ImageButton (this);
+
 			chkLogin = new CheckBox (this);
+
 			txtLicencia_a = new TextView (this);
 			txtLicencia_b = new TextView (this);
 
@@ -123,40 +128,42 @@ namespace MLearning.Droid.Views
 			txtlogin_b2 = new TextView (this);
 			txtlogin_c1 = new TextView (this);
 			txtlogin_c2 = new TextView (this);
+			#endregion
 
-			initText (txtlogin_a1, "Connect ", "#00c6ff");
-			txtlogin_a1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_a1.TextSize = fontSize;
-
-			initText (txtlogin_a2, " width yout classmates ", "#ffffff");
-			txtlogin_a2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_a2.TextSize = fontSize;
-
-			initText (txtlogin_b1, "Get help ", "#00c6ff");
-			txtlogin_b1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_b1.TextSize = fontSize;
-
-			initText (txtlogin_b2, " on homework ", "#ffffff");
-			txtlogin_b2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_b2.TextSize = fontSize;
-
-			initText (txtlogin_c1, "Get better graces ", "#00c6ff");
-			txtlogin_c1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_c1.TextSize = fontSize;
-
-			initText (txtlogin_c2, " for real", "#ffffff");
-			txtlogin_c2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
-			//txtlogin_c2.TextSize = fontSize;
-
-			linearTxta = new LinearLayout (this);
-			linearTxtb = new LinearLayout (this);
-			linearTxtc = new LinearLayout (this);
-			linearContentText = new LinearLayout (this);
+			relLogin.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
+			relSingup.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
 
 			linearTxta.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			linearTxtb.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			linearTxtc.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			linearContentText.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+
+			linearLicencia.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+			linearLicencia.Orientation = Orientation.Horizontal;
+			linearLicencia.SetGravity (GravityFlags.Center);
+			linearLogin.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+			linearLogin.Orientation = Orientation.Horizontal;
+			linearLogin.SetGravity (GravityFlags.Right);
+			linearSingup.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+			linearSingup.Orientation = Orientation.Vertical;
+			linearSingup.SetGravity (GravityFlags.Center);
+			linearLogo.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+			linearLogo.Orientation = Orientation.Vertical;
+			linearLogo.SetGravity (GravityFlags.Center);
+
+
+			initText (txtlogin_a1, "Connect ", "#00c6ff");
+			txtlogin_a1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			initText (txtlogin_a2, " width yout classmates ", "#ffffff");
+			txtlogin_a2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			initText (txtlogin_b1, "Get help ", "#00c6ff");
+			txtlogin_b1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			initText (txtlogin_b2, " on homework ", "#ffffff");
+			txtlogin_b2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			initText (txtlogin_c1, "Get better graces ", "#00c6ff");
+			txtlogin_c1.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
+			initText (txtlogin_c2, " for real", "#ffffff");
+			txtlogin_c2.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 
 			linearTxta.Orientation = Orientation.Horizontal;
 			linearTxta.SetGravity (GravityFlags.Center);
@@ -168,7 +175,6 @@ namespace MLearning.Droid.Views
 			linearContentText.Orientation = Orientation.Vertical;
 			linearContentText.SetGravity (GravityFlags.Center);
 
-
 			linearTxta.AddView (txtlogin_a1); linearTxta.AddView (txtlogin_a2);
 			linearTxtb.AddView (txtlogin_b1); linearTxtb.AddView (txtlogin_b2);
 			linearTxtc.AddView (txtlogin_c1); linearTxtc.AddView (txtlogin_c2);
@@ -177,33 +183,7 @@ namespace MLearning.Droid.Views
 			linearContentText.AddView (linearTxtb);
 			linearContentText.AddView (linearTxtc);
 
-
-			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
-			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/afondo.png"), 768, 1024, true));
-			mainLayout.SetBackgroundDrawable (d);
-
-			relSingup.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
-			relLogin.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
-
-
-			linearLicencia.LayoutParameters = new LinearLayout.LayoutParams (-1, LinearLayout.LayoutParams.WrapContent);
-			linearLicencia.Orientation = Orientation.Horizontal;
-			linearLicencia.SetGravity (GravityFlags.Center);
-
-			linearLogin.LayoutParameters = new LinearLayout.LayoutParams (-1, LinearLayout.LayoutParams.WrapContent);
-			linearLogin.Orientation = Orientation.Horizontal;
-			linearLogin.SetGravity (GravityFlags.Right);
-
-			linearSingup.LayoutParameters = new LinearLayout.LayoutParams (-1, LinearLayout.LayoutParams.WrapContent);
-			linearSingup.Orientation = Orientation.Vertical;
-			linearSingup.SetGravity (GravityFlags.Center);
-
-
-			linearLogo.LayoutParameters = new LinearLayout.LayoutParams (-1, LinearLayout.LayoutParams.WrapContent);
-			linearLogo.Orientation = Orientation.Vertical;
-			linearLogo.SetGravity (GravityFlags.Center);
-
-
+			var textFormat = Android.Util.ComplexUnitType.Px;
 
 			txtLicencia_a.Text = "TO REGISTER, ACCEPT THE";
 			txtLicencia_a.SetTextSize(textFormat,Configuration.getHeight(25));
@@ -252,27 +232,21 @@ namespace MLearning.Droid.Views
 			mainLayout.AddView (relSingup);
 
 
+			#region buttons_events
+
+			btnLogin.Click+= BtnLogin_Click;
+
 			btnSingUp.Click+= delegate {
 
 				if(chkLogin.Checked==true){
 					var com = ((LoginViewModel)this.DataContext).SignUpCommand;
 					com.Execute(null);
 				}
-			};
-
-
-			btnLogin.Click+= BtnLogin_Click;
+			} ;
 
 			btnFacebook.Click += async delegate {
-
-
 				await Authenticate(MobileServiceAuthenticationProvider.Facebook);
-
-				/*var com = ((LoginViewModel)this.DataContext).FacebookLoginCommand;
-				com.Execute(null);
-				*/
-			};
-
+			} ;
 
 			chkLogin.CheckedChange += delegate {
 				if(chkLogin.Checked==true){
@@ -282,24 +256,33 @@ namespace MLearning.Droid.Views
 					btnSingUp.SetImageBitmap(Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/signupnolisto.png"), Configuration.getWidth(507), Configuration.getHeight(80),true));
 				}
 
-			};
-		}
+			} ;
+			#endregion
 
-		/*	void BtnSing_Touch (object sender, View.TouchEventArgs e)
+
+		}
+		private void initUi_Login()
 		{
-			if (e.Event.Action == MotionEventActions.Down) {
-				btnSingUp.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/signuplisto.png"), Configuration.getWidth(507), Configuration.getHeight(78),true));
-			}
-
-			if (e.Event.Action == MotionEventActions.Up) {
-				btnSingUp.SetImageBitmap (Bitmap.CreateScaledBitmap (getBitmapFromAsset("icons/signupnolisto.png"), Configuration.getWidth(507), Configuration.getHeight(78),true));
-				var com = ((LoginViewModel)this.DataContext).SignUpCommand;
-				com.Execute(null);
-			}						
 
 		}
 
-*/
+		public void initUi(){
+
+			_dialog = new ProgressDialog(this);
+			_dialog.SetMessage("Espere por favor...");
+			_dialog.SetCancelable(false);
+
+			mainLayout = new RelativeLayout (this);
+
+			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1, -1);
+			Drawable d = new BitmapDrawable (Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/afondo.png"), 768, 1024, true));
+			mainLayout.SetBackgroundDrawable (d);
+
+			initUi_SignUp();
+			initUi_Login ();
+
+		}
+
 		void BtnLogin_Click (object sender, EventArgs e)
 		{
 			AlphaAnimation animation = new AlphaAnimation(1.0f,0.0f);
@@ -313,21 +296,15 @@ namespace MLearning.Droid.Views
 		{
 			relSingup.Alpha = 0.0f;
 			setItemLogin ();
-			//setItemsContentRegister();
-
 		}
 
 		public void setItemLogin(){
-
-
 
 			var txtFormat = Android.Util.ComplexUnitType.Px;
 
 			linearButtonLogin = new LinearLayout (this);
 			linearEditTextLogin = new LinearLayout (this);
 			linearTextLogin = new LinearLayout (this);
-
-
 
 			etxtUser = new EditText (this);
 			etxtPassword = new EditText (this);
@@ -343,7 +320,6 @@ namespace MLearning.Droid.Views
 			etxtUser.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (507), Configuration.getHeight (78));
 			etxtPassword.LayoutParameters = new ViewGroup.LayoutParams (Configuration.getWidth (507), Configuration.getHeight (78));
 
-
 			linearButtonLogin.Orientation = Orientation.Horizontal;
 			linearButtonLogin.SetGravity (GravityFlags.Center);
 			linearEditTextLogin.Orientation = Orientation.Vertical;
@@ -351,12 +327,10 @@ namespace MLearning.Droid.Views
 			linearTextLogin.Orientation = Orientation.Vertical;
 			linearTextLogin.SetGravity (GravityFlags.Center);
 
-
-
 			etxtUser.Hint = "  Usuario"; 
 			etxtUser.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 
-			etxtPassword.Hint = "  Contraseña";
+			etxtPassword.Hint = "  Contraseñ";
 			etxtPassword.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			etxtPassword.InputType = InputTypes.TextVariationVisiblePassword;
 
@@ -369,8 +343,7 @@ namespace MLearning.Droid.Views
 			txtLogin_a.SetTextSize (txtFormat,Configuration.getHeight(30));
 			txtLogin_b.SetTextSize (txtFormat, Configuration.getHeight (30));
 
-
-			txtInicioSesion.Text = "Iniciar Sesión";
+			txtInicioSesion.Text = "Iniciar Sesió";
 			txtInicioSesion.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/HelveticaNeue.ttf");
 			txtInicioSesion.SetTextColor (Color.ParseColor("#ffffff"));
 			txtInicioSesion.SetTextSize (Android.Util.ComplexUnitType.Px, Configuration.getHeight (36));
@@ -379,18 +352,11 @@ namespace MLearning.Droid.Views
 			etxtUser.SetTextColor (Color.ParseColor ("#ffffff"));
 			etxtPassword.SetTextColor (Color.ParseColor ("#ffffff"));
 
-
-
 			btnLoginInto.Click += delegate {
 				_dialog.Show();
 				var com = ((LoginViewModel)this.DataContext).LoginCommand;
 				com.Execute(null);
-				//AlertDialog.Builder popupBuilder = new AlertDialog.Builder(this);
-
-
-
-
-			};
+			} ;
 
 			initButtonColor (btnLoginInto);
 
@@ -411,23 +377,15 @@ namespace MLearning.Droid.Views
 			LinearLayout space = new LinearLayout (this);
 			space.LayoutParameters = new LinearLayout.LayoutParams (-1, 20);
 
-
 			linearTextLogin.AddView (txtLogin_a);
-
 			linearTextLogin.AddView (txtLogin_b);
-
-			//linearButtonLogin.AddView (btnLoginInto);
-			//linearButtonLogin.AddView (linearTextLogin);
 
 			linearEditTextLogin.AddView (etxtUser);
 			linearEditTextLogin.AddView (space);
 			linearEditTextLogin.AddView (etxtPassword);
 
-
 			txtInicioSesion.SetX (Configuration.getWidth(75)); txtInicioSesion.SetY (Configuration.getHeight(680));
 			linearEditTextLogin.SetX (0); linearEditTextLogin.SetY (Configuration.getHeight(741));
-			//linearButtonLogin.SetX (0); linearButtonLogin.SetY (Configuration.getHeight(978));
-
 
 			btnLoginInto.SetX (Configuration.getWidth (45));btnLoginInto.SetY (Configuration.getHeight (980));
 			linearTextLogin.SetX (Configuration.getWidth (345));linearTextLogin.SetY (Configuration.getHeight(995));
@@ -439,8 +397,6 @@ namespace MLearning.Droid.Views
 			relLogin.AddView (linearTextLogin);
 
 			((LoginViewModel)this.ViewModel).PropertyChanged += Login_propertyChanged;;
-
-
 
 			var set = this.CreateBindingSet<LoginView, LoginViewModel>();
 			set.Bind(etxtUser).To(vm => vm.Username);
@@ -466,15 +422,12 @@ namespace MLearning.Droid.Views
 
 					alertDialog.SetButton ("Ok", (s, ev) => {
 
-					});
+					} );
 					alertDialog.Show ();
 
-				} else {
-
+				}  else {
 
 				}
-
-
 			}
 
 			if (e.PropertyName == "ConnectionOK")
@@ -485,10 +438,10 @@ namespace MLearning.Droid.Views
 					AlertDialog.Builder builder = new AlertDialog.Builder (this);
 					AlertDialog alertDialog = builder.Create ();
 					alertDialog.SetTitle ("");
-					alertDialog.SetMessage ("Verifique su conexión de Internet");
+					alertDialog.SetMessage ("Verifique su conexió de Internet");
 
 					alertDialog.SetButton ("Ok", (s, ev) => {
-					});
+					} );
 					alertDialog.Show ();
 
 				}
@@ -502,9 +455,9 @@ namespace MLearning.Droid.Views
 
 			return bitmap;
 		}
+
 		public  void initButtonColor(ImageButton btn){
 			btn.Alpha = 255;
-			//btn.SetAlpha(255);
 			btn.SetBackgroundColor(Color.Transparent);
 		}
 
@@ -523,19 +476,12 @@ namespace MLearning.Droid.Views
 			_dialog.Hide ();
 		}
 
-		/*public override void OnBackPressed ()
-		{
-			base.OnBackPressed ();
-			relLogin.Alpha = 0;
-			relSingup.Alpha = 255;
-		}
-*/
 		MobileServiceUser user ;
 
 		private async Task Authenticate(MobileServiceAuthenticationProvider provider)
 		{
 			while (user == null)
-			{ 
+			{  
 				try
 				{
 					WAMSRepositoryService service = Mvx.Resolve<IRepositoryService>() as WAMSRepositoryService;
@@ -543,8 +489,8 @@ namespace MLearning.Droid.Views
 					Console.WriteLine ("Facebook : " + user.UserId + "  " + user.MobileServiceAuthenticationToken ) ;
 				}
 				catch (InvalidOperationException e)
-				{} 
-			} 
+				{}  
+			}  
 			var vm = ViewModel as LoginViewModel;
 			vm.CreateUserCommand.Execute(user);
 		}
