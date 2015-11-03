@@ -191,6 +191,5 @@ C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\bin
 C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\obj\Debug\MLearning.Core.csproj.App.config
-C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\obj\Debug\MLearning.Core.csprojResolveAssemblyReference.cache
 C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\obj\Debug\MLearning.Core.dll
 C:\Users\ImBonus\Documents\GitHub\MLRepo\MLRepo\mLearningCore\MLearning.Core\obj\Debug\MLearning.Core.pdb

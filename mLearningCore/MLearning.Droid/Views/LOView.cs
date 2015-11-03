@@ -429,7 +429,7 @@ namespace MLearning.Droid.Views
 								for (int n = 0; n < items.Count; n++){ 
 									LOItemSource item = new LOItemSource();
 									if (items[n].loimage != null) item.ImageUrl = items[n].loimage;
-									if (items[n].lotext != null) item.Text = items[n].lotext;
+									if (items[n].descripcion != null) item.Text = items[n].descripcion;
 									//imagebytes
 									//if (items[n].image_bytes != null) item.ImageBytes = items[n].image_bytes; 
 

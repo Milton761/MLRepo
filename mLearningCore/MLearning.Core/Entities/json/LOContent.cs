@@ -9,7 +9,7 @@ namespace MLearning.Core.Entities.json
 {
     public class Loitem : MvxNotifyPropertyChanged
     {
-        public string lotext { get; set; }
+		public string descripcion { get; set; }
         public string loimage { get; set; }
 
         byte[] _image_bytes;
